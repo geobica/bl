@@ -14,6 +14,7 @@ import sys
 import oct2py
 from oct2py import octave
 oc = oct2py.Oct2Py()
+D = 12756274
 
 def f_W_ring(w,z,beta,power=8):
 	theta = np.linspace(0,2*pi,2**power)
@@ -79,7 +80,7 @@ def prepare_coefficients(w,z,beta,power=8):
 
 	f_M_z_loopup_table = f_W_ring(w,z,beta,power=power)
 
-	t1_ln_tlu = np.log(np.absolute(f_M_z_loopup_table/12756274)**2+1)
+	t1_ln_tlu = np.log(np.absolute(f_M_z_loopup_table/D)**2+1)
 
 	fft_get = -np.fft.fft(t1_ln_tlu)/2**power
 
@@ -206,7 +207,7 @@ def explore_polygon(poly_coords,preceeder,centers_pickled=0,inverted_buffer_metr
 						w_polygon = Polygon(np.concatenate((np.real(1/w_raw).reshape([w_raw.shape[0],1]),np.imag(1/w_raw).reshape([w_raw.shape[0],1])),axis=1)).buffer(buffering)
 						in_range = w_polygon.contains(w_point)
 				else:
-					buffering = (np.absolute(w_cen/12756274)**2+1)*12756274/240
+					buffering = (np.absolute(w_cen/D)**2+1)*D/240
 					w_point = Point(np.real(w_cen),np.imag(w_cen))
 					w_polygon = Polygon(np.concatenate((np.real(w_raw).reshape([w_raw.shape[0],1]),np.imag(w_raw).reshape([w_raw.shape[0],1])),axis=1)).buffer(-buffering)
 					in_range = w_polygon.contains(w_point)
@@ -283,8 +284,8 @@ def M_centers_from_W(centers_W,w_raw,beta_raw,z_raw):
 		associates.append(np.absolute(center[8]-np.roll(center[8],1))/np.sum(np.absolute(center[8]-np.roll(center[8],1))))
 		p = prepare_coefficients(center[7],center[8],center[9],power)
 		detail_w = np.ndarray.flatten(np.array(center[7])[:,None]*np.linspace(0,1,10,endpoint=False)[None,:]+np.roll(np.array(center[7]),1)[:,None]*(1-np.linspace(0,1,10,endpoint=False))[None,:])
-		detail_w/=12756274
-		a = center[1]/12756274
+		detail_w/=D
+		a = center[1]/D
 		detail_w = (detail_w-a)/(1+detail_w*np.conj(a))
 		stereo_dist = np.amin(np.absolute(detail_w))
 
@@ -298,7 +299,7 @@ def M_centers_from_W(centers_W,w_raw,beta_raw,z_raw):
 		M_vals = sc_map_continuous(extra_D,center[8],center[9],p*2)
 		W_vals = sc_map_continuous(extra_D,center[8],center[9],np.ones((1)))
 
-		tlu_W = np.absolute(center[1]/12756274)**2+1
+		tlu_W = np.absolute(center[1]/D)**2+1
 		tlu_M = np.absolute(tlu_W/np.exp(np.absolute(p[0])))
 		exp_p_0 /= (1/(np.absolute(stereo_dist)**2+1)/tlu_M)
 		tlu_M = 1/(np.absolute(stereo_dist)**2+1)
@@ -358,15 +359,15 @@ def M_centers_from_W(centers_W,w_raw,beta_raw,z_raw):
 
 	center = centers_W[0]
 	detail_w = np.ndarray.flatten(np.array(center[7])[:,None]*np.linspace(0,1,10,endpoint=False)[None,:]+np.roll(np.array(center[7]),1)[:,None]*(1-np.linspace(0,1,10,endpoint=False))[None,:])
-	detail_w/=12756274
+	detail_w/=D
 
 	for i in range(0,len(line_placements_raw)):
 		line_placements_w.append(w_center_array[i]+(w_anchor_array[i]-w_center_array[i])*np.hstack(line_placements_raw_w[i])/np.hstack(line_placements_raw_w[i])[1])
-		extra_tlu_M_list.append(extra_tlu_M_over_tlu_W_list[i]*(np.absolute(line_placements_w[i]/12756274)**2+1))
+		extra_tlu_M_list.append(extra_tlu_M_over_tlu_W_list[i]*(np.absolute(line_placements_w[i]/D)**2+1))
 		for ii in range(len(line_placements_w[i])):
-			a = line_placements_w[i][ii]/12756274
+			a = line_placements_w[i][ii]/D
 			detail_w_mod = (detail_w-a)/(1+detail_w*np.conj(a))
-			#detail_w*=12756274
+			#detail_w*=D
 			stereo_dist = np.amin(np.absolute(detail_w_mod))
 			extra_tlu_M_list[i][ii] = 1/(np.absolute(stereo_dist)**2+1)
 
@@ -407,7 +408,7 @@ nemo_point = loaded_pickle[1]-pi
 
 opposing_point = np.conj(nemo_point)+pi
 opposing_point = np.conj(nemo_point)
-k = 12756274/(1+sin(opposing_point.imag)*np.sin(np.imag(full_wrapping))+cos(opposing_point.imag)*np.cos(np.imag(full_wrapping))*np.cos(np.real(full_wrapping)-opposing_point.real))
+k = D/(1+sin(opposing_point.imag)*np.sin(np.imag(full_wrapping))+cos(opposing_point.imag)*np.cos(np.imag(full_wrapping))*np.cos(np.real(full_wrapping)-opposing_point.real))
 x = k*np.cos(np.imag(full_wrapping))*np.sin(np.real(full_wrapping)-opposing_point.real)
 y = k*(cos(opposing_point.imag)*np.sin(np.imag(full_wrapping))-sin(opposing_point.imag)*np.cos(np.imag(full_wrapping))*np.cos(np.real(full_wrapping)-opposing_point.real))
 centers_pickled = 0

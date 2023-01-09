@@ -20,10 +20,11 @@ import os
 from shapely.geometry import shape
 
 
-grid_sample_w = np.load(f'pickle/interpolation_points/{sys.argv[1]}_W.npy')/12756274#*12756274
+D = 12756274
+grid_sample_w = np.load(f'pickle/interpolation_points/{sys.argv[1]}_W.npy')/D
 dx = 0.00001
 slightly_to_the_right = grid_sample_w+dx
-mapped_sample_points = np.load(f'pickle/interpolation_points/{sys.argv[1]}_M.npy')/12756274
+mapped_sample_points = np.load(f'pickle/interpolation_points/{sys.argv[1]}_M.npy')/D
 
 
 pickle_off = open(f"pickle/bubble_wrap/{sys.argv[1]}_full_wrapping.txt", "rb")
@@ -36,22 +37,14 @@ outline_point_location = [int((grid_sample_w.shape[0]-math.ceil(loaded_pickle[0]
 grid_sample_w = np.concatenate((grid_sample_w[:outline_point_location[0]],grid_sample_w[outline_point_location[1]:]))
 mapped_sample_points = np.concatenate((mapped_sample_points[:outline_point_location[0]],mapped_sample_points[outline_point_location[1]:]))
 
-# real_rbf = sp.interpolate.LinearNDInterpolator(list(zip(np.real(grid_sample_w),np.imag(grid_sample_w))),np.real(mapped_sample_points))
-# imag_rbf = sp.interpolate.LinearNDInterpolator(list(zip(np.real(grid_sample_w),np.imag(grid_sample_w))),np.imag(mapped_sample_points))
-#needed for normal vv
 real_rbf = sp.interpolate.CloughTocher2DInterpolator(list(zip(np.real(grid_sample_w),np.imag(grid_sample_w))),np.real(mapped_sample_points),tol=0.1)
 imag_rbf = sp.interpolate.CloughTocher2DInterpolator(list(zip(np.real(grid_sample_w),np.imag(grid_sample_w))),np.imag(mapped_sample_points),tol=0.1)
-#needed for normal ^^
-# real_clough = sp.interpolate.CloughTocher2DInterpolator(list(zip(np.real(grid_sample_w),np.imag(grid_sample_w))),np.real(mapped_sample_points))
-# imag_clough = sp.interpolate.CloughTocher2DInterpolator(list(zip(np.real(grid_sample_w),np.imag(grid_sample_w))),np.imag(mapped_sample_points))
-#needed for normal vv
 real_nearest = sp.interpolate.NearestNDInterpolator(list(zip(np.real(grid_sample_w),np.imag(grid_sample_w))),np.real(mapped_sample_points))
 imag_nearest = sp.interpolate.NearestNDInterpolator(list(zip(np.real(grid_sample_w),np.imag(grid_sample_w))),np.imag(mapped_sample_points))
-#needed for normal ^^
 
 def equi_to_stereo(equi):
 	equi *= pi/180
-	k = 12756274/(1+sin(opposing_point.imag)*np.sin(np.imag(equi))+cos(opposing_point.imag)*np.cos(np.imag(equi))*np.cos(np.real(equi)-opposing_point.real))
+	k = D/(1+sin(opposing_point.imag)*np.sin(np.imag(equi))+cos(opposing_point.imag)*np.cos(np.imag(equi))*np.cos(np.real(equi)-opposing_point.real))
 	x = k*np.cos(np.imag(equi))*np.sin(np.real(equi)-opposing_point.real)
 	y = k*(cos(opposing_point.imag)*np.sin(np.imag(equi))-sin(opposing_point.imag)*np.cos(np.imag(equi))*np.cos(np.real(equi)-opposing_point.real))
 
@@ -71,10 +64,10 @@ def reproj(equi,stereoproj=True):
 		stereo = equi
 
 	# #return stereo
-	out_real = real_rbf(np.real(stereo/12756274),np.imag(stereo/12756274))
-	out_imag = imag_rbf(np.real(stereo/12756274),np.imag(stereo/12756274))
-	out_real[np.isnan(out_real)] = real_nearest(np.real(stereo[np.isnan(out_real)]/12756274),np.imag(stereo[np.isnan(out_real)]/12756274))
-	out_imag[np.isnan(out_imag)] = imag_nearest(np.real(stereo[np.isnan(out_imag)]/12756274),np.imag(stereo[np.isnan(out_imag)]/12756274))
+	out_real = real_rbf(np.real(stereo/D),np.imag(stereo/D))
+	out_imag = imag_rbf(np.real(stereo/D),np.imag(stereo/D))
+	out_real[np.isnan(out_real)] = real_nearest(np.real(stereo[np.isnan(out_real)]/D),np.imag(stereo[np.isnan(out_real)]/D))
+	out_imag[np.isnan(out_imag)] = imag_nearest(np.real(stereo[np.isnan(out_imag)]/D),np.imag(stereo[np.isnan(out_imag)]/D))
 	return out_real+1j*out_imag
 
 def multi_to_file(filename,multi):
