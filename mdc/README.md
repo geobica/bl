@@ -55,5 +55,5 @@ The input file should be in an equirectangular projection (EPSG:4326). Six new s
 	- `gridline_[NAME].shp` (a grid of latitude and longitude lines)
 
 Below on the left are the outputted shapefiles for Greenland in the stereographic projection, with the optimized projection on the right. The `greenland_detail` geopackage includes the boundaries of Greenland's 5 municipalities, so they are shown in the output here.
-![A stereographic projection of Greenland showing the generated polygon around it.](wrapped_greenland.png)
+![A side by side comparison of the six output shapefiles for Greenland.](output_greenland.png)
 At the edge of the shapes outlines in the optimized projection there is significant error, due to the way in which the interpolation works, but for the area inside Greenland this distortion does not occur. In the future, I hope to be able to refine the way this algorithm approximates projection of points on the boundary of W. When attempting to project points outside of W, the interpolation algorithm will resort to a nearest points interpolation algorithm, as it is generally not possible to continue these projections beyond the boundary polygon in a way that maintains their conformality.
