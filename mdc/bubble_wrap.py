@@ -166,7 +166,6 @@ else:
 	input_path = 'input_sample'
 	pickle_path = 'pickle/bubble_wrap'
 
-all_points = []
 with fiona.open(os.path.join(f'{input_path}',f'{name}.gpkg'), layer=fiona.listlayers(os.path.join(f'{input_path}',f'{name}.gpkg'))[0]) as layer:
 	for feature in layer:
 		for poly in shape(feature['geometry']):
@@ -227,20 +226,12 @@ for st in included_lines:
 v_0 = np.array(v_0)
 v_1 = np.array(v_1)
 print('v_0')
-single_buffered = buffer_3d(v_0,v_1,0.01,10)
-print('single_buffered')
-
-single_buffered = reduce_line(single_buffered)
-
-
-double_buffed = buffer_3d(single_buffered[:-1],single_buffered[1:],0.01,10)
+double_buffed = buffer_3d(v_0,v_1,0.01*2,10)
 print('double_buffed')
 double_buffed = reduce_line(double_buffed)
 third_poly = buffer_3d_full_poly(double_buffed[:-1],double_buffed[1:],0.01,10)
 print('third_poly')
 
-fig = plt.figure()
-ax = fig.add_subplot(111)
 final_stereo_poly = comp_to_poly(equi_to_stereo(double_buffed,np.conj(nemo_point)+pi)).buffer(0).difference(third_poly.buffer(0))
 poly = final_stereo_poly
 x,y = poly.exterior.coords.xy

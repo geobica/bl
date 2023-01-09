@@ -23,6 +23,9 @@ Where "greenland" is the name of the file in the `input_sample/` folder, and -40
 
 The generated polygon W and the given centerpoint will be stored at `pickle/bubble_wrap/[NAME]_full_wrapping.txt`, where `[NAME]` is the name given to the aforementioned region, in this case `greenland`.
 
+The image below shows the stereographic projection of Greenland in blue, with the polygon W in orange: 
+![A stereographic projection of Greenland showing the generated polygon around it.](wrapped_greenland.png)
+
 ## geobica_projection.py
 
 This algorithm uses the polygon in `pickle/bubble_wrap/` to calculate a numerical implementation of the optimal conformal projection for that region.
@@ -47,6 +50,10 @@ The input file should be in an equirectangular projection (EPSG:4326). Six new s
 	- `original_outline_[NAME].shp` (the polygon W)
 	- `original_gridline_[NAME].shp` (a grid of latitude and longitude lines)
 + Three in the optimized projection:
-	- `original_[NAME].shp` (projection of the geopackage given to `interpolate.py`)
-	- `original_outline_[NAME].shp` (the polygon M)
-	- `original_gridline_[NAME].shp` (a grid of latitude and longitude lines)
+	- `[NAME].shp` (projection of the geopackage given to `interpolate.py`)
+	- `outline_[NAME].shp` (the polygon M)
+	- `gridline_[NAME].shp` (a grid of latitude and longitude lines)
+
+Below on the left are the outputted shapefiles for Greenland in the stereographic projection, with the optimized projection on the right. The `greenland_detail` geopackage includes the boundaries of Greenland's 5 municipalities, so they are shown in the output here.
+![A stereographic projection of Greenland showing the generated polygon around it.](wrapped_greenland.png)
+At the edge of the shapes outlines in the optimized projection there is significant error, due to the way in which the interpolation works, but for the area inside Greenland this distortion does not occur. In the future, I hope to be able to refine the way this algorithm approximates projection of points on the boundary of W. When attempting to project points outside of W, the interpolation algorithm will resort to a nearest points interpolation algorithm, as it is generally not possible to continue these projections beyond the boundary polygon in a way that maintains their conformality.
