@@ -178,8 +178,6 @@ lines_to_file(f'maps_projected/gridline_{sys.argv[1]}.shp',line_list)
 
 def read_in_file(filename,transform):
 	multipolys = []
-
-	all_points = []
 	with fiona.open(filename, layer=fiona.listlayers(filename)[0]) as layer:
 		for feature in layer:
 			multipolys.append([])
