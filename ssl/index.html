@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="UTF-8">
+        <link href="https://geobica.com/bl/bl.css" rel="stylesheet" type="text/css" />
+        <link href="https://www.geobica.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <title>bl</title>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <meta property="og:image" content="https://geobica.com/bl/im/ssl.png"/>
+        <meta property="og:image:width" content="256"/>
+        <meta property="og:image:height" content="256"/>
+        <meta property="og:title" content="Applying the Shortest Splitline Algorithm to the World
+"/>
+        <meta property="og:description" content="Dividing the world into regions of equal population using the shortest splitline algorithm of voter districting.
+"/>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="geobica.com">
+        <meta property="twitter:url" content="https://www.geobica.com/bl/ssl">
+        <meta name="twitter:title" content="Applying the Shortest Splitline Algorithm to the World
+">
+        <meta name="twitter:description" content="Dividing the world into regions of equal population using the shortest splitline algorithm of voter districting.
+">
+        <meta name="twitter:image" content="https://geobica.com/bl/im/ssl.png">
+    </head>
+    <body>
+        <div id="header">
+            <a id="icon" href="https://www.Geobica.com/bl/"> <img src="https://www.geobica.com/bl/im/world_288.png"/> </a>
+            <br/>
+            <div id="links"><a class="link" href="https://www.geobica.com">Home</a> | <a class="link" href="https://www.geobica.com/bl/">/bl</a> | <a class="link" href="https://www.geobica.com/games/">Games</a> | <a class="link" href="https://www.geobica.com/about.html">About</a> | <a class="link" href="https://www.geobica.com/contact.html">Contact</a></div>
+        </div>
+        <div id="body">
+            <div id="article_column">
+                <div id="post">
+                    <div class="title_print">
+                        <strong>Applying the Shortest Splitline Algorithm to the World
+</strong>
+                    </div>
+                    <div class="date_print">
+                        <i>Published <span title="2020-07-09T12:00:00Z">9 July 2020</span></i>
+                    </div>
+                    </br>
+                    <div class="body_print">
+The shortest splitline algorithm is a solution to gerrymandering<span class="ref"><span class="note">[1]</span><span class="notetext">If you don't know what gerrymandering is, the Washington Post has an <a class="link" href="https://www.washingtonpost.com/news/wonk/wp/2015/03/01/this-is-the-best-explanation-of-gerrymandering-you-will-ever-see/?noredirect=on&utm_term=.3be043cfebc4">easy to follow explanation</a>.</span></span> proposed by the Center for Range Voting in 2007. The algorithm divides a given region into a set number of districts through iterated implementation of a simple process: A district will be divided into two districts by whatever is the shortest line needed to split it into two districts of equal population, or with a specified population ratio if dividing a region into an odd number of districts. CGP Grey created <a class="link" href="https://www.youtube.com/watch?v=kUS9uvYyn3A">a video</a> explaining the algorithm in 2011, which is where I first heard about it, and the <a class="link" href="https://rangevoting.org/SplitLR.html">Center for Range Voting</a> provides maps that show how each of the 50 US states would look with the algorithm applied.
+</br>
+There are various issues with the algorithm,<span class="ref"><span class="note">[2]</span><span class="notetext">It ignores geographic and cultural boundaries that typically make representative democracies feel representative, and it often splits cities in ways that diffuse their voting power.</span></span> but out of curiosity, I decided to try applying the algorithm to the entire world to see how a hypothetical global democracy could implement range voting without the possibility of gerrymandering.
+</br>
+</br>
+Below is an implementation of the algorithm to divide the world into seven regions of equal population:
+<div style="width=90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/split_7.png" width="70%" style=""/></div>
+<div class="caption" style="width:55%"><i>Population data is from 2015, so each region had about one billion people.</i></div>
+</br>
+Going a step further, I then divided the world into one hundred regions, each making up one percent of the world's population:
+<div style="width=90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/split_100.png" width="70%" style=""/></div>
+<div class="caption" style="width:55%"><i>Each region here had about 73 million people.</i></div>
+</br>
+The python script I used and some of the population data is available on github here: <a class="link" href="https://github.com/geobica/bl/tree/master/shortest_splitline">https://github.com/geobica/bl/tree/master/shortest_splitline</a>
+</br>
+</div>
+<div class="date_print"><i>Sources:</br>World Population Data: <a class="link" href="https://ghsl.jrc.ec.europa.eu/ghs_pop.php">https://ghsl.jrc.ec.europa.eu/ghs_pop.php</a></br>Shortest Splitline Algorithm: <a class="link" href="https://rangevoting.org/SplitLR.html">https://rangevoting.org/SplitLR.html</a></br>Code: <a class="link" href="https://github.com/geobica/bl/tree/master/shortest_splitline">https://github.com/geobica/bl/tree/master/shortest_splitline</a></i></div>
+                    </div>
+                </div>
+            <hr>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" delay></script>
+        <script>
+            jQuery.noConflict();
+            jQuery(function() {
+                jQuery(".notetext").hide();
+                jQuery(".note").click(function(event) {
+                    jQuery(this.nextSibling).toggle();
+                    event.stopPropagation();
+                });
+                jQuery("body").click(function(event) {
+                    jQuery(".notetext").hide();
+                });
+            });
+        </script>
+    </body>
+</html>

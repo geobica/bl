@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+#head{
+    position:absolute;
+    left:0px;
+	top:0px;
+	width:100%;
+	height:64px;
+    overflow-x:auto;
+    overflow-y:hidden;
+}
+#icon{
+    position:absolute;
+    left:30%;
+	top:15px;
+	width:40%;
+    text-align:center;
+    height:128px;
+}
+a:link {
+  color: #8ae;
+}
+a:visited {
+  color: #97b;
+}
+#links{    
+    position:absolute;
+    top:162px;
+    left:30%;
+	width:40%;
+    text-align:center;
+    color:#BBBBBB;
+    text-decoration: none;
+}
+.link{
+    color:#BBBBBB;
+    text-decoration: none;
+}
+#body{
+    position:absolute;
+	left:0px;
+	top:192px;
+	right:0px;
+	bottom:0px;
+    color:#10FF10;
+}
+@media screen and (min-width: 960px) {
+    body{
+        background-image:url('im/bgtl.png'),url('im/bgtr.png'),url('im/bgl0.png'),url('im/bgr0.png');
+        background-position:left top,right top,left top,right top;
+        background-repeat:no-repeat,no-repeat,repeat-y,repeat-y;
+        background-size:384px,384px,384px,384px;
+    }
+    #article_column{
+        left:188px;
+        right:188px;
+    }
+}
+body{
+    background-color:#222222;
+}
+#article_column{
+    position:absolute;
+    top:0px;
+    background-image:url('im/side.png'),url('im/side.png'),url('im/plate.png');
+    background-size:8px,8px,1366px;
+    background-position:left top,right top,left top;
+    background-repeat:repeat-y,repeat-y,repeat;
+    background-color:#444444;
+    font-family: 'Lato', sans-serif;
+    line-height:1.5;
+    color:#DDDDDD;
+}
+.article{
+    height:256px;
+    position:relative;
+    text-align:justify;
+    text-justify:inter-word;
+    margin:auto;
+    margin-top:20px;
+    font-size:18px;
+    padding-left:8px;
+    padding-right:30px;
+}
+#post{
+    position:relative;
+    text-align:justify;
+    text-justify:inter-word;
+    margin:auto;
+    margin-top:20px;
+    font-size:18px;
+    padding-left:8px;
+    padding-right:46px;
+}
+.picframe{
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.pic{
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.border{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+user-select: none;
+-webkit-user-drag: none;
+}
+.title{
+    font-size:24px;
+}
+.title_print{
+    position: relative;
+    left:16px;
+    font-size:36px;
+}
+.body_print{
+    position: relative;
+    left:16px;
+    font-size:18px;
+}
+.embed_image{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+.side_image{
+  margin-left: auto;
+  margin-right: auto;
+}
+.bordered_image{
+  border: solid 7px #2d2;
+  position: relative;
+  z-index: 9;
+  padding-bottom:0px;
+}
+.bordered_image:before{
+  content: "";
+  display: block;
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  right: -14px;
+  bottom: -14px;
+  border: solid 7px #33d;
+  min-height: 100%;
+  z-index: 10;
+}
+.date_print{
+    position: relative;
+    left:16px;
+    font-size:12px;
+}
+.caption{
+   margin-left: auto;
+   margin-right: auto;
+  text-align: center;
+  display: block;
+    position: relative;
+    font-size:12px;
+}
+.article span{
+    position: absolute;
+    bottom: 0;
+}
+/*notes borrowed from xkcd*/
+.ref{
+    position: relative;
+    vertical-align: baseline;
+}
+.note{
+    position: relative;
+    left: 2px;
+    bottom: .7em;
+    font-size: .6em;
+    cursor: pointer;
+}
+.notetext{
+    font-size: .6em;
+    line-height: 1.1;
+    display: block;
+    min-width: 10em;
+    max-width: 30em;
+    text-align: left;
+    position: absolute;
+    left: 18px;
+    bottom: 5px;
+    border: 1px solid;
+    padding: 5px;
+    background-color: #FFFFFF;
+    color: #333333;
+    word-wrap: break-word;
+    z-index: 9999;
+    overflow: auto;
+}
+table {
+    border-collapse: collapse;
+    border-style: hidden;
+}
+table td, table th {
+    border: 1px solid;
+}

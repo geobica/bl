@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="UTF-8">
+        <link href="https://geobica.com/bl/bl.css" rel="stylesheet" type="text/css" />
+        <link href="https://www.geobica.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <title>bl</title>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <meta property="og:image" content="https://geobica.com/bl/im/spf.png"/>
+        <meta property="og:image:width" content="256"/>
+        <meta property="og:image:height" content="256"/>
+        <meta property="og:title" content="Splitting Fractals
+"/>
+        <meta property="og:description" content="An analysis of the mass of slices of basic fractals taken at rational intervals.
+"/>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="geobica.com">
+        <meta property="twitter:url" content="https://www.geobica.com/bl/spf">
+        <meta name="twitter:title" content="Splitting Fractals
+">
+        <meta name="twitter:description" content="An analysis of the mass of slices of basic fractals taken at rational intervals.
+">
+        <meta name="twitter:image" content="https://geobica.com/bl/im/spf.png">
+    </head>
+    <body>
+        <div id="header">
+            <a id="icon" href="https://www.Geobica.com/bl/"> <img src="https://www.geobica.com/bl/im/world_288.png"/> </a>
+            <br/>
+            <div id="links"><a class="link" href="https://www.geobica.com">Home</a> | <a class="link" href="https://www.geobica.com/bl/">/bl</a> | <a class="link" href="https://www.geobica.com/games/">Games</a> | <a class="link" href="https://www.geobica.com/about.html">About</a> | <a class="link" href="https://www.geobica.com/contact.html">Contact</a></div>
+        </div>
+        <div id="body">
+            <div id="article_column">
+                <div id="post">
+                    <div class="title_print">
+                        <strong>Splitting Fractals
+</strong>
+                    </div>
+                    <div class="date_print">
+                        <i>Published <span title="2019-10-16T22:20:00Z">16 October 2019</span></i>
+                    </div>
+                    </br>
+                    <div class="body_print">
+The core property that makes fractals like the Menger sponge and Sierpinski triangle beautiful is their self-similarity. A Sierpinski triangle can be cut into three equal parts each with a side length half the original, while a Menger sponge can be cut into twenty smaller cubes, each an exact copy of the larger scaled down by a factor of three. But what if, instead of slicing these fractals into identical components, they were sliced unevenly? What if, for example, the Sierpinski triangle were sliced by a vertical line exactly one third of the way along its edge?
+<div>
+    <img class="embed_image" src="https://www.geobica.com/bl/im/spf/siers_blank.png" width="40%"/>
+</div>
+</br>
+How does the mass of the segment on the left relate to the segment on the right? It seems like it should be less than a third of the total mass, but given the hole in the center, that's not certain. I think this is an interesting exercise, so I'd recommend trying this yourself.
+</br>
+<div align="center"><button title="Click to show/hide content" align="center" type="button" onclick="if(document.getElementById('spoiler_0') .style.display=='none') {document.getElementById('spoiler_0') .style.display=''}else{document.getElementById('spoiler_0') .style.display='none'}">Show/hide</button></div></br>
+<div id="spoiler_0" style="display:none">
+    <div style="width=40%;margin:auto;text-align: center;">
+        <img class="side_image" src="https://www.geobica.com/bl/im/spf/002.png" width="20%" style=""/><img class="side_image" src="https://www.geobica.com/bl/im/spf/070.png" width="20%"/>
+    </div>
+    As you can see, the left side can be constructed from scaled down copies of the left and right sides. The copy of the right side in the left is scaled down by a factor of two. As scaling down a sierpinski triangle by a factor of two scales the mass down by a factor of three, the mass of this portion is $R/3$. The copy of the left side is scaled down by a factor of four, so that portion has a mass of $L/9$.
+    Therefore, $$L=R/3+L/9$$
+    $$8L/9=R/3$$
+    $$8L=3R$$
+    The left side is therefore  $3/11$  the total mass.
+</div>
+Another simple fractal to analyse is the menger sponge. For the sake of visualization, I'll work with a two-dimensional version:
+<div>
+    <img class="embed_image" src="https://www.geobica.com/bl/im/spf/menger_plain.png" width="40%"/>
+</div>
+Cutting off half of the menger sponge would obviously result in a 1:1 proportion, while a third would clearly be 3:5, so for this I've cut off one fourth horizontally.
+</br>
+<div align="center">
+    <button title="Click to show/hide content" align="center" type="button" onclick="if(document.getElementById('spoiler_1') .style.display=='none') {document.getElementById('spoiler_1') .style.display=''}else{document.getElementById('spoiler_1') .style.display='none'}">Show/hide</button>
+</div>
+</br>
+<div id="spoiler_1" style="display:none">
+    The solution here can be seen in the fact that $\sum_{n=1}^{\infty} \frac{1}{9^{n}}=\frac{1}{8}$. This means that $\sum_{n=1}^{\infty} \frac{2}{9^{n}}=\frac{1}{4}$.
+    <div>
+        <img class="embed_image" src="https://www.geobica.com/bl/im/spf/menger_green.png" width="40%"/>
+    </div>
+    The first $2/9$ horizontally consists of a whole number of smaller menger sponges, and the remainder of the left side can be seen to be a stack of scaled down copies of the left side. Each menger sponge with $1/9$ the side length has $1/64$ the mass of the whole, so the light green has $15/64$ the total mass. The remainder of the left side consists of a stack of nine copies of the left scaled down by one ninth, giving the equation: $$L=15/64+9/64L$$
+    $$55/64L=15/64$$
+    $$L=15/55=3/11$$
+
+    So, as it turns out, the mass of one third of the sierpinski triangle is the same as the mass of a quarter of an equal menger sponge. Coincidence?
+
+    To better understand where these ratios come from, it would help to generalize the process for any fraction. One way to do this is to use the ternary expansion of a fraction to discover an equation that describes the ratio.
+    Take, for example, the repeating ternary value of 0.<span style="text-decoration:overline">0<span style="color: #ff0000">1</span><span style="color: #00ff00">2</span><span style="color: #0000ff">1</span></span>. Because this is in ternary, it's easier to see how this maps onto the menger sponge.
+    <div>
+        <img class="embed_image" src="https://www.geobica.com/bl/im/spf/menger_fifth.png" width="40%"/>
+    </div>
+    The first $1/9$ is in red, the next $2/27$ is in green, and the next $1/81$ is in blue. The digits after the repeat correspond to a stack of scaled down copies of the left side in the column after the blue. This column is $\frac{1}{3^{4}}$ of the side, and each copy of the left will have $\frac{1}{8^{4}}$ the whole mass. To count the amount of copies, observe that the first third of the sponge contains three copies, the second third contains two, and the last third contains three again. 
+
+    A formula can be described for the amount of 1/81-sponges can be found in each column of $1/81$ the whole sponge. In the nth column, there will be $81*(2/3)^{\textrm{# of 1's in ternary expansion of n-1}}$, as each digit 1 essentially indicates that the column is on top of one of the holes in the sponge. For convenience, I'll let $M(n)=(2/3)^{\textrm{# of 1's in ternary expansion of n}}$. As $121_{3}$ columns are described already, there will be $81*M(121_{3})=36$ 1/81-sponges in the next column.
+    The number of 1/81-sponges in the parts colored red, green, and blue can be counted by finding $$81*\sum_{n=0}^{121_{3}-1}M(n)$$
+    Using this, the mass of the left side can be found from the formula
+    $$L=\frac{81*\sum_{n=0}^{121_{3}-1}M(n)}{8^{4}}+\frac{81*M(121_3)*L}{8^{4}}$$
+    Evaluating for $n=121_{3}$ gives $L=3/14$.
+        
+    The formula can be generalized for any repeating ternary expansion of a rational number. Given integers $A$ and $a$ such that $A<3^{a}$, the fraction $\frac{A}{3^{a}-1}$ describes a repeating ternary expansion such that the digits of $A$ repeat every $a$ digits. The mass of this fraction horizontally of the menger sponge can be found by:
+    $$L=\frac{3^{a}*\sum_{n=0}^{A-1}M(n)}{8^{a}}+\frac{3^{a}*M(A)*L}{8^{a}}$$
+    which solves to
+    $$L=\frac{3^{a}*\sum_{n=0}^{A-1}M(n)}{8^{a}-3^{a}*M(A)}$$
+
+    This formula can be applied to any fraction $1/n$ where $n$ is not divisible by $3$, for reasons related to Fermat's little theorem. I may expand on this fact in an update to this at a later date, along with some more exploration of the properties of the Sierpinski triangle. To find the mass when $n$ is divisible by $3$, the fractal's self similarity can be used to show that the mass of $1/3k$ across is exactly $3/8$ the mass of $1/k$ across. The table below shows the mass fractions of $1/n$ across the menger sponge for the first few $n$.
+    <table align="center" cellpadding="5">
+        <tr><th>Length Across</th><th>Mass of Left Side</th></tr>
+        <tr><td>$1/1$</td><td>$1/1$</td></tr>
+        <tr><td>$1/2$</td><td>$1/2$</td></tr>
+        <tr><td>$1/3$</td><td>$3/8$</td></tr>
+        <tr><td>$1/4$</td><td>$3/11$</td></tr>
+        <tr><td>$1/5$</td><td>$3/14$</td></tr>
+        <tr><td>$1/6$</td><td>$3/16$</td></tr>
+        <tr><td>$1/7$</td><td>$9/53$</td></tr>
+        <tr><td>$1/8$</td><td>$9/58$</td></tr>
+        <tr><td>$1/9$</td><td>$9/64$</td></tr>
+        <tr><td>$1/10$</td><td>$9/73$</td></tr>
+        <tr><td>$1/11$</td><td>$369/3266$</td></tr>
+        <tr><td>$1/12$</td><td>$9/88$</td></tr>
+        <tr><td>$1/13$</td><td>$9/97$</td></tr>
+        <tr><td>$1/14$</td><td>$9/106$</td></tr>
+        <tr><td>$1/15$</td><td>$9/112$</td></tr>
+        <tr><td>$1/16$</td><td>$153/2021$</td></tr>
+    </table>
+</div>
+                    </div>
+                </div>
+            <hr>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" delay></script>
+        <script>
+            jQuery.noConflict();
+            jQuery(function() {
+                jQuery(".notetext").hide();
+                jQuery(".note").click(function(event) {
+                    jQuery(this.nextSibling).toggle();
+                    event.stopPropagation();
+                });
+                jQuery("body").click(function(event) {
+                    jQuery(".notetext").hide();
+                });
+            });
+        </script>
+    </body>
+</html>

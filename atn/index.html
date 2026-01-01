@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="UTF-8">
+        <link href="https://geobica.com/bl/bl.css" rel="stylesheet" type="text/css" />
+        <link href="https://www.geobica.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <title>bl</title>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <meta property="og:image" content="https://geobica.com/bl/im/atn.png"/>
+        <meta property="og:image:width" content="256"/>
+        <meta property="og:image:height" content="256"/>
+        <meta property="og:title" content="List of Integers
+"/>
+        <meta property="og:description" content="In alphabetical order.
+"/>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="geobica.com">
+        <meta property="twitter:url" content="https://www.geobica.com/bl/atn">
+        <meta name="twitter:title" content="List of Integers
+">
+        <meta name="twitter:description" content="In alphabetical order.
+">
+        <meta name="twitter:image" content="https://geobica.com/bl/im/atn.png">
+    </head>
+    <body>
+        <div id="header">
+            <a id="icon" href="https://www.Geobica.com/bl/"> <img src="https://www.geobica.com/bl/im/world_288.png"/> </a>
+            <br/>
+            <div id="links"><a class="link" href="https://www.geobica.com">Home</a> | <a class="link" href="https://www.geobica.com/bl/">/bl</a> | <a class="link" href="https://www.geobica.com/games/">Games</a> | <a class="link" href="https://www.geobica.com/about.html">About</a> | <a class="link" href="https://www.geobica.com/contact.html">Contact</a></div>
+        </div>
+        <div id="body">
+            <div id="article_column">
+                <div id="post">
+                    <div class="title_print">
+                        <strong>List of Integers
+</strong>
+                    </div>
+                    <div class="date_print">
+                        <i>Published <span title="2020-05-01T12:00:00Z">1 May 2020</span></i>
+                    </div>
+                    </br>
+                    <div class="body_print">
+<div id="integer_list"></div>
+...loading...
+<script>
+    var integer_list = document.getElementById("integer_list");
+    digits = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+    tens = ['','ten','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+    illions = ['','m','b','tr','quadr','quint','sext','sept','oct','non'];
+    digit_illions = ['','un','duo','tre','quattuor','quinqua','se','septe','octo','nove'];
+    ten_illions = ['','deci','viginti','triginta','quadraginta','quinquaginta','sexaginta','septuaginta','octoginta','nonaginta'];
+    hundred_illions = ['','centi','ducenti','trecenti','quadringenti','quingenti','sescenti','septingenti','octingenti','nongenti'];
+    tens_nasals = ['','n','m','n','n','n','n','n','m',''];
+    hundreds_nasals = ['','n','n','n','n','n','n','n','m',''];
+    tens_sex = ['','','s','s','s','s','','','x',''];
+    hundreds_sex = ['','x','','s','s','s','','','x',''];
+    function make_illion(power){
+        if(power == 0){
+            return '';
+        }
+        if(power == 1){
+            return 'thousand ';
+        }
+        power -= 1;
+        if(power < 10){
+            return illions[power]+'illion ';
+        }
+        full_prefix = '';
+        if(power%10 > 0){
+            full_prefix += digit_illions[power%10];
+        }
+        if(power%100 >= 10){
+            if(power%10 == 3){
+                if(tens_sex[Math.floor((power%100)/10)] != ''){
+                    full_prefix += 's';
+                }
+            }
+            if(power%10 == 6){
+                full_prefix += tens_sex[Math.floor((power%100)/10)];
+            }
+            if(power%10 == 7 || power%10 == 9){
+                full_prefix += tens_nasals[Math.floor((power%100)/10)];
+            }
+            full_prefix += ten_illions[Math.floor((power%100)/10)];
+        }
+        if(power%1000 >= 100){
+            if(power%100 == 3){
+                if(hundreds_sex[Math.floor((power%1000)/100)] != ''){
+                    full_prefix += 's';
+                }
+            }
+            if(power%100 == 6){
+                full_prefix += hundreds_sex[Math.floor((power%1000)/100)];
+            }
+            if(power%100 == 7 || power%100 == 9){
+                full_prefix += hundreds_nasals[Math.floor((power%1000)/100)];
+            }
+            full_prefix += hundred_illions[Math.floor((power%1000)/100)];
+        }
+        return full_prefix.substring(0,full_prefix.length-1)+'illion ';
+    }
+    function make_group(input){
+        if(input == 0){
+            return '';
+        }
+        full_group = '';
+        if(input%1000 >= 100){
+            full_group += digits[Math.floor((input%1000)/100)]+' hundred ';
+        }
+        if(input%100 >= 20){
+            full_group += tens[Math.floor((input%100)/10)]+' ';
+            full_group += digits[input%10]+' ';
+        }else{
+            full_group += digits[input%100]+' ';
+        }
+        return full_group;
+    }
+    function make_number(number_groups){
+        group_count = number_groups.length;
+        full_number = '';
+        for(var i = 0;i < group_count;i++){
+            if(number_groups[i] > 0){
+                full_number += make_group(number_groups[i]);
+                full_number += make_illion(group_count-i-1);
+            }
+        }
+        return full_number.substring(0,full_number.length-1);
+    }
+    function number_groups_compare(number_groups_a,number_groups_b){
+        if(number_groups_a.length >= number_groups_b.length){
+            for(var i = 0;i < number_groups_b.length;i++){
+                if(number_groups_a[i] > number_groups_b[i]){
+                    return 1;
+                }
+                if(number_groups_a[i] < number_groups_b[i]){
+                    return -1;
+                }
+            }
+        }
+        return 0;
+    }
+    function fix(number_groups){
+        for(var i = 0;i < number_groups.length;i++){
+            if(number_groups[number_groups.length-i-1] >= 1000){
+                if(number_groups.length-i-2 >= 0){
+                    number_groups[number_groups.length-i-2] += Math.floor(number_groups[number_groups.length-i-1]/1000);
+                }
+                number_groups[number_groups.length-i-1] = number_groups[number_groups.length-i-1]%1000;
+            }
+            if(number_groups[number_groups.length-i-1] < 0){
+                if(number_groups.length-i-2 >= 0){
+                    number_groups[number_groups.length-i-2] -= Math.floor(number_groups[number_groups.length-i-1]/1000);
+                }
+                number_groups[number_groups.length-i-1] = (number_groups[number_groups.length-i-1]+10000)%1000;
+            }
+        }
+        return number_groups;
+    }
+    var illion_list = [];
+    var illion_order = [];
+    for(var i = 0;i < 11;i++){
+        illion_list.push(make_illion(i));
+        illion_order.push(i);
+    }
+    illion_order.sort(function(a, b){
+        if(illion_list[a] < illion_list[b]){
+            return -1;
+        }
+        if(illion_list[a] > illion_list[b]){
+            return 1;
+        }
+        return 0;
+    })
+    
+    var piece_list = [];
+    var piece_type = [];
+    var piece_value = [];
+    var piece_order = [];
+    for(var i = 1;i < 10;i++){
+        piece_list.push(digits[i]+' ');
+        piece_type.push(0);
+        piece_value.push(i);
+        piece_order.push(i-1);
+    }
+    for(var i = 10;i < 20;i++){
+        piece_list.push(digits[i]+' ');
+        piece_type.push(1);
+        piece_value.push(i);
+        piece_order.push(i-1);
+    }
+    for(var i = 2;i < 10;i++){
+        piece_list.push(tens[i]+' ');
+        piece_type.push(2);
+        piece_value.push(10*i);
+        piece_order.push(i+17);
+    }
+    piece_list.push('hundred ');
+    piece_type.push(3);
+    piece_value.push(100);
+    piece_order.push(27);
+    for(var i = 1;i < illion_list.length;i++){
+        piece_list.push(illion_list[i]);
+        piece_type.push(1000+i);
+        piece_value.push(1000);
+        piece_order.push(i+27);
+    }
+    piece_order.sort(function(a, b){
+        if(piece_list[a] < piece_list[b]){
+            return -1;
+        }
+        if(piece_list[a] > piece_list[b]){
+            return 1;
+        }
+        return 0;
+    })
+    depth_search = [1];
+    depth_block = [4000];
+    var done = 0;
+    var needed = 0;
+    var wait_step = 0;
+    function scroll_more(more){
+        needed += more;
+        while(done < needed){
+            if(depth_search[depth_search.length-1] >= piece_order.length){
+                depth_search[depth_search.length-2] += 1;
+                depth_search.pop();
+                depth_block.pop();
+            }else{
+                if(depth_block[depth_search.length-2] < 2 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 3){
+                    depth_search[depth_search.length-1] += 1;
+                }else if(depth_block[depth_search.length-2] <= (piece_type[piece_order[depth_search[depth_search.length-1]]]-1000)*3){
+                    depth_search[depth_search.length-1] += 1;
+                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] >= 1000 && piece_type[piece_order[depth_search[depth_search.length-1]]] >= 1000){
+                    depth_search[depth_search.length-1] += 1;
+                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] != 0 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 3){
+                    depth_search[depth_search.length-1] += 1;
+                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] < 3 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 2){
+                    depth_search[depth_search.length-1] += 1;
+                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] < 3 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 1){
+                    depth_search[depth_search.length-1] += 1;
+                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] < 2 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 0){
+                    depth_search[depth_search.length-1] += 1;
+                }else{
+                    integer_list.innerHTML += '<br>'+(done+1)+') ';
+                    for(var j = 0;j < depth_search.length;j++){
+                        integer_list.innerHTML += piece_list[piece_order[depth_search[j]]];
+                    }
+                    done++;
+                    if(piece_type[piece_order[depth_search[depth_search.length-1]]] == 0){
+                        if(depth_block[depth_search.length-1] > 2){
+                            var fulf = -1;
+                            while(fulf >= -1 && fulf < piece_type.length){
+                                fulf += 1;
+                                if(piece_type[piece_order[fulf]] == 3 && depth_block[depth_search.length-1] % 3 ==0){
+                                    depth_block.push((depth_block[depth_search.length-1]-1)-((depth_block[depth_search.length-1]-1)%3)+2);
+                                    depth_search.push(fulf);
+                                    fulf = -2;
+                                }
+                                if(piece_type[piece_order[fulf]] >= 1000 && depth_block[depth_search.length-1] > (piece_type[piece_order[fulf]]-1000)*3){
+                                    depth_block.push((piece_type[piece_order[fulf]]-1000)*3);
+                                    depth_search.push(fulf);
+                                    fulf = -2;
+                                }
+                            }
+                        }else{
+                            depth_search[depth_search.length-1] += 1;
+                        }
+                    }else if(piece_type[piece_order[depth_search[depth_search.length-1]]] == 1){
+                        var fulf = -1;
+                        while(fulf >= -1 && fulf < piece_type.length){
+                            fulf += 1;
+                            if(piece_type[piece_order[fulf]] >= 1000 && depth_block[depth_search.length-1] > piece_type[piece_order[fulf]]){
+                                depth_block.push(piece_type[piece_order[fulf]]);
+                                depth_search.push(fulf);
+                                fulf = -2;
+                            }
+                        }
+                        if(fulf > -2){
+                           depth_search[depth_search.length-1] += 1;
+                        
+                        }
+                    }else if(piece_type[piece_order[depth_search[depth_search.length-1]]] == 2){
+                        var fulf = -1;
+                        while(fulf >= -1 && fulf < piece_type.length){
+                            fulf += 1;
+                            if(piece_type[piece_order[fulf]] >= 1000 && depth_block[depth_search.length-1] > piece_type[piece_order[fulf]]){
+                                depth_block.push(piece_type[piece_order[fulf]]);
+                                depth_search.push(fulf);
+                                fulf = -2;
+                            }
+                            if(piece_type[piece_order[fulf]] == 0){
+                                depth_block.push((depth_block[depth_search.length-1]-1)-((depth_block[depth_search.length-1]-1)%3)+1);
+                                depth_search.push(fulf);
+                                fulf = -2;
+                            }
+                        }
+                        if(fulf > -2){
+                           depth_search[depth_search.length-1] += 1;
+                        
+                        }
+                    }else if(piece_type[piece_order[depth_search[depth_search.length-1]]] == 3){
+                        var fulf = -1;
+                        while(fulf >= -1 && fulf < piece_type.length){
+                            fulf += 1;
+                            if(piece_type[piece_order[fulf]] >= 1000 && depth_block[depth_search.length-1] > piece_type[piece_order[fulf]]){
+                                depth_block.push(piece_type[piece_order[fulf]]);
+                                depth_search.push(fulf);
+                                fulf = -2;
+                            }
+                            if(piece_type[piece_order[fulf]] < 3){
+                                depth_block.push(depth_block[depth_search.length-1]);
+                                depth_search.push(fulf);
+                                fulf = -2;
+                            }
+                        }
+                        if(fulf > -2){
+                           depth_search[depth_search.length-1] += 1;
+                        }
+                    }else if(piece_type[piece_order[depth_search[depth_search.length-1]]] > 3){
+                        var fulf = -1;
+                        while(fulf >= -1 && fulf < piece_type.length){
+                            fulf += 1;
+                            if(piece_type[piece_order[fulf]] == 0){
+                                depth_block.push(depth_block[depth_search.length-1]);
+                                depth_search.push(fulf);
+                                fulf = -2;
+                            }
+                            if(piece_type[piece_order[fulf]] == 1){
+                                depth_block.push(depth_block[depth_search.length-1]-1);
+                                depth_search.push(fulf);
+                                fulf = -2;
+                            }
+                        }
+                        if(fulf > -2){
+                           depth_search[depth_search.length-1] += 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    scroll_more(100);
+    window.onscroll = function(ev) {
+        var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        if(scrollTop+1000 >= Math.max( body.scrollHeight, body.offsetHeight)){
+            scroll_more(50);
+        }
+    };
+</script>
+                    </div>
+                </div>
+            <hr>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" delay></script>
+        <script>
+            jQuery.noConflict();
+            jQuery(function() {
+                jQuery(".notetext").hide();
+                jQuery(".note").click(function(event) {
+                    jQuery(this.nextSibling).toggle();
+                    event.stopPropagation();
+                });
+                jQuery("body").click(function(event) {
+                    jQuery(".notetext").hide();
+                });
+            });
+        </script>
+    </body>
+</html>

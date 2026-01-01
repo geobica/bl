@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="UTF-8">
+        <link href="https://geobica.com/bl/bl.css" rel="stylesheet" type="text/css" />
+        <link href="https://www.geobica.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <title>bl</title>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <meta property="og:image" content="https://geobica.com/bl/im/cfc.png"/>
+        <meta property="og:image:width" content="256"/>
+        <meta property="og:image:height" content="256"/>
+        <meta property="og:title" content="The Closest Foreign Country
+"/>
+        <meta property="og:description" content="What is the closest foreign country to any given point on land?
+"/>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="geobica.com">
+        <meta property="twitter:url" content="https://www.geobica.com/bl/cfc">
+        <meta name="twitter:title" content="The Closest Foreign Country
+">
+        <meta name="twitter:description" content="What is the closest foreign country to any given point on land?
+">
+        <meta name="twitter:image" content="https://geobica.com/bl/im/cfc.png">
+    </head>
+    <body>
+        <div id="header">
+            <a id="icon" href="https://www.Geobica.com/bl/"> <img src="https://www.geobica.com/bl/im/world_288.png"/> </a>
+            <br/>
+            <div id="links"><a class="link" href="https://www.geobica.com">Home</a> | <a class="link" href="https://www.geobica.com/bl/">/bl</a> | <a class="link" href="https://www.geobica.com/games/">Games</a> | <a class="link" href="https://www.geobica.com/about.html">About</a> | <a class="link" href="https://www.geobica.com/contact.html">Contact</a></div>
+        </div>
+        <div id="body">
+            <div id="article_column">
+                <div id="post">
+                    <div class="title_print">
+                        <strong>The Closest Foreign Country
+</strong>
+                    </div>
+                    <div class="date_print">
+                        <i>Published <span title="2020-07-11T12:00:00Z">11 July 2020</span></i>
+                    </div>
+                    </br>
+                    <div class="body_print">
+<i>Note: I realized after making this that East Timor was missing. Oops.</i>
+</br>
+</br>
+I was inspired by some posts in the MapPorn subreddit that showed the nearest country at any point in several countries, such as Russia<span class="ref"><span class="note">[1]</span><span class="notetext"><a class="link" href="https://www.reddit.com/r/MapPorn/comments/hjr9qg/the_nearest_country_to_you_when_in_russia/">https://www.reddit.com/r/MapPorn/comments/hjr9qg/the_nearest_country_to_you_when_in_russia/</a></span></span>, France<span class="ref"><span class="note">[2]</span><span class="notetext"><a class="link" href="https://www.reddit.com/r/MapPorn/comments/hlpyh5/nearest_country_when_in_metropolitan_france/">https://www.reddit.com/r/MapPorn/comments/hlpyh5/nearest_country_when_in_metropolitan_france/</a></span></span>, and the United States<span class="ref"><span class="note">[2]</span><span class="notetext"><a class="link" href="https://www.reddit.com/r/MapPorn/comments/hlh7ox/the_nearest_country_to_everywhere_in_the_us/">https://www.reddit.com/r/MapPorn/comments/hlh7ox/the_nearest_country_to_everywhere_in_the_us/</a></span></span> to create a similar map for the entire world. I used a python script, available at <a class="link" href="https://github.com/geobica/bl/tree/master/closest_foreign_country">https://github.com/geobica/bl/tree/master/closest_foreign_country</a>, to automate the process.
+</br>
+<div style="width=90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/closest_foreign_country.png" width="70%" style=""/></div>
+</br>
+With a simple alteration to the code, I also created a map showing the <i>furthest</i> country from any point on land:
+<div style="width=90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/furthest_foreign_country.png" width="70%" style=""/></div>
+<div class="caption" style="width:55%"><i>Note: The grey region in South America represents the disputed Spratly Islands.</i></div>
+</br>
+                    </div>
+                </div>
+            <hr>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" delay></script>
+        <script>
+            jQuery.noConflict();
+            jQuery(function() {
+                jQuery(".notetext").hide();
+                jQuery(".note").click(function(event) {
+                    jQuery(this.nextSibling).toggle();
+                    event.stopPropagation();
+                });
+                jQuery("body").click(function(event) {
+                    jQuery(".notetext").hide();
+                });
+            });
+        </script>
+    </body>
+</html>
