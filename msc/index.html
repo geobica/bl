@@ -205,7 +205,7 @@ function create_chart(offset,y,height,names,fill_colors,svg_name){
         var running_step = false;
 
         var displaying_map = true;
-        const map = L.map('map').setView([0,0], 2);
+        const map = L.map('map').setView([0,0], 3);
 
         function formatColor(colStr) {
             if (colStr == null) {
@@ -504,6 +504,7 @@ function create_chart(offset,y,height,names,fill_colors,svg_name){
         window.addEventListener('DOMContentLoaded', updateLayout);
         window.addEventListener('resize', updateLayout);
         updateLayout();
+        map.invalidateSize();
 
         function load_png(canvas_name,image_name) {
             const canvas_new = document.getElementById(canvas_name);
