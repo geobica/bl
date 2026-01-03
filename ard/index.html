@@ -10,7 +10,7 @@
         </script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
-        <meta property="og:image" content="https://geobica.com/bl/im/ard.png"/>
+        <meta property="og:image" content="https://geobica.com/ard.png"/>
         <meta property="og:image:width" content="256"/>
         <meta property="og:image:height" content="256"/>
         <meta property="og:title" content="Could algorithmic redistricting prevent gerrymandering?
@@ -24,7 +24,7 @@
 ">
         <meta name="twitter:description" content="Some calculations I've done about how algorithmic redistricting done with balanced centroidal power diagrams would impact state house and federal congressional elections.
 ">
-        <meta name="twitter:image" content="https://geobica.com/bl/im/ard.png">
+        <meta name="twitter:image" content="https://geobica.com/ard.png">
     </head>
     <body>
         <div id="header">
@@ -67,7 +67,7 @@ There are a few states that I left out for the redistricted state houses: New Ha
 While the South Dakota Senate has 35 members elected from 35 districts, the House has 70 members, with 2 representatives elected from each senate district. It isn't the only state that does it this way (Arizona, Idaho, New Jersey, North Dakota, and Washington also have 2 house representatives for each senate district), but it's unique in that it splits two of the senate districts, 26 and 28, into two house districts each, so there are 33 districts with two representatives and 4 with one each. The reason for doing this is to provide more representation for the Rosebud Reservation, which makes up about half of district 26, and the Standing Rock and Cheyenne River reservations, which together make up about half of District 28.
 </br>
 </br>
-<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/south_dakota_districts.png" width="80%" style=""/></div>
+<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/south_dakota_districts.png" width="80%" style=""/></div>
 <div class="caption" style="width:55%"><i>Legislative districts and indian reservations within South Dakota</i></div>
 </br>
 These are <i>Majority-Minority Districts</i>, and they're often made intentionally to create representation of minority areas that might otherwise be split up into districts in which they never make up a majority of the population. There's no requirement for these districts to exist, but since the algorithm doesn't take anything about who the voters are into account, it's up to chance whether Majority-Minority Districts will exist.
@@ -78,7 +78,7 @@ Overall, from these results I would conclude that partisan gerrymandering isn't 
 These graphs show how overrepresented districts of a given lean are within the current maps, if the algorithmically generated maps are to be taken as a baseline:
 </br>
 </br>
-<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/ard/TOTAL_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/bl/im/ard/TOTAL_house_difference.png" width="40%" style=""/></div>
+<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/TOTAL_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/TOTAL_house_difference.png" width="40%" style=""/></div>
 <div class="caption" style="width:55%"><i>Histogram of all analysed states together, weighted by population.</i></div>
 </br>
 With the current districts, <b>53.1%</b> of people live in congressional districts that leaned towards R in the 2016 presidential election, and <b>50.5%</b> live in state house districts that were within 10 points in that election.
@@ -95,11 +95,11 @@ With the Balanced Centroidal Power Diagrams, <b>21.6%</b> would live in congress
 I've also tested this just with states that use independent redistricting commissions, though I didn't notice much difference between them and those that don't:
 </br>
 </br>
-<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/ard/INDEPENDENT_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/bl/im/ard/INDEPENDENT_house_difference.png" width="40%" style=""/></div>
+<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/INDEPENDENT_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/INDEPENDENT_house_difference.png" width="40%" style=""/></div>
 <div class="caption" style="width:55%"><i>Only states with independent redistricting commissions.</i></div>
 </br>
 </br>
-<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/ard/OTHER_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/bl/im/ard/OTHER_house_difference.png" width="40%" style=""/></div>
+<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/OTHER_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/OTHER_house_difference.png" width="40%" style=""/></div>
 <div class="caption" style="width:55%"><i>Only states without independent redistricting commissions.</i></div>
 </br>
 In either case, there are less people living in districts with competitive races than there would be with the algorithmically generated districts, so it doesn't seem to me that having independent redistricting commissions eliminates the incumbent bias.
@@ -110,11 +110,11 @@ In terms of partisan lean, D is overrepresented in states that have independent 
 These final charts show the bias in just states that voted D in 2016 and just states that voted R in 2016:
 </br>
 </br>
-<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/ard/D_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/bl/im/ard/D_house_difference.png" width="40%" style=""/></div>
+<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/D_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/D_house_difference.png" width="40%" style=""/></div>
 <div class="caption" style="width:55%"><i>Only states that voted D.</i></div>
 </br>
 </br>
-<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/bl/im/ard/R_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/bl/im/ard/R_house_difference.png" width="40%" style=""/></div>
+<div style="width:90%;margin:auto;text-align: center;"><img class="side_image" src="https://www.geobica.com/R_congress_difference.png" width="40%" style=""/><img class="side_image" src="https://www.geobica.com/R_house_difference.png" width="40%" style=""/></div>
 <div class="caption" style="width:55%"><i>Only states that voted R.</i></div>
 </br>
 District maps drawn with the Balanced Centroidal Power Diagrams overall create more mixed legislatures, and could potentially make them more proportional than hiring an independent commission would. However, if proportionality is the goal, then a more substantial change to the way we run our elections is necessary, such as adopting a system like <a href="https://en.wikipedia.org/wiki/Mixed-member_proportional_representation">MMP</a>, which could alleviate the risk of losing proper geographic and minority representation. Just implementing independent commissions or an algorithm for redistricting can't ensure that the resulting legislature will accurately represent the electorate.
@@ -267,7 +267,7 @@ District maps drawn with the Balanced Centroidal Power Diagrams overall create m
             }
         }
 		var el = document.getElementById("district_map");
-		el.innerHTML = `<svg style="grid-area: 1 / 1 / 2 / 2;" viewBox="0 0 1400 1000"></svg><img style="grid-area: 1 / 1 / 2 / 2;" class="side_image" width="100%" src="https://geobica.com/bl/im/ard/${state}_${level}_comparison.png"/>`;
+		el.innerHTML = `<svg style="grid-area: 1 / 1 / 2 / 2;" viewBox="0 0 1400 1000"></svg><img style="grid-area: 1 / 1 / 2 / 2;" class="side_image" width="100%" src="https://geobica.com/${state}_${level}_comparison.png"/>`;
 	}
 	select_option('federal');
     select_option('AZ');
