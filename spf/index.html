@@ -10,7 +10,7 @@
         </script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
-        <meta property="og:image" content="https://geobica.com/spf.png"/>
+        <meta property="og:image" content="https://geobica.com/bl/spf/spf.png"/>
         <meta property="og:image:width" content="256"/>
         <meta property="og:image:height" content="256"/>
         <meta property="og:title" content="Splitting Fractals
@@ -24,7 +24,7 @@
 ">
         <meta name="twitter:description" content="An analysis of the mass of slices of basic fractals taken at rational intervals.
 ">
-        <meta name="twitter:image" content="https://geobica.com/spf.png">
+        <meta name="twitter:image" content="https://geobica.com/bl/spf/spf.png">
     </head>
     <body>
         <div id="header">
@@ -46,7 +46,7 @@
                     <div class="body_print">
 The core property that makes fractals like the Menger sponge and Sierpinski triangle beautiful is their self-similarity. A Sierpinski triangle can be cut into three equal parts each with a side length half the original, while a Menger sponge can be cut into twenty smaller cubes, each an exact copy of the larger scaled down by a factor of three. But what if, instead of slicing these fractals into identical components, they were sliced unevenly? What if, for example, the Sierpinski triangle were sliced by a vertical line exactly one third of the way along its edge?
 <div>
-    <img class="embed_image" src="https://www.geobica.com/siers_blank.png" width="40%"/>
+    <img class="embed_image" src="https://www.geobica.com/bl/spf/siers_blank.png" width="40%"/>
 </div>
 </br>
 How does the mass of the segment on the left relate to the segment on the right? It seems like it should be less than a third of the total mass, but given the hole in the center, that's not certain. I think this is an interesting exercise, so I'd recommend trying this yourself.
@@ -54,7 +54,7 @@ How does the mass of the segment on the left relate to the segment on the right?
 <div align="center"><button title="Click to show/hide content" align="center" type="button" onclick="if(document.getElementById('spoiler_0') .style.display=='none') {document.getElementById('spoiler_0') .style.display=''}else{document.getElementById('spoiler_0') .style.display='none'}">Show/hide</button></div></br>
 <div id="spoiler_0" style="display:none">
     <div style="width=40%;margin:auto;text-align: center;">
-        <img class="side_image" src="https://www.geobica.com/002.png" width="20%" style=""/><img class="side_image" src="https://www.geobica.com/070.png" width="20%"/>
+        <img class="side_image" src="https://www.geobica.com/bl/spf/002.png" width="20%" style=""/><img class="side_image" src="https://www.geobica.com/bl/spf/070.png" width="20%"/>
     </div>
     As you can see, the left side can be constructed from scaled down copies of the left and right sides. The copy of the right side in the left is scaled down by a factor of two. As scaling down a sierpinski triangle by a factor of two scales the mass down by a factor of three, the mass of this portion is $R/3$. The copy of the left side is scaled down by a factor of four, so that portion has a mass of $L/9$.
     Therefore, $$L=R/3+L/9$$
@@ -64,7 +64,7 @@ How does the mass of the segment on the left relate to the segment on the right?
 </div>
 Another simple fractal to analyse is the menger sponge. For the sake of visualization, I'll work with a two-dimensional version:
 <div>
-    <img class="embed_image" src="https://www.geobica.com/menger_plain.png" width="40%"/>
+    <img class="embed_image" src="https://www.geobica.com/bl/spf/menger_plain.png" width="40%"/>
 </div>
 Cutting off half of the menger sponge would obviously result in a 1:1 proportion, while a third would clearly be 3:5, so for this I've cut off one fourth horizontally.
 </br>
@@ -75,7 +75,7 @@ Cutting off half of the menger sponge would obviously result in a 1:1 proportion
 <div id="spoiler_1" style="display:none">
     The solution here can be seen in the fact that $\sum_{n=1}^{\infty} \frac{1}{9^{n}}=\frac{1}{8}$. This means that $\sum_{n=1}^{\infty} \frac{2}{9^{n}}=\frac{1}{4}$.
     <div>
-        <img class="embed_image" src="https://www.geobica.com/menger_green.png" width="40%"/>
+        <img class="embed_image" src="https://www.geobica.com/bl/spf/menger_green.png" width="40%"/>
     </div>
     The first $2/9$ horizontally consists of a whole number of smaller menger sponges, and the remainder of the left side can be seen to be a stack of scaled down copies of the left side. Each menger sponge with $1/9$ the side length has $1/64$ the mass of the whole, so the light green has $15/64$ the total mass. The remainder of the left side consists of a stack of nine copies of the left scaled down by one ninth, giving the equation: $$L=15/64+9/64L$$
     $$55/64L=15/64$$
@@ -86,7 +86,7 @@ Cutting off half of the menger sponge would obviously result in a 1:1 proportion
     To better understand where these ratios come from, it would help to generalize the process for any fraction. One way to do this is to use the ternary expansion of a fraction to discover an equation that describes the ratio.
     Take, for example, the repeating ternary value of 0.<span style="text-decoration:overline">0<span style="color: #ff0000">1</span><span style="color: #00ff00">2</span><span style="color: #0000ff">1</span></span>. Because this is in ternary, it's easier to see how this maps onto the menger sponge.
     <div>
-        <img class="embed_image" src="https://www.geobica.com/menger_fifth.png" width="40%"/>
+        <img class="embed_image" src="https://www.geobica.com/bl/spf/menger_fifth.png" width="40%"/>
     </div>
     The first $1/9$ is in red, the next $2/27$ is in green, and the next $1/81$ is in blue. The digits after the repeat correspond to a stack of scaled down copies of the left side in the column after the blue. This column is $\frac{1}{3^{4}}$ of the side, and each copy of the left will have $\frac{1}{8^{4}}$ the whole mass. To count the amount of copies, observe that the first third of the sponge contains three copies, the second third contains two, and the last third contains three again. 
 
