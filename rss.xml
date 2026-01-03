@@ -1,0 +1,118 @@
+
+    <rss version="2.0">
+<channel>
+<title>Geobica's /bl</title>
+<link>https://geobica.com/bl/</link>
+<description>Geobica's blog for projects.</description>
+<language>en</language><item>
+<title>Mapping Seasons Across Climates</title>
+<link>https://geobica.com/bl/msc/</link>
+<description>
+&lt;a href="https://geobica.com/bl/msc/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/msc/msc.png"&gt;
+&lt;a href="https://geobica.com/bl/msc/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;Mapping Seasons Across Climates&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;An interactive map tool you can use to look at precipitation and temperature patterns around the world.&lt;/div&gt;
+</description>
+<pubDate>Wed, 31 Dec 2025 23:00:00 -0500</pubDate>
+<guid>https://geobica.com/bl/msc/</guid>
+</item>
+<item>
+<title>How long will the US Supreme Court lean conservative?</title>
+<link>https://geobica.com/bl/scs/</link>
+<description>
+&lt;a href="https://geobica.com/bl/scs/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/scs/scs.png"&gt;
+&lt;a href="https://geobica.com/bl/scs/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;How long will the US Supreme Court lean conservative?&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;A statistical model of how the ideological lean of the Supreme Court might evolve over the next few decades.&lt;/div&gt;
+</description>
+<pubDate>Sat, 03 Aug 2024 15:39:35 -0400</pubDate>
+<guid>https://geobica.com/bl/scs/</guid>
+</item>
+<item>
+<title>The Card Calendar</title>
+<link>https://geobica.com/bl/tcc/</link>
+<description>
+&lt;a href="https://geobica.com/bl/tcc/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/tcc/tcc.png"&gt;
+&lt;a href="https://geobica.com/bl/tcc/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;The Card Calendar&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;A calendar where the 52 weeks of the year are sorted into a deck of 4 seasons.&lt;/div&gt;
+</description>
+<pubDate>Sun, 17 Sep 2023 08:00:00 -0400</pubDate>
+<guid>https://geobica.com/bl/tcc/</guid>
+</item>
+<item>
+<title>Venus in True Color</title>
+<link>https://geobica.com/bl/vtc/</link>
+<description>
+&lt;a href="https://geobica.com/bl/vtc/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/vtc/vtc.png"&gt;
+&lt;a href="https://geobica.com/bl/vtc/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;Venus in True Color&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;An exploration of how images of Venus have been created, which depiction is the most accurate, and if I can create one that I know for sure is accurate.&lt;/div&gt;
+</description>
+<pubDate>Mon, 20 Mar 2023 08:00:00 -0400</pubDate>
+<guid>https://geobica.com/bl/vtc/</guid>
+</item>
+<item>
+<title>Minimizing Scale Distortion in Conformal Projections</title>
+<link>https://geobica.com/bl/mdc/</link>
+<description>
+&lt;a href="https://geobica.com/bl/mdc/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/mdc/mdc.png"&gt;
+&lt;a href="https://geobica.com/bl/mdc/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;Minimizing Scale Distortion in Conformal Projections&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;A method for creating conformal map projections with minimal possible distortion of scale within a designated region.&lt;/div&gt;
+</description>
+<pubDate>Wed, 19 Oct 2022 08:00:00 -0400</pubDate>
+<guid>https://geobica.com/bl/mdc/</guid>
+</item>
+<item>
+<title>Ordering the Pok&#233;mon Types</title>
+<link>https://geobica.com/bl/pmt/</link>
+<description>
+&lt;a href="https://geobica.com/bl/pmt/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/pmt/pmt.png"&gt;
+&lt;a href="https://geobica.com/bl/pmt/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;Ordering the Pok&#233;mon Types&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;In which I attempt to figure out whether there's a &quot;canonical&quot; ordering of the types in Pok&#233;mon.&lt;/div&gt;
+</description>
+<pubDate>Fri, 29 Jul 2022 08:00:00 -0400</pubDate>
+<guid>https://geobica.com/bl/pmt/</guid>
+</item>
+<item>
+<title>What is the karmic driven world of Earl?</title>
+<link>https://geobica.com/bl/kdw/</link>
+<description>
+&lt;a href="https://geobica.com/bl/kdw/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/kdw/kdw.png"&gt;
+&lt;a href="https://geobica.com/bl/kdw/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;What is the karmic driven world of Earl?&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;A look at a bizarre autotranslation mystery.&lt;/div&gt;
+</description>
+<pubDate>Wed, 29 Sep 2021 08:00:00 -0400</pubDate>
+<guid>https://geobica.com/bl/kdw/</guid>
+</item>
+<item>
+<title>Could algorithmic redistricting prevent gerrymandering?</title>
+<link>https://geobica.com/bl/ard/</link>
+<description>
+&lt;a href="https://geobica.com/bl/ard/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/ard/ard.png"&gt;
+&lt;a href="https://geobica.com/bl/ard/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;Could algorithmic redistricting prevent gerrymandering?&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;Some calculations I've done about how algorithmic redistricting done with balanced centroidal power diagrams would impact state house and federal congressional elections.&lt;/div&gt;
+</description>
+<pubDate>Wed, 21 Apr 2021 08:00:00 -0400</pubDate>
+<guid>https://geobica.com/bl/ard/</guid>
+</item>
+<item>
+<title>Oceania Flag Map</title>
+<link>https://geobica.com/bl/ofm/</link>
+<description>
+&lt;a href="https://geobica.com/bl/ofm/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/ofm/ofm.png"&gt;
+&lt;a href="https://geobica.com/bl/ofm/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;Oceania Flag Map&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;Maps of Oceania that show its flags and how its population is distributed.&lt;/div&gt;
+</description>
+<pubDate>Sun, 28 Mar 2021 08:00:00 -0400</pubDate>
+<guid>https://geobica.com/bl/ofm/</guid>
+</item>
+<item>
+<title>Dozagesimal Ponderances</title>
+<link>https://geobica.com/bl/dzg/</link>
+<description>
+&lt;a href="https://geobica.com/bl/dzg/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/dzg/dzg.png"&gt;
+&lt;a href="https://geobica.com/bl/dzg/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;Dozagesimal Ponderances&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;Some thoughts on the practicality of base-120, notation for it, and more related numbering systems.&lt;/div&gt;
+</description>
+<pubDate>Sun, 27 Sep 2020 08:00:00 -0400</pubDate>
+<guid>https://geobica.com/bl/dzg/</guid>
+</item>
+</channel>
+</rss>
