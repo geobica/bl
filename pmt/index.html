@@ -10,7 +10,7 @@
         </script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
-        <meta property="og:image" content="https://geobica.com/bl/im/pmt.png"/>
+        <meta property="og:image" content="https://geobica.com/pmt.png"/>
         <meta property="og:image:width" content="256"/>
         <meta property="og:image:height" content="256"/>
         <meta property="og:title" content="Ordering the Pok&#233;mon Types
@@ -24,7 +24,7 @@
 ">
         <meta name="twitter:description" content="In which I attempt to figure out whether there's a &quot;canonical&quot; ordering of the types in Pok&#233;mon.
 ">
-        <meta name="twitter:image" content="https://geobica.com/bl/im/pmt.png">
+        <meta name="twitter:image" content="https://geobica.com/pmt.png">
     </head>
     <body>
         <div id="header">
@@ -49,11 +49,11 @@ I would like to bring these two charts to the attention of all current and forme
 </br>
 A. The type matchup chart from  <a class="link" href="https://bulbapedia.bulbagarden.net/wiki/Type#Type_chart">Bulbapedia</a>:
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="../im/pmt/bulbapedia_chart.png" style=""/>
+<img class="side_image" src="bulbapedia_chart.png" style=""/>
 </div>
 B. The chart used on <a class="link" href="https://pokemondb.net/type">pokemondb.net</a>:
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="../im/pmt/pokemondb_chart.png" style=""/>
+<img class="side_image" src="pokemondb_chart.png" style=""/>
 </div>
 The matchups themselves are all accurate&mdash;what I'm interested in is the ordering of the types. I'll call the one found on Bulbapedia <b>List A</b> and the one found on Pok&#233;mon Database <b>List B</b>:
 </br>
@@ -147,7 +147,7 @@ Why the difference? Is it just arbitrary how the types are ordered? Well, no, th
 However, even if you sort the types in List B by category, there's still a few minor differences that make it a distinct order. So, where do they come from? Well, if you look into the games themselves, you'll find that there's not actually any complete list of the types visible while playing the Gen I games. Checking a <a class="link" href="https://github.com/pret">decompiled version of the first three generations by github user pret</a>, the Gen I games seem to store the types with the ordering of List A, though with Bird type included in the Physical list. This order was mostly preserved into the second generation, when a menu was added to the Pok&#233;dex to sort by type. However, this menu actually displayed the types in the order of List B, though with Grass and Electric swapped, making that the first ordering visible to players in game. Looking further into the Gen II games' code, List B (without Grass and Electric swapped) is used in the portion that encodes type effectiveness (in Gen I the encoding is more disordered), meaning there's actually three different orderings used in those games in some capacity. The earliest trace of it I could find of List B is this chart from a <a class="link" href="https://archive.org/details/NintendoPower1998PokemonRedBlue/page/n11/mode/2up">1998 Red and Blue player's guide in Nintendo Power</a>, meaning it predates the release of Pok&#233;mon Gold and Silver:
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="../im/pmt/nintendo_power_chart.png" style=""/>
+<img class="side_image" src="nintendo_power_chart.png" style=""/>
 </div>
 </br>
 In later generations, the Pok&#233;dex consistently uses List A in its search feature, making Gen II unique, so presumably List A continued to be used as the way the games internally store the types even after the Physical/Special Split in Gen IV. However, list B does continue to appear in the games in menus relating to type matchups, such as in the Move Tester PokÃ©tch App in the Gen IV games, and the matchup chart in the tutorial for the Gen VIII games:
