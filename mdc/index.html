@@ -10,7 +10,7 @@
         </script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
-        <meta property="og:image" content="https://geobica.com/mdc.png"/>
+        <meta property="og:image" content="https://geobica.com/bl/mdc/mdc.png"/>
         <meta property="og:image:width" content="256"/>
         <meta property="og:image:height" content="256"/>
         <meta property="og:title" content="Minimizing Scale Distortion in Conformal Projections
@@ -24,7 +24,7 @@
 ">
         <meta name="twitter:description" content="A method for creating conformal map projections with minimal possible distortion of scale within a designated region.
 ">
-        <meta name="twitter:image" content="https://geobica.com/mdc.png">
+        <meta name="twitter:image" content="https://geobica.com/bl/mdc/mdc.png">
     </head>
     <body>
         <div id="header">
@@ -71,9 +71,9 @@ The property of being a conformal map is transitive, so given conformal maps $f:
 </br>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="stereo.png" width="30%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/stereo.png" width="30%" style="vertical-align: middle;"/>
 $\underrightarrow{\hspace{1em}i \ln(z)\hspace{1em}}$
-<img class="side_image" src="mercator.png" width="50%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/mercator.png" width="50%" style="vertical-align: middle;"/>
 </div>
 <div class="caption" style="width:55%"><i>Stereographic projection mapped to Mercator. The equator on the Mercator is at $-\ln(0.5)i$ because the equator is at a distance of $r=2$ on the Stereographic.</i></div>
 </br>
@@ -83,9 +83,9 @@ I became interested in this topic during the summer of 2020 when I learned about
 </br>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="from_stereo.png" width="40%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/from_stereo.png" width="40%" style="vertical-align: middle;"/>
 $\underrightarrow{\hspace{1em}P(z)\hspace{1em}}$
-<img class="side_image" src="to_GS50.png" width="40%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/to_GS50.png" width="40%" style="vertical-align: middle;"/>
 </div>
 <div class="caption" style="width:55%"><i>Stereographic projection mapped to GS50. Lines of equal scale are shown.</i></div>
 </br>
@@ -95,7 +95,7 @@ Recently, however, I came up with a better method for finding conformal projecti
 </br>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="us_geoproj.png" width="80%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/us_geoproj.png" width="80%" style="vertical-align: middle;"/>
 <div class="caption" style="width:55%"><i>A conformal projection with minimal distortion through the US and its territories, created with my method. The relative scale along the red line is 1.0, and the minimal scale anywhere in the US is above 0.99, so the difference in scale is less than 1%. A translucent raster was overlaid to show relative distortion, which has a blobby texture as a result of how sampling was done.</i></div>
 </div>
 </br>
@@ -108,9 +108,9 @@ In this article I intend to explain my method for finding a conformal map that t
 </br>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="us_before_geoproj.png" width="40%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/us_before_geoproj.png" width="40%" style="vertical-align: middle;"/>
 $\underrightarrow{\hspace{1em}?(z)\hspace{1em}}$
-<img class="side_image" src="us_after_geoproj.png" width="40%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/us_after_geoproj.png" width="40%" style="vertical-align: middle;"/>
 </div>
 <div class="caption" style="width:55%"><i>Stereographic projection mapped to GS50. Lines of equal scale are shown.</i></div>
 </br>
@@ -159,7 +159,7 @@ I've implemented an algorithm to derive $f_M$ numerically for a given input of $
 </br>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="projection_world.png" width="80%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/projection_world.png" width="80%" style="vertical-align: middle;"/>
 <div class="caption" style="width:55%"><i>The maximum difference in relative scale between two points here is 5.442%, betweem the edge and western Mongolia. In terms of area, that region is about 10% smaller than it would be at the scale of the coast.</i></div>
 </div>
 </br>
@@ -171,7 +171,7 @@ The biggest weakness of my method is the inability to map anything outside the d
 </br>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="dymaxion-like-conformal-hypso.jpg" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/dymaxion-like-conformal-hypso.jpg" style="vertical-align: middle;"/>
 <div class="caption" style="width:55%"><i>The Dymaxion-like Conformal Projection, from <a class="link" href="https://blog.map-projections.net/four-conformal-polyhedric-projections-and-more"><u>https://blog.map-projections.net/four-conformal-polyhedric-projections-and-more</u></a></i></div>
 </div>
 </br>
@@ -179,7 +179,7 @@ The projection is visually great, but the scale gets distorted by a significant 
 </br>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="dymaxion-like-distortion.png" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/dymaxion-like-distortion.png" style="vertical-align: middle;"/>
 <div class="caption" style="width:55%"><i>From <a class="link" href="https://blog.map-projections.net/four-conformal-polyhedric-projections-and-more"><u>map-projections.net</u></a>: "Deeper color signifies greater distortion. &mdash; The blue line indicates an areal inflation by 1.2, the red line by 2.0."</i></div>
 </div>
 </br>
@@ -187,9 +187,9 @@ The distortion is especially noticible around the Yellow Sea, where Korea is spl
 </br>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="dlc_yellow_sea.png" width="30%" style="vertical-align: middle;"/>
-<img class="side_image" src="geoproj_yellow_sea.png" width="30%" style="vertical-align: middle;"/>
-<img class="side_image" src="globe_yellow_sea.png" width="30%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/dlc_yellow_sea.png" width="30%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/geoproj_yellow_sea.png" width="30%" style="vertical-align: middle;"/>
+<img class="side_image" src="../im/mdc/globe_yellow_sea.png" width="30%" style="vertical-align: middle;"/>
 </div>
 <div class="caption" style="width:55%"><i>From left to right: Dymaxion-like Conformal, my method, Google Earth.</i></div>
 </br>
