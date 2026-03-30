@@ -125,7 +125,6 @@ def explore_polygon(poly_coords,preceeder,centers_pickled=0,inverted_buffer_metr
 			poly_string = poly_string+','
 		else:
 			poly_string = poly_string+'];'
-	#print(poly_string)
 	sides = 7
 	r = sqrt(-5 + sqrt(3*sides)*cos(1/3*atan(1/(3*sqrt(3)))) + 3*sqrt(sides)*sin(1/3*atan(1/(3*sqrt(3)))))
 
@@ -194,7 +193,7 @@ def explore_polygon(poly_coords,preceeder,centers_pickled=0,inverted_buffer_metr
 				new_center_to_add.append('')
 				for i in range(11,13):
 					new_center_to_add.append(copy.copy(new_centers[j,i][:,0]))
-				w_of_already_placed = np.array([center[1] for center in centers])
+				w_of_already_placed = np.array([center[1][0] if type(center[1]) is np.ndarray else center[1] for center in centers])
 				w_cen = new_center_to_add[1]
 				min_val = np.amin(np.hstack(np.absolute(w_of_already_placed-w_cen)))
 				in_range = False
@@ -209,7 +208,7 @@ def explore_polygon(poly_coords,preceeder,centers_pickled=0,inverted_buffer_metr
 				else:
 					buffering = (np.absolute(w_cen/D)**2+1)*D/240
 					w_point = Point(np.real(w_cen),np.imag(w_cen))
-					w_polygon = Polygon(np.concatenate((np.real(w_raw).reshape([w_raw.shape[0],1]),np.imag(w_raw).reshape([w_raw.shape[0],1])),axis=1)).buffer(-buffering)
+					w_polygon = Polygon(np.concatenate((np.real(w_raw).reshape([w_raw.shape[0],1]),np.imag(w_raw).reshape([w_raw.shape[0],1])),axis=1)).buffer(-buffering)[0]
 					in_range = w_polygon.contains(w_point)
 				if min_val>0.01*np.absolute(new_center_to_add[11]-new_center_to_add[1]) and in_range and np.absolute(new_center_to_add[2]-new_center_to_add[1])<3*np.absolute(new_center_to_add[11]-new_center_to_add[1]):
 					current_level.append(len(centers))

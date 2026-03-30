@@ -14,6 +14,7 @@ import os
 import sys
 import fiona
 import geopandas as gpd
+from tqdm import tqdm
 
 def rotation_matrix(axis,angle):
 	axis /= np.linalg.norm(axis)
@@ -64,6 +65,10 @@ def haversine(cent,arr):
 	return np.arcsin(np.sqrt(a))
 
 def haversine_arr(arr_0,arr_1):
+	if len(arr_0)>1000:
+		arr_0 = arr_0[::int(len(arr_0)/1000)]
+	if len(arr_1)>1000:
+		arr_1 = arr_1[::int(len(arr_0)/1000)]
 	dlon = np.real(arr_1[:,None] - arr_0[None,:])
 	dlat = np.imag(arr_1[:,None] - arr_0[None,:])
 	a = np.sin(dlat/2)**2 + np.cos(np.imag(arr_1[:,None])) * np.cos(np.imag(arr_0[None,:])) * np.sin(dlon/2)**2
@@ -94,10 +99,9 @@ def direction_between(start,end):
 	rotation_matrix = np.eye(3) + kmat + kmat.dot(kmat) * ((1 - c) / (s ** 2))
 	angle = np.arccos(np.trace(rotation_matrix)/2-.5)
 	return scipy.linalg.fractional_matrix_power(rotation_matrix,1/angle)
+
 def move(start,direction,angle):
 	return coord_to_equi(np.matmul(scipy.linalg.fractional_matrix_power(direction,angle),equi_to_coord(start)))
-
-nemo_point = (float((int(sys.argv[2])+360)%360-180)-(int(sys.argv[3]))*1j)*pi/180
 
 def buffer_3d_full_poly(v_0,v_1,dist,segments):
 	u_0 = np_equi_to_coord(v_0)
@@ -156,6 +160,19 @@ def poly_to_comp(poly):
 	x,y = poly.exterior.coords.xy
 	return np.array(x)+1j*np.array(y)
 
+def reduce_line(line_st):
+	included_points = [line_st[0]]
+	dist_needed = 0.005
+	for i in range(line_st.shape[0]-1):
+		if haversine_2p(included_points[-1],line_st[i])>=dist_needed:
+			included_points.append(line_st[i])
+	included_points.append(line_st[-1])
+	included_points = np.array(included_points)
+	return included_points
+
+# the point opposite the given input point, which should be outside the region
+nemo_point = (float((int(sys.argv[2])+360)%360-180)-(int(sys.argv[3]))*1j)*pi/180
+
 stereo_poly_combine = None
 stripped_equis = []
 name = sys.argv[1]
@@ -167,8 +184,9 @@ else:
 	pickle_path = 'pickle/bubble_wrap'
 
 with fiona.open(os.path.join(f'{input_path}',f'{name}.gpkg'), layer=fiona.listlayers(os.path.join(f'{input_path}',f'{name}.gpkg'))[0]) as layer:
-	for feature in layer:
-		for poly in shape(feature['geometry']):
+	for feature_i,feature in enumerate(layer):
+		print(f"Reprojecting every polygon in feature {feature_i}/{len(layer)}:")
+		for poly in tqdm(shape(feature['geometry']).geoms):
 			if stereo_poly_combine==None:
 				stereo_poly_combine = comp_to_poly(equi_to_stereo(poly_to_comp(poly.buffer(0.))*pi/180,np.conj(nemo_point)+pi))
 			else:
@@ -179,7 +197,7 @@ with fiona.open(os.path.join(f'{input_path}',f'{name}.gpkg'), layer=fiona.listla
 		x,y = poly.exterior.coords.xy
 		stripped_equis.append(stereo_to_equi(np.array(x)+1j*np.array(y),np.conj(nemo_point)+pi))
 	else:
-		for poly in stereo_poly_combine:
+		for poly in tqdm(stereo_poly_combine.geoms):
 			x,y = poly.exterior.coords.xy
 			stripped_equis.append(stereo_to_equi(np.array(x)+1j*np.array(y),np.conj(nemo_point)+pi))
 
@@ -187,8 +205,10 @@ step = 0.001
 radius = 0.005
 
 distances = np.zeros((len(stripped_equis),len(stripped_equis)))+pi
-for i in range(len(stripped_equis)-1):
+print(len(stripped_equis),type(stripped_equis[0]))
+for i in tqdm(range(len(stripped_equis)-1)):
 	for j in range(i+1,len(stripped_equis)):
+		print(stripped_equis[i].shape,stripped_equis[j].shape)
 		haver_arr = np.array(haversine_arr(stripped_equis[i],stripped_equis[j]))
 		distances[i,j] = np.amin(haver_arr)
 		distances[j,i] = np.amin(haver_arr)
@@ -198,7 +218,7 @@ included_lines = []
 included_lines.append(stripped_equis[0])
 included[0] = True
 
-for i in range(len(stripped_equis)-1):
+for i in tqdm(range(len(stripped_equis)-1)):
 	distances_in_question = np.reshape(np.array(distances[np.logical_and(included[:,None],np.logical_not(included)[None,:])]),(np.sum(included),len(stripped_equis)-np.sum(included)))
 	link_pre = np.unravel_index(np.argmin(distances_in_question,axis=None),distances_in_question.shape)
 	link = [(np.arange(len(stripped_equis))[included])[link_pre[0]],(np.arange(len(stripped_equis))[np.logical_not(included)])[link_pre[1]]]
@@ -206,20 +226,9 @@ for i in range(len(stripped_equis)-1):
 	included_lines.append(stripped_equis[link[1]])
 	included[link[1]] = True
 
-def reduce_line(line_st):
-	included_points = [line_st[0]]
-	dist_needed = 0.005
-	for i in range(line_st.shape[0]-1):
-		if haversine_2p(included_points[-1],line_st[i])>=dist_needed:
-			included_points.append(line_st[i])
-	included_points.append(line_st[-1])
-	included_points = np.array(included_points)
-	return included_points
-
-
 v_0 = []
 v_1 = []
-for st in included_lines:
+for st in tqdm(included_lines):
 	st_red = reduce_line(st)
 	v_0 = v_0+list(st_red[:-1])
 	v_1 = v_1+list(st_red[1:])
