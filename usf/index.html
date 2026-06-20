@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    	<meta charset="UTF-8">
+        <meta charset="UTF-8">
         <link href="https://geobica.com/bl/bl.css" rel="stylesheet" type="text/css" />
         <link href="https://www.geobica.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <title>bl</title>
@@ -44,12 +44,54 @@
                     </div>
                     </br>
                     <div class="body_print">
+
+<div style="width=90%;margin:auto;text-align: center;">
+<i>Enter numbers up to 10000.</i>
+</div>
+</br>
+<div style="width=90%;margin:auto;text-align: center;">
+Stars: <input maxlength="6" size="6" type="text" id="star_count" name="star_count" value="51"/> Stripes: <input maxlength="6" size="6" type="text" id="stripe_count" name="stripe_count" value="13"> <button id="modify_flag_button">Make Flag</button> <button id="download_flag_button">Download as SVG</button> <button id="download_flag_png_button">Download as PNG</button>
+</br>
+<select name="color_sets" id="color_sets">
+    <option value="custom">Custom</option>
+    <option value="federal_use">ECA Standard (Wikipedia Default)</option>
+    <option value="eca_pantone">ECA Pantone</option>
+    <option value="flag_printing_absolute">DDD-F-416F Cloth Absolute</option>
+    <option value="flag_printing_relative">DDD-F-416F Cloth White Balanced</option>
+    <option value="texas_statute">Texas Statute</option>
+    <option value="transgender">Transgender</option>
+  </select> Red: <input maxlength="6" size="6" type="text" id="red_color" name="red_color" value="B31942"> White: <input maxlength="6" size="6" type="text" id="white_color" name="white_color" value="FFFFFF"> Blue: <input maxlength="6" size="6" type="text" id="blue_color" name="blue_color" value="0A3161"> First stripe is red: <input type="checkbox" id="first_stripe_red" name="First stripe is red" checked="true">
+</br>
+Use different color for stars instead of white: <input type="checkbox" id="star_color_different" name="Use different color for stars"> <input maxlength="6" size="6" type="text" id="star_color" name="star_color" value="FFFFFF">
+</br>
+Canton Width: <input maxlength="6" size="6" type="text" id="canton_width" name="canton_width" value="40">% Canton Height: <input maxlength="6" size="6" type="text" id="canton_height" name="canton_height" value="7"><span id="canton_height_percentage"></span> Canton height measured in stripes: <input type="checkbox" id="canton_height_units" name="Canton height measured in stripes" checked="true">
+</br>
+Aspect ratio: <input maxlength="6" size="6" type="text" id="ratio_height" name="ratio_height" value="10">:<input maxlength="6" size="6" type="text" id="ratio_width" name="ratio_width" value="19"> Stars in circle: <input type="checkbox" id="stars_in_circle" name="Stars in circle"> Star points: <input maxlength="6" size="6" type="text" id="star_points" name="star_points" value="5">/<input maxlength="6" size="6" type="text" id="star_points_2" name="star_points_2" value="2">
+</br>
+PNG output height: <input maxlength="6" size="6" type="text" id="png_height" name="png_height" value="1000">
+</br>
+  <input type="radio" id="rectangular" name="arrangement" value="Rectangular">
+  <label for="rectangular">Rectangular <input maxlength="3" size="3" type="text" id="rect_w" name="rect_w" value="8">×<input maxlength="3" size="3" type="text" id="rect_h" name="rect_h" value="6">–<input maxlength="3" size="3" type="text" id="rect_alter" name="rect_alter" value="6"></label>
+  <input type="radio" id="diagonal_A" name="arrangement" value="Diagonal A">
+  <label for="diagonal_A">Diagonal A <input maxlength="3" size="3" type="text" id="diagA_w" name="diagA_w" value="8">×<input maxlength="3" size="3" type="text" id="diagA_h" name="diagA_h" value="6">–<input maxlength="3" size="3" type="text" id="diagA_alter" name="diagA_alter" value="6"></label></label>
+  <input type="radio" id="diagonal_B" name="arrangement" value="Diagonal B">
+  <label for="diagonal_B">Diagonal B <input maxlength="3" size="3" type="text" id="diagB_w" name="diagB_w" value="8">×<input maxlength="3" size="3" type="text" id="diagB_h" name="diagB_h" value="6">–<input maxlength="3" size="3" type="text" id="diagB_alter" name="diagB_alter" value="6"></label></label>
+</div>
+</br>
+<div style="left:15%;right:15%;padding-left:15%;padding-right:15%;width=50%;margin:auto;text-align: center;">
+<div id="svg_flag" width="100%">
+</div>
+<div id="canvas_hold">
+</div>
+</div>
+</br>
+</br>
 On the 1st of May, 1795, two new stars were added to the flag of the United States to represent the new states of Vermont and Kentucky, bringing the total up to 15. Two stripes were also added, which made sense at the time, but as more states joined the union over the years, the flag remained unchanged for fear that it would become too complex. It was waith the Flag Act of 1818 that the current standard of 13 stripes and a star for every state was established in law.
 </br>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_the_United_States_%281848%E2%80%931851%29.svg/1024px-Flag_of_the_United_States_%281848%E2%80%931851%29.svg.png" width="30%" style=""/>
-<img class="side_image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Flag_of_the_United_States_%281851%E2%80%931858%29.svg/1024px-Flag_of_the_United_States_%281851%E2%80%931858%29.svg.png" width="30%"/>
+<img class="side_image" src="Flag_of_the_United_States_1848-1851.svg.png" width="30%" style=""/>
+<img class="side_image" src="Flag_of_the_United_States_1851-1858.svg.png" width="30%"/>
 </div>
 <div class="caption" style="width:55%"><i>Left: 30 stars (1848-1851), Right: 31 stars (1851-1858)</i></div>
 </br>
@@ -95,43 +137,15 @@ These sets of numbers seem to allow for about three quarters of the natural numb
 With the 62nd state, either someone more creative than I will have to come up with a new pattern, or we'll be stuck with the kind of imperfection that so many of the United States' historical flags had. However, I wouldn't plan on this becoming a problem any time soon.
 </br>
 </br>
-<div style="width=90%;margin:auto;text-align: center;">
-<i>Enter numbers up to 10000.</i>
-</div>
-</br>
-<div style="width=90%;margin:auto;text-align: center;">
-Stars: <input maxlength="6" size="6" type="text" id="star_count" name="star_count" value="51"> Stripes: <input maxlength="6" size="6" type="text" id="stripe_count" name="stripe_count" value="13"> <button id="modify_flag_button">Make Flag</button> <button id="download_flag_button">Download as SVG</button> <button id="download_flag_png_button">Download as PNG</button>
-</br>
-<select name="color_sets" id="color_sets">
-    <option value="custom">Custom</option>
-    <option value="federal_use">ECA Standard (Wikipedia Default)</option>
-    <option value="eca_pantone">ECA Pantone</option>
-    <option value="flag_printing_absolute">DDD-F-416F Cloth Absolute</option>
-    <option value="flag_printing_relative">DDD-F-416F Cloth White Balanced</option>
-    <option value="texas_statute">Texas Statute</option>
-    <option value="transgender">Transgender</option>
-  </select> Red: <input maxlength="6" size="6" type="text" id="red_color" name="red_color" value="B31942"> White: <input maxlength="6" size="6" type="text" id="white_color" name="white_color" value="FFFFFF"> Blue: <input maxlength="6" size="6" type="text" id="blue_color" name="blue_color" value="0A3161"> First stripe is red: <input type="checkbox" id="first_stripe_red" name="First stripe is red" checked="true">
-</br>
-Use different color for stars instead of white: <input type="checkbox" id="star_color_different" name="Use different color for stars"> <input maxlength="6" size="6" type="text" id="star_color" name="star_color" value="FFFFFF">
-</br>
-Canton Width: <input maxlength="6" size="6" type="text" id="canton_width" name="canton_width" value="40">% Canton Height: <input maxlength="6" size="6" type="text" id="canton_height" name="canton_height" value="7"><span id="canton_height_percentage"></span> Canton height measured in stripes: <input type="checkbox" id="canton_height_units" name="Canton height measured in stripes" checked="true">
-</br>
-Aspect ratio: <input maxlength="6" size="6" type="text" id="ratio_height" name="ratio_height" value="10">:<input maxlength="6" size="6" type="text" id="ratio_width" name="ratio_width" value="19"> Stars in circle: <input type="checkbox" id="stars_in_circle" name="Stars in circle"> Star points: <input maxlength="6" size="6" type="text" id="star_points" name="star_points" value="5">/<input maxlength="6" size="6" type="text" id="star_points_2" name="star_points_2" value="2">
-</br>
-PNG output height: <input maxlength="6" size="6" type="text" id="png_height" name="png_height" value="1000">
-</div>
-</br>
-<div style="left:15%;right:15%;padding-left:15%;padding-right:15%;width=50%;margin:auto;text-align: center;">
-<div id="svg_flag" width="100%">
-</div>
-<div id="canvas_hold">
-</div>
 </div>
 </br>
 <div class="dateprint"><i>Some images retrieved from Wikimedia Commons.</i></div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script type="module">
-    import { modify_flag, download_flag, download_flag_png } from './usf.js';
+    import { modify_flag, download_flag, download_flag_png, remake_radio } from './usf.js';
+    
+    document.getElementById('star_count').addEventListener('change', remake_radio);
+
     // function download_flag_(){
     //     download_flag();
     // }
@@ -189,6 +203,7 @@ document.getElementById("blue_color").value = "5BCEFA";
 
         }});
 
+    remake_radio();
     modify_flag();
 </script>
                     </div>
