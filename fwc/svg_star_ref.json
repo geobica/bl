@@ -1,0 +1,56 @@
+{
+    "AU": {
+        "file": "Flag_of_Australia_(converted).svg",
+		"stars": [{
+            "name": "Acrux",
+			"svg_loc": [1287,1344],
+			"pos": [7560,4200],
+			"class": 0
+        },{
+            "name": "Mimosa",
+			"svg_loc": [1345,1402],
+			"pos": [6300,2205],
+			"class": 0
+        },{
+            "name": "Gacrux",
+			"svg_loc": [1403,1459],
+			"pos": [7560,840],
+			"class": 0
+        },{
+            "name": "Imai",
+			"svg_loc": [1460,1517],
+			"pos": [8680,1869],
+			"class": 0
+        },{
+            "name": "Ginan",
+			"svg_loc": [1518,1575],
+			"pos": [8064,2730],
+			"class": 1
+        }],
+        "classes": [[360,160],
+    				[210,93.333333333]],
+        "star_color":"#ffffff",
+        "center":[7560,2520]
+    },
+    "NZ": {
+        "file": "Flag_of_New_Zealand.svg",
+		"stars": [{
+            "name": "Acrux",
+			"svg_loc": [2206,2410]
+        },{
+            "name": "Mimosa",
+			"svg_loc": [1968,2198]
+        },{
+            "name": "Gacrux",
+			"svg_loc": [1491,1695]
+        },{
+            "name": "Imai",
+			"svg_loc": [1734,1965]
+        }],
+        "classes": [[50.4,30],
+    				[45.4,25],
+    				[40.4,20]],
+        "star_color":["#ffffff","#c8102e",15.4],
+        "center":[900,300]
+    }
+}

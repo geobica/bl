@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://geobica.com/bl/bl.css" rel="stylesheet" type="text/css" />
+        <link href="https://www.geobica.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <title>bl</title>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <meta property="og:image" content="https://geobica.com/bl/fwc/fwc.png"/>
+        <meta property="og:image:width" content="256"/>
+        <meta property="og:image:height" content="256"/>
+        <meta property="og:title" content="Flags with Constellations
+"/>
+        <meta property="og:description" content="An overview of flags with constellations on them and a tool for editing them."/>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="geobica.com">
+        <meta property="twitter:url" content="https://www.geobica.com/bl/fwc">
+        <meta name="twitter:title" content="Flags with Constellations
+">
+        <meta name="twitter:description" content="An overview of flags with constellations on them and a tool for editing them.">
+        <meta name="twitter:image" content="https://geobica.com/bl/fwc/fwc.png">
+    </head>
+    <body>
+        <div id="header">
+            <a id="icon" href="https://www.Geobica.com/bl/"> <img src="https://www.geobica.com/bl/im/world_288.png"/> </a>
+            <br/>
+            <div id="links"><a class="link" href="https://www.geobica.com">Home</a> | <a class="link" href="https://www.geobica.com/bl/">/bl</a> (<a class="link" href="https://www.geobica.com/bl/rss.xml">rss</a>) | <a class="link" href="https://www.geobica.com/games/">Games</a> | <a class="link" href="https://www.geobica.com/about.html">About</a> | <a class="link" href="https://www.geobica.com/contact.html">Contact</a></div>
+        </div>
+        <div id="body">
+            <div id="article_column">
+                <div id="post">
+                    <div class="title_print">
+                        <strong>Flags with Constellations</strong>
+                    </div>
+                    <div class="date_print">
+                        <i>Published <span title="2026-07-08T12:00:00Z">7 July 2026</span></i>
+                    </div>
+                    </br>
+                    <div class="body_print">
+<the tool should go here>
+Above is the cool new flag constellation editor I've been working on, in a similar way to [the US flag star modifying tool][/bl/usf]. This one lets you drag around a celestial globe and modify cutoffs for the correspondance between the sizes of stars in constellations on flags and the magnitudes of those stars in real life.
+</br>
+As an example, the flag of Australia has the Southern Cross on it, with Alpha through Delta Crucis[properly Acrux, Mimosa, Gacrux, and Imai] depicted as larger seven pointed stars, while Epsilon Crucis is depicted with a smaller five pointed star. On the left though is another even larger seven pointed star located relative to Crux in a direction where Beta Centauri would be found. However, the official Australian Flag booklet never mentions Beta Centauri, merely calling it the "Commonwealth Star".
+</br>
+<im/AU_flag_specifications.png>
+https://www.pmc.gov.au/sites/default/files/resource/download/australian-flags-booklet-2024-11-18.pdf
+</br>
+Anyway, here's how the Australian flag looks if you position the stars of Crux where they really are on an orthographic projection, with the position and rotation fit to minimize the MSE from the original flag:
+</br>
+<svg/reconstructed/AU.svg>
+</br>
+It's fairly close, with the $\sqrt{MSE}$ being only <>% the height of the flag[or width of fly], rotated in a way that puts Gacrux in the same vertical line as Acrux.
+
+<Diagram and animation showing distance from real star positions>
+</br>
+
+Of course, Australia isn't the only country that has a Southern Cross on its flag: 5 countries and many subnational units use it, in fact, the Wikipedia page "Flags depicting the Southern Cross" lists 113 such examples.
+</br>
+
+So which one is the best?
+</br>
+
+Ranking them by the minimum MSE found to fit the real Southern Cross to the ones depicted on the flags, <> comes out as the closest fit, while the least accurate are the flags which don't even try to position the stars in a natural way, simply putting them on the legs of a standard orthogonal cross.
+</br>
+<those two side by side with the real southern cross night sky image in the middle>
+</br>
+Anyway, you have probably noticed that many of these flags have their own ways of sizing each of the stars, with the brighter Acrux generally depicted as larger than the dimmer ε Crucis. Australia has two different star sizes for the Southern Cross, while New Zealand uses three different star sizes for Acrux through Imai, and ε Crucis isn't even depicted, implying an effective size of zero.
+</br>
+Taking as an assumption that the brightness of a star ought to correlate with its area on the flag, we can plot the relationship between these two to see which flags have the most reasonable sizings of their stars:
+<Graph with every flag>
+The lowest r² for the linear trendline can be found in the flag of <>, which has <> different sizes for the five stars in the Southern Cross.
+
+<The flags of Paraná and Mairiporã in Brazil, Coronel Dorrego Partido, El Chaltén, and Santa Cruz Province in Argentina, and Concón, the Coquimbo Region, and the Magallanes Region of Chile, and the Adnyamathanha peoples flag have Acrux above Gacrux.>
+
+</br>
+<div class="dateprint"><i>Some images retrieved from Wikimedia Commons.</i></div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="module">
+</script>
+                    </div>
+                </div>
+            <hr>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" delay></script>
+        <script>
+            jQuery.noConflict();
+            jQuery(function() {
+                jQuery(".notetext").hide();
+                jQuery(".note").click(function(event) {
+                    jQuery(this.nextSibling).toggle();
+                    event.stopPropagation();
+                });
+                jQuery("body").click(function(event) {
+                    jQuery(".notetext").hide();
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
