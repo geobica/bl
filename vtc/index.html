@@ -44,44 +44,52 @@
                     </div>
                     </br>
                     <div class="body_print">
-<b>[Erratum 2026-05-02]</b> The images I created for this article were white balanced to D65, which is based on sunlight on Earth, and is not representative of the perception of Venus in space. I did this because I wanted the way that these images were rendered on typical monitors (which use D65) to cause the same cone excitation as the planet itself would. However, in retrospect, that is not a good way of depicting how the planet would appear in space, as when contrasted with the white pixels the monitor emits (which are bluer than sunlight in space, and thus bluer than a white piece of paper for example would reflect when held up next to Venus), the image is perceived as redder than it should be. Based on the spectra I originally used for reference, Venus has a reflectance spectrum closer to white, as seen in this image.
-</br>
-</br>
-Each of the images below is based on the same MESSENGER images tuned to different spectra I found, white balanced to sunlight in space:
-</br>
-</br>
-<div style="display: flex; justify-content: center; gap: 20px;">
-  <div style="width: 30%;text-align: center;">
-    <img class="side_image" src="https://geobica.com/bl/vtc/venus_messenger_PerezHoyos.png" width="100%" style="vertical-align: middle;" />
-    <div class="caption"><i>MASCS spectrum as found in <a class="link" href="https://ui.adsabs.harvard.edu/abs/2018JGRE..123..145P/abstract">Pérez-Hoyos et al., 2017</a></i></div>
-  </div>
 
-  <div style="width: 30%;text-align: center;">
-    <img class="side_image" src="https://geobica.com/bl/vtc/venus_messenger_Pellier.png" width="100%" style="vertical-align: middle;" />
-    <div class="caption"><i>Reflectance spectrum collected by <a class="link" href="https://www.planetary-astronomy-and-imaging.com/en/venus-spectrum/'">Christophe Pellier</a></i></div>
-  </div>
+<b>[Erratum 2026-05-02, edited 2026-08-17]</b> The images I created for this article were white balanced to D65, which is based on sunlight on Earth, and is not representative of the perception of Venus in space. I have since corrected the white balance in the images seen. Click the button below for more information:
+<div align="center"><button title="Click to show/hide content" align="center" type="button" onclick="if(document.getElementById('spoiler_0').style.display=='none') {document.getElementById('spoiler_0') .style.display=''}else{document.getElementById('spoiler_0') .style.display='none'}">Show/hide erratum</button></div></br>
+<div id="spoiler_0" style="display:none">
+    I used D65 originally because I wanted the way that these images were rendered on typical monitors (which use D65) to cause the same cone excitation as the planet itself would. However, in retrospect, that is not a good way of depicting how the planet would appear in space, as when contrasted with the white pixels the monitor emits (which are bluer than sunlight in space, and thus bluer than a white piece of paper for example would reflect when held up next to Venus), the image is perceived as redder than it should be. Based on the spectra I originally used for reference, Venus has a reflectance spectrum closer to white, as seen in this image.
+    </br>
+    </br>
+    Each of the images below is based on the same MESSENGER images tuned to different spectra I found, white balanced to sunlight in space:
+    </br>
+    </br>
+    <div style="display: flex; justify-content: center; gap: 20px;">
+      <div style="width: 30%;text-align: center;">
+        <img class="side_image" src="https://geobica.com/bl/vtc/venus_messenger_PerezHoyos.png" width="100%" style="vertical-align: middle;" />
+        <div class="caption"><i>MASCS spectrum as found in <a class="link" href="https://ui.adsabs.harvard.edu/abs/2018JGRE..123..145P/abstract">Pérez-Hoyos et al., 2017</a></i></div>
+      </div>
 
-  <div style="width: 30%;text-align: center;">
-    <img class="side_image" src="https://geobica.com/bl/vtc/venus_messenger_Selsis.png" width="100%" style="vertical-align: middle;" />
-    <div class="caption"><i>Photon spectrum found in <a class="link" href="https://www.researchgate.net/publication/231005038_Terrestrial_exoplanets_Diversity_habitability_and_characterization">Selsis et al., 2008</a></i></div>
-  </div>
+      <div style="width: 30%;text-align: center;">
+        <img class="side_image" src="https://geobica.com/bl/vtc/venus_messenger_Pellier.png" width="100%" style="vertical-align: middle;" />
+        <div class="caption"><i>Reflectance spectrum collected by <a class="link" href="https://www.planetary-astronomy-and-imaging.com/en/venus-spectrum/'">Christophe Pellier</a> in 2020</i></div>
+      </div>
+
+      <div style="width: 30%;text-align: center;">
+        <img class="side_image" src="https://geobica.com/bl/vtc/venus_messenger_Selsis.png" width="100%" style="vertical-align: middle;" />
+        <div class="caption"><i>Photon spectrum found in <a class="link" href="https://www.researchgate.net/publication/231005038_Terrestrial_exoplanets_Diversity_habitability_and_characterization">Selsis et al., 2008</a></i></div>
+      </div>
+    </div>
+    </br>
+    The images I originally created for this article resemble the Pellier and Selsis spectra white balanced to D65, as those were spectra I used as reference in 2023. However, because the MASCS data was collected by the MESSENGER probe itself, it could be seen as more scientifically grounded, though there remains a possibility that the calibration of this instrument was an issue, which seems reasonable based on the difference between it and the other spectra. The MASCS data gives a noticable more green appearance to Venus, while most others give a yellow and white appearance. The inconsistency between these spectra makes me unsure which if any should really be considered the "true color" version, though the fact that the top of the cloud layer appears broadly smooth in true color is evident from the images captured by the various probes.
+    </br>
+    I believe the MASCS spectrum, which was collected by the instrument on the MESSENGER probe, is the most reliable spectrum, and it lines up exceptionally well with a spectrum collected by <a class="link" href="https://www.cloudynights.com/forums/topic/873290-new-spectra-of-venus-with-alpy600-17th-april/">Christophe Pellier in April 2023</a> (so after I did the original analysis), so the 
+    </br>
+    </br>
+    The code I used to create these images can be found on the <a class="link" href="https://github.com/geobica/planet_color_calibrator">planet_color_calibrator repository on my Github</a>.
+    </br>
+    </br>
+    <b>[End Erratum 2026-05-02]</b>
 </div>
-</br>
-The images I originally created for this article resemble the Pellier and Selsis spectra white balanced to D65, as those were spectra I used as reference in 2023. However, because the MASCS data was collected by the MESSENGER probe itself, it could be seen as more scientifically grounded, though there remains a possibility that the calibration of this instrument was an issue, which seems reasonable based on the difference between it and the other spectra. The MASCS data gives a noticable more green appearance to Venus, while most others give a yellow and white appearance. The inconsistency between these spectra makes me unsure which if any should really be considered the "true color" version, though the fact that the top of the cloud layer appears broadly smooth in true color is evident from the images captured by the various probes.
-</br>
-</br>
-The code I used to create these images can be found on the <a class="link" href="https://github.com/geobica/planet_color_calibrator">planet_color_calibrator repository on my Github</a>.
-</br>
-</br>
-<b>[End Erratum 2026-05-02]</b>
-</br>
-</br>
+Click this button to toggle whether to show the original or the properly white balanced images:
+<div align="center"><button title="Toggle white balancing" id="toggle_version" align="center" type="button" onclick="if(document.getElementById('top_messenger_image').src=='https://geobica.com/bl/vtc/venus_interpolated_messenger.png') {document.getElementById('top_messenger_image').src='https://geobica.com/bl/vtc/venus_messenger_PerezHoyos.png';document.getElementById('top_m10_image').src='https://geobica.com/bl/vtc/venus_m10_PerezHoyos.png';document.getElementById('bottom_messenger_image').src='https://geobica.com/bl/vtc/venus_messenger_PerezHoyos.png';document.getElementById('toggle_version').innerHTML='Toggle to D65 version'}else{document.getElementById('top_messenger_image').src='https://geobica.com/bl/vtc/venus_interpolated_messenger.png';document.getElementById('top_m10_image').src='https://geobica.com/bl/vtc/venus_interpolated_mariner_10.png';document.getElementById('bottom_messenger_image').src='https://geobica.com/bl/vtc/venus_interpolated_messenger.png';document.getElementById('toggle_version').innerHTML='Toggle to new version'}">Toggle to D65 version</button></div></br>
+<hr>
 <div style="width=90%;margin:auto;text-align: center;"><i>This project originally took the form of a 15-minute video essay, which can be seen here: <a class="link" href="https://www.youtube.com/watch?v=XYtPqgMo5Q4">https://www.youtube.com/watch?v=XYtPqgMo5Q4</a></i></div>
 <div style="width=90%;margin:auto;text-align: center;"><i>This page contains some additional notes about the topic, which I will expand on as I see fit.</i></div>
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
-<img class="side_image" src="https://geobica.com/bl/vtc/venus_interpolated_messenger.png" width="30%" style="vertical-align: middle;"/>
-<img class="side_image" src="https://geobica.com/bl/vtc/venus_interpolated_mariner_10.png" width="30%" style="vertical-align: middle;"/>
+<img class="side_image" id="top_messenger_image" src="https://geobica.com/bl/vtc/venus_messenger_PerezHoyos.png" width="30%" style="vertical-align: middle;"/>
+<img class="side_image" id="top_m10_image" src="https://geobica.com/bl/vtc/venus_m10_PerezHoyos.png" width="30%" style="vertical-align: middle;"/>
 </div>
 <div class="caption" style="width:55%"><i>Images of Venus I reconstructed from MESSENGER and Mariner 10 data respectively.</i></div>
 <hr>
@@ -151,7 +159,7 @@ For the MESSENGER image, I had access to a set of data which had already been ca
   </div>
 
   <div style="width: 30%;text-align: center;">
-    <img class="side_image" src="https://geobica.com/bl/vtc/venus_interpolated_messenger.png" width="100%" style="vertical-align: middle;" />
+    <img class="side_image" id="bottom_messenger_image" src="https://geobica.com/bl/vtc/venus_messenger_PerezHoyos.png" width="100%" style="vertical-align: middle;" />
     <div class="caption"><i>My attempt using the <a class="link" href="https://pdsimage2.wr.usgs.gov/Messenger/MSGRMDS_2001/">Planetary Data System's calibrated data</a>.</i></div>
   </div>
 </div>
