@@ -27,31 +27,36 @@ This repository contains code relevant to a my projects shown at https://geobica
 
 ### These projects feature interactive elements with js code involved: 
 <table>
-  <tr>
+<tr>
+    <td>
+      <a class="link" href="https://github.com/geobica/bl/tree/main/fwc"><img src="fwc/fwc.png" width="100" height="100" style="vertical-align:middle;" /></a>
+        <h5><a class="link" href="https://github.com/geobica/bl/tree/main/fwc">Flags with Constellations</a> (<a class="link" href="https://geobica.com/bl/fwc">article</a>)</h5>
+      An overview of flags with constellations on them and a tool for editing them.
+    </td>
     <td>
       <a class="link" href="https://github.com/geobica/bl/tree/main/msc"><img src="msc/msc.png" width="100" height="100" style="vertical-align:middle;" /></a>
         <h5><a class="link" href="https://github.com/geobica/bl/tree/main/msc">Mapping Seasons Across Climates</a> (<a class="link" href="https://geobica.com/bl/msc">article</a>)</h5>
       An interactive map tool you can use to look at precipitation and temperature patterns around the world.
     </td>
+</tr>
+<tr>
     <td>
       <a class="link" href="https://github.com/geobica/bl/tree/main/scs"><img src="scs/scs.png" width="100" height="100" style="vertical-align:middle;" /></a>
         <h5><a class="link" href="https://github.com/geobica/bl/tree/main/scs">How long will the US Supreme Court lean conservative?</a> (<a class="link" href="https://geobica.com/bl/scs">article</a>)</h5>
       A statistical model of how the ideological lean of the Supreme Court might evolve over the next few decades.
     </td>
-  </tr>
-<tr>
     <td>
       <a class="link" href="https://github.com/geobica/bl/tree/main/tcc"><img src="tcc/tcc.png" width="100" height="100" style="vertical-align:middle;" /></a>
         <h5><a class="link" href="https://github.com/geobica/bl/tree/main/tcc">The Card Calendar</a> (<a class="link" href="https://geobica.com/bl/tcc">article</a>)</h5>
       A calendar where the 52 weeks of the year are sorted into a deck of 4 seasons.
     </td>
+<tr>
     <td>
       <a class="link" href="https://github.com/geobica/bl/tree/main/atn"><img src="atn/atn.png" width="100" height="100" style="vertical-align:middle;" /></a>
         <h5><a class="link" href="https://github.com/geobica/bl/tree/main/atn">List of Integers</a> (<a class="link" href="https://geobica.com/bl/atn">article</a>)</h5>
       In alphabetical order.
     </td>
   </tr>
-<tr>
     <td>
       <a class="link" href="https://github.com/geobica/bl/tree/main/usf"><img src="usf/usf.png" width="100" height="100" style="vertical-align:middle;" /></a>
         <h5><a class="link" href="https://github.com/geobica/bl/tree/main/usf">The Future of the American Flag</a> (<a class="link" href="https://geobica.com/bl/usf">article</a>)</h5>
