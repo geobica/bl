@@ -217,12 +217,13 @@
         }
         return 0;
     })
-    depth_search = [1];
-    depth_block = [4000];
+    depth_search = [0];
+    depth_block = [3*illion_list.length-2];
     var done = 0;
     var needed = 0;
     var wait_step = 0;
     function scroll_more(more){
+        var html = '';
         needed += more;
         while(done < needed){
             if(depth_search[depth_search.length-1] >= piece_order.length){
@@ -230,123 +231,37 @@
                 depth_search.pop();
                 depth_block.pop();
             }else{
-                if(depth_block[depth_search.length-2] < 2 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 3){
+                var ct = piece_type[piece_order[depth_search[depth_search.length-1]]];
+                var pt = piece_type[piece_order[depth_search[depth_search.length-2]]];
+                if(ct == 3 && !(pt == 0 && (depth_search.length == 2 || piece_type[piece_order[depth_search[depth_search.length-3]]] >= 1000))){
                     depth_search[depth_search.length-1] += 1;
-                }else if(depth_block[depth_search.length-2] <= (piece_type[piece_order[depth_search[depth_search.length-1]]]-1000)*3){
+                }else if(ct >= 1000 && !(depth_block[depth_search.length-2] > (ct-1000)*3)){
                     depth_search[depth_search.length-1] += 1;
-                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] >= 1000 && piece_type[piece_order[depth_search[depth_search.length-1]]] >= 1000){
+                }else if(pt >= 1000 && ct >= 1000){
                     depth_search[depth_search.length-1] += 1;
-                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] != 0 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 3){
+                }else if(pt < 3 && ct == 2){
                     depth_search[depth_search.length-1] += 1;
-                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] < 3 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 2){
+                }else if(pt < 3 && ct == 1){
                     depth_search[depth_search.length-1] += 1;
-                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] < 3 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 1){
-                    depth_search[depth_search.length-1] += 1;
-                }else if(piece_type[piece_order[depth_search[depth_search.length-2]]] < 2 && piece_type[piece_order[depth_search[depth_search.length-1]]] == 0){
+                }else if(pt < 2 && ct == 0){
                     depth_search[depth_search.length-1] += 1;
                 }else{
-                    integer_list.innerHTML += '<br>'+(done+1)+') ';
+                    html += '<br>'+(done+1)+') ';
                     for(var j = 0;j < depth_search.length;j++){
-                        integer_list.innerHTML += piece_list[piece_order[depth_search[j]]];
+                        html += piece_list[piece_order[depth_search[j]]];
                     }
                     done++;
-                    if(piece_type[piece_order[depth_search[depth_search.length-1]]] == 0){
-                        if(depth_block[depth_search.length-1] > 2){
-                            var fulf = -1;
-                            while(fulf >= -1 && fulf < piece_type.length){
-                                fulf += 1;
-                                if(piece_type[piece_order[fulf]] == 3 && depth_block[depth_search.length-1] % 3 ==0){
-                                    depth_block.push((depth_block[depth_search.length-1]-1)-((depth_block[depth_search.length-1]-1)%3)+2);
-                                    depth_search.push(fulf);
-                                    fulf = -2;
-                                }
-                                if(piece_type[piece_order[fulf]] >= 1000 && depth_block[depth_search.length-1] > (piece_type[piece_order[fulf]]-1000)*3){
-                                    depth_block.push((piece_type[piece_order[fulf]]-1000)*3);
-                                    depth_search.push(fulf);
-                                    fulf = -2;
-                                }
-                            }
-                        }else{
-                            depth_search[depth_search.length-1] += 1;
-                        }
-                    }else if(piece_type[piece_order[depth_search[depth_search.length-1]]] == 1){
-                        var fulf = -1;
-                        while(fulf >= -1 && fulf < piece_type.length){
-                            fulf += 1;
-                            if(piece_type[piece_order[fulf]] >= 1000 && depth_block[depth_search.length-1] > piece_type[piece_order[fulf]]){
-                                depth_block.push(piece_type[piece_order[fulf]]);
-                                depth_search.push(fulf);
-                                fulf = -2;
-                            }
-                        }
-                        if(fulf > -2){
-                           depth_search[depth_search.length-1] += 1;
-                        
-                        }
-                    }else if(piece_type[piece_order[depth_search[depth_search.length-1]]] == 2){
-                        var fulf = -1;
-                        while(fulf >= -1 && fulf < piece_type.length){
-                            fulf += 1;
-                            if(piece_type[piece_order[fulf]] >= 1000 && depth_block[depth_search.length-1] > piece_type[piece_order[fulf]]){
-                                depth_block.push(piece_type[piece_order[fulf]]);
-                                depth_search.push(fulf);
-                                fulf = -2;
-                            }
-                            if(piece_type[piece_order[fulf]] == 0){
-                                depth_block.push((depth_block[depth_search.length-1]-1)-((depth_block[depth_search.length-1]-1)%3)+1);
-                                depth_search.push(fulf);
-                                fulf = -2;
-                            }
-                        }
-                        if(fulf > -2){
-                           depth_search[depth_search.length-1] += 1;
-                        
-                        }
-                    }else if(piece_type[piece_order[depth_search[depth_search.length-1]]] == 3){
-                        var fulf = -1;
-                        while(fulf >= -1 && fulf < piece_type.length){
-                            fulf += 1;
-                            if(piece_type[piece_order[fulf]] >= 1000 && depth_block[depth_search.length-1] > piece_type[piece_order[fulf]]){
-                                depth_block.push(piece_type[piece_order[fulf]]);
-                                depth_search.push(fulf);
-                                fulf = -2;
-                            }
-                            if(piece_type[piece_order[fulf]] < 3){
-                                depth_block.push(depth_block[depth_search.length-1]);
-                                depth_search.push(fulf);
-                                fulf = -2;
-                            }
-                        }
-                        if(fulf > -2){
-                           depth_search[depth_search.length-1] += 1;
-                        }
-                    }else if(piece_type[piece_order[depth_search[depth_search.length-1]]] > 3){
-                        var fulf = -1;
-                        while(fulf >= -1 && fulf < piece_type.length){
-                            fulf += 1;
-                            if(piece_type[piece_order[fulf]] == 0){
-                                depth_block.push(depth_block[depth_search.length-1]);
-                                depth_search.push(fulf);
-                                fulf = -2;
-                            }
-                            if(piece_type[piece_order[fulf]] == 1){
-                                depth_block.push(depth_block[depth_search.length-1]-1);
-                                depth_search.push(fulf);
-                                fulf = -2;
-                            }
-                        }
-                        if(fulf > -2){
-                           depth_search[depth_search.length-1] += 1;
-                        }
-                    }
+                    depth_block.push(ct >= 1000 ? (ct-1000)*3-2 : depth_block[depth_search.length-1]);
+                    depth_search.push(0);
                 }
             }
         }
+        integer_list.insertAdjacentHTML('beforeend',html);
     }
     scroll_more(100);
     window.onscroll = function(ev) {
         var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-        if(scrollTop+1000 >= Math.max( body.scrollHeight, body.offsetHeight)){
+        if(scrollTop+window.innerHeight+1000 >= document.documentElement.scrollHeight){
             scroll_more(50);
         }
     };
