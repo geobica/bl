@@ -204,3 +204,7 @@ table td, table th{
 .border{
     pointer-events: none;
 }
+video{
+    max-width: 100%;
+    height: auto;
+}
