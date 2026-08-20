@@ -56,7 +56,6 @@ This repository contains code relevant to a my projects shown at https://geobica
         <h5><a class="link" href="https://github.com/geobica/bl/tree/main/atn">List of Integers</a> (<a class="link" href="https://geobica.com/bl/atn">article</a>)</h5>
       In alphabetical order.
     </td>
-  </tr>
     <td>
       <a class="link" href="https://github.com/geobica/bl/tree/main/usf"><img src="usf/usf.png" width="100" height="100" style="vertical-align:middle;" /></a>
         <h5><a class="link" href="https://github.com/geobica/bl/tree/main/usf">The Future of the American Flag</a> (<a class="link" href="https://geobica.com/bl/usf">article</a>)</h5>
