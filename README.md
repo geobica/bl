@@ -65,7 +65,7 @@ This repository contains code relevant to a my projects shown at https://geobica
 </tr>
 </table>
 
-### These projects do not involve as much code but are still be interesting:
+### These projects do not involve as much code but may still be interesting:
 <table>
   <tr>
     <td>
