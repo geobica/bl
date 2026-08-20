@@ -201,3 +201,6 @@ table{
 table td, table th{
     border: 1px solid;
 }
+.border{
+    pointer-events: none;
+}
