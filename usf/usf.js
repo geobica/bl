@@ -75,7 +75,9 @@ function remake_radio(){
       //   });
       // });
 function make_flag(x,y,method,alter,str_cou,canton_width,canton_height,aspect_ratio,first_stripe_red,star_points,star_points_2,use_radio=true){
-    if(use_radio){
+    console.log("method");
+    console.log(method);
+    if(use_radio&&method!=3){
         let selected_radio_button = document.querySelector('input[name="arrangement"]:checked');
         console.log(selected_radio_button);
         if(selected_radio_button!=null){
