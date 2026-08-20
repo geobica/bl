@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://geobica.com/bl/bl.css" rel="stylesheet" type="text/css" />
+        <link href="https://www.geobica.com/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <title>bl</title>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        <meta property="og:image" content="https://geobica.com/bl/im/fwc.png"/>
+        <meta property="og:image:width" content="256"/>
+        <meta property="og:image:height" content="256"/>
+        <meta property="og:title" content="Flags with Constellations
+"/>
+        <meta property="og:description" content="An overview of flags with constellations on them and a tool for editing them."/>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="geobica.com">
+        <meta property="twitter:url" content="https://www.geobica.com/bl/fwc">
+        <meta name="twitter:title" content="Flags with Constellations
+">
+        <meta name="twitter:description" content="An overview of flags with constellations on them and a tool for editing them.">
+        <meta name="twitter:image" content="https://geobica.com/bl/im/fwc.png">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+          h1 { margin: 18px 22px 4px; }
+          p.lede { max-width: 780px; }
+          .controls { max-width: 620px; margin: 0 auto; }
+          .row.combo, .row.triple { flex-wrap: wrap; }
+          .row .checkbox { display: flex; align-items: center; gap: 4px; white-space: nowrap; width: auto; }
+          .row.triple { gap: 14px; flex-wrap: nowrap; }
+          .row.triple .fieldgroup { flex: none; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+          .row.triple .fieldgroup .fieldrow { display: flex; align-items: center; gap: 14px; }
+          .row.triple .field { flex: none; display: flex; align-items: center; gap: 10px; }
+          .row.triple .field .numbox { flex: none; }
+          .row.triple .fieldgroup .hint { margin-top: 0; font-size: 10px; }
+          .mainrow { display: flex; gap: 8px; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
+          .flagwrap { width: 760px; }
+          .flagwrap .flag { width: 760px; display: block; }
+          .hint { margin-top: 8px; }
+          #liveControls.disabled { opacity: .4; }
+
+          .bandpanel { width: 400px; }
+          .row { display: flex; align-items: center; justify-content: center; gap: 4px; }
+          .buttonrow { flex-wrap: wrap; }
+          .row label { width: auto; white-space: nowrap; }
+          .row input[type=range] { flex: 1; }
+          .row .numbox { width: 60px; }
+          .row .unit { width: 12px; margin-left: -4px; }
+          .row select { width: 170px; flex: none; }
+          button.active { background: #ee9922; }
+          #hideBtn, #hideBtn.active, #moveCenterBtn, #moveCenterBtn.active { border-radius: 0; }
+
+          .widget { display: flex; gap: 6px; margin-top: 6px; }
+          .barwrap { position: relative; }
+          .bandcontrols { position: relative; flex: 1; }
+          .bandrow { position: absolute; left: 0; width: 230px; transform: translateY(-50%);
+                     display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+                     border: 2px solid; padding: 4px 8px; box-sizing: border-box; font-size: 10px; color: #000000; }
+          .bandrow { gap: 5px; }
+          .bandrow .rowbreak { flex-basis: 100%; height: 0; }
+          .bandrow input[type=number] { width: 42px; padding: 3px 3px; }
+          .bandrow input.colorbox { width: 62px; padding: 3px 3px; }
+          .bandrow button { padding: 3px 8px; }
+          .bandrow .del { position: absolute; top: 3px; right: 3px; width: 18px; height: 18px;
+                          padding: 0; line-height: 14px; }
+          .bandrow .split { position: absolute; top: 3px; right: 25px; }
+          .bandrow.hiddenrow { justify-content: flex-start; padding: 6px 8px; }
+          .bandrow .borderrow { display: flex; align-items: center; gap: 5px; }
+          .bandrow .borderlabel { display: flex; align-items: center; gap: 3px; white-space: nowrap; }
+        </style>
+
+    </head>
+    <body>
+        <div id="header">
+            <a id="icon" href="https://www.Geobica.com/bl/"> <img src="https://www.geobica.com/bl/im/world_288.png"/> </a>
+            <br/>
+            <div id="links"><a class="link" href="https://www.geobica.com">Home</a> | <a class="link" href="https://www.geobica.com/bl/">/bl</a> (<a class="link" href="https://www.geobica.com/bl/rss.xml">rss</a>) | <a class="link" href="https://www.geobica.com/games/">Games</a> | <a class="link" href="https://www.geobica.com/about.html">About</a> | <a class="link" href="https://www.geobica.com/contact.html">Contact</a></div>
+        </div>
+        <div id="body">
+            <div id="article_column">
+                <div id="post">
+                    <div class="title_print">
+                        <strong>Flags with Constellations</strong>
+                    </div>
+                    <div class="date_print">
+                        <i>Published <span title="2026-07-13T15:00:00Z">13 July 2026</span></i>
+                    </div>
+                    </br>
+                    <div class="body_print">
+<div class="controls">
+  <div class="row flagrow">
+    <label for="flagsel">Flag:</label>
+    <select id="flagsel"></select>
+    <label class="checkbox"><input type="checkbox" id="showOriginalChk"> Show original</label>
+    <label for="bgColorInput" id="bgColorLabel" style="display:none;">BG:</label>
+    <input type="text" class="numbox" id="bgColorInput" value="#000000" style="display:none; width:80px;">
+  </div>
+  <div class="row flagrow">
+    <button id="reset">Reset flag defaults</button>
+    <button id="downloadSvgBtn">Download as SVG</button>
+    <button id="downloadPngBtn">Download as PNG</button>
+    <input type="number" class="numbox" id="wNum" step="1" min="0" max="10080" title="Width of .png output">
+    <span class="hint">×</span>
+    <input type="number" class="numbox" id="hNum" step="1" min="0" max="5040" title="Height of .png output">
+  </div>
+  <div id="liveControls">
+    <div class="row combo">
+      <label for="constellation">Constellation:</label>
+      <select id="constellation"></select>
+      <label for="zoomNum">Zoom:</label>
+      <input type="number" class="numbox" id="zoomNum" step="1" min="4" max="2500"> <span class="unit">%</span>
+      <label class="checkbox"><input type="checkbox" id="reversedChk"> Reversed</label>
+    </div>
+    <div class="row triple">
+      <div class="fieldgroup">
+        <div class="fieldrow">
+          <div class="field">
+            <label for="raNum" title="Right Ascension">RA:</label>
+            <input type="number" class="numbox" id="raNum" step="0.1" min="0" max="360" title="Right Ascension"> <span class="unit">°</span>
+          </div>
+          <div class="field">
+            <label for="decNum" title="Declination">Dec:</label>
+            <input type="number" class="numbox" id="decNum" step="0.1" min="-90" max="90" title="Declination"> <span class="unit">°</span>
+          </div>
+        </div>
+        <div class="hint">(Drag to pan)</div>
+      </div>
+      <div class="fieldgroup">
+        <div class="fieldrow">
+          <div class="field">
+            <label for="rollNum">Rotation:</label>
+            <input type="number" class="numbox" id="rollNum" step="1" min="-180" max="180"> <span class="unit">°</span>
+          </div>
+        </div>
+        <div class="hint">(Shift+drag to rotate)</div>
+      </div>
+    </div>
+    <div class="row buttonrow">
+      <button id="moveCenterBtn">Move Center Tool</button>
+      <button id="hideBtn">Hide Stars Tool</button>
+      <label class="checkbox"><input type="checkbox" id="showBtn"> <span id="showHiddenLabel">Show hidden</span></label>
+    </div>
+    <div class="row linesrow">
+      <label class="checkbox"><input type="checkbox" id="linesBtn"> Show lines</label>
+      <label class="checkbox"><input type="checkbox" id="onlyLinesBtn"> Only show stars on lines</label>
+    </div>
+  </div>
+</div>
+
+<div class="mainrow">
+  <div class="flagwrap">
+    <svg id="flag" class="flag" viewBox="0 0 10080 5040"
+             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#"
+             xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.0.dtd"
+             xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"></svg>
+    <img id="origFlagImg" class="flag" style="display:none;" alt="Original flag">
+  </div>
+
+  <div class="bandpanel">
+    <div class="widget">
+      <div class="barwrap">
+        <svg id="bar" width="112" height="440"></svg>
+      </div>
+      <div class="bandcontrols" id="bandcontrols"></div>
+    </div>
+  </div>
+</div>
+
+<canvas id="png_flag" style="position:absolute; left:-99999px; top:0;"></canvas>
+
+<script src="flag_editor.js"></script>
+Above is the cool new flag constellation editor I've been working on, which is designed in a similar way to <a class="link" href="https://www.geobica.com/bl/usf">the US flag star modifying tool</a> I made in 2020. This one lets you drag around a celestial globe and modify cutoffs for the correspondance between the sizes of stars in constellations on flags and the magnitudes of those stars in real life.
+</br>
+</br>
+As an example, the flag of Australia has the Southern Cross on it, with Alpha through Delta Crucis<span class="ref"><span class="note">[1]</span><span class="notetext">Properly Acrux, Mimosa, Gacrux, and Imai, with Epsilon Crucis being also called Ginan.</span></span> depicted as larger seven pointed stars, while Epsilon Crucis is depicted with a smaller five pointed star. On the left though is another even larger seven pointed star located relative to Crux in a direction where Beta Centauri would be found. However, the official Australian Flag booklet never mentions Beta Centauri, merely calling it the "Commonwealth Star".
+</br>
+<div style="width=90%;margin:auto;text-align: center;">
+<img class="side_image" src="im/AU_flag_specifications.png" width="60%" style="vertical-align: middle;">
+<div class="caption" style="width:55%"><i>From <a class="link" href="https://www.pmc.gov.au/sites/default/files/resource/download/australian-flags-booklet-2024-11-18.pdf">https://www.pmc.gov.au/sites/default/files/resource/download/australian-flags-booklet-2024-11-18.pdf</a></i></div>
+</div>
+</br>
+Anyway, here's how the Australian flag looks if you position the stars of Crux where they really are on an orthographic projection, with the position and rotation fit to minimize the $MSE$ from the original flag:
+</br>
+<div style="width=90%;margin:auto;text-align: center;">
+<img class="side_image" src="im/AU_comparison.gif" width="30%" style="vertical-align: middle;">
+</div>
+</br>
+It's fairly close, with the $\sqrt{MSE}$ being only 0.4469% the height of the flag<span class="ref"><span class="note">[2]</span><span class="notetext">or width of fly</span></span>, rotated in a way that puts Gacrux in the same vertical line as Acrux.
+</br>
+</br>
+I also determined cutoffs for sizing of the stars on each of these flags. Like, on the australian flag the brighter Acrux generally depicted as larger than the dimmer ε Crucis, with two different star sizes for the Southern Cross (and two different numbers of points), while New Zealand uses three different star sizes for Acrux through Imai, and ε Crucis isn't even depicted, implying an effective size of zero.
+</br>
+</br>
+And of course, Australia and New Zealand aren't the only countries that have a Southern Cross on their flag: 5 countries and many subnational units use it, in fact, the Wikipedia page "Flags depicting the Southern Cross" lists 113 such examples. I haven't included every flag from that Wikipedia page in this tool but I'll probably add more as I think to, as well as any other flags I come across that have constellation on them.
+</br>
+</br>
+<div class="subtitle_print"><strong>But which one is the best?</strong></div>
+Based on the SVG versions of the flags found on Wikipedia that I've included in this tool (I haven't gone through to check the original specifications for all of them), the Royal Australian Air Force Ensign has the smallest $\sqrt{MSE}$ of the flags with Crux, while the largest is the flags which just lay the stars on an orthogonal cross like Niue and the Australian Federation Flag (an old design that was proposed as a flag of Australia in the 1830s).
+</br>
+<div style="width=90%;margin:auto;text-align: center;">
+<img class="side_image" src="im/Royal_Australian_Air_Force_Ensign_original.png" width="30%" style="vertical-align: middle;">
+<img class="side_image" src="im/Australian_Federation_Flag_original.png" width="30%" style="vertical-align: middle;">
+<div class="caption" style="width:55%"><i>Left: Royal Australian Air Force Ensign Flag, Right: Australian Federation Flag</i></div>
+</div>
+</br>
+</br>
+The most interesting flag in this whole set is probably Brazil, for which it is also somewhat complicated which stars on the flag even correspond to which real stars. Officially, the flag of Brazil features stars from nine constellations, though some of these only get one star each. The prominent ones, from left to right, are Canis Major, Crux, Triangulum Australum, and Scorpio, each inverted from how they appear in the night sky because the constellations are shown as they would appear on a celestial globe from outside.
+
+I made an animation showing the star correspondance in 2020:
+<div style="width=90%;margin:auto;text-align: center;">
+
+<video
+      id="my-video"
+      class="video-js vjs-default-skin"
+      controls
+      preload="auto"
+      width="960.0"
+      height="540.0"
+      data-setup='{}'
+   >
+      <source
+         src="im/BrazilAnimation.mp4"
+         type="video/mp4"
+         size="1008"
+      >
+   </video>
+<div class="caption" style="width:55%"><i>Created 28 April 2020</i></div>
+</div>
+Most of the constellations are mostly reasonable, though in proportion to each other they need to be rescaled a lot, so there's no real way to recreate something similar with the tool at the top.
+<!-- 
+According to https://web.archive.org/web/20080502120005/http://www.cfh.ufsc.br/~planetar/textos/astroban.htm, the correspondance is like this:
+
+
+
+
+<The flags of Paraná and Mairiporã in Brazil, Coronel Dorrego Partido, El Chaltén, and Santa Cruz Province in Argentina, and Concón, the Coquimbo Region, and the Magallanes Region of Chile, and the Adnyamathanha peoples flag have Acrux above Gacrux.> -->
+
+</br>
+</br>
+Anyway, here's the flags of Australia if it was in the Northern Hemisphere and Alaska if it was in the Southern Hemisphere:
+<div style="width=90%;margin:auto;text-align: center;">
+<img class="side_image" src="im/australiaifitwasinthenorthernhemisphere.png" width="30%" style="vertical-align: middle;">
+<img class="side_image" src="im/alaskaifitwasinthesouthernhemisphere.png" width="30%" style="vertical-align: middle;">
+</div>
+</br>
+<div class="dateprint"><i>Some images retrieved from Wikimedia Commons.</i></div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="module">
+</script>
+                    </div>
+                </div>
+            <hr>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" delay></script>
+        <script>
+            jQuery.noConflict();
+            jQuery(function() {
+                jQuery(".notetext").hide();
+                jQuery(".note").click(function(event) {
+                    jQuery(this.nextSibling).toggle();
+                    event.stopPropagation();
+                });
+                jQuery("body").click(function(event) {
+                    jQuery(".notetext").hide();
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+

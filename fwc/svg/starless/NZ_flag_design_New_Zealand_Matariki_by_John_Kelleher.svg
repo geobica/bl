@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1499" height="992" version="1.1" viewBox="0 0 1499 992" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <g id="Pentagram">
+   <g id="Arm" transform="translate(0 -.32492)">
+    <path d="m0 0v0.5l1-0.5z"/>
+    <path transform="rotate(-36,1,0)" d="m0 0v-0.5l1 0.5z"/>
+   </g>
+   <use transform="scale(-1,1)" xlink:href="#Arm"/>
+   <use transform="rotate(72)" xlink:href="#Arm"/>
+   <use transform="rotate(-72)" xlink:href="#Arm"/>
+   <use transform="rotate(-72) scale(-1 1)" xlink:href="#Arm"/>
+  </g>
+ </defs>
+ <path d="m0 992h1499v-992h-1499z" fill="#1b1a16"/>
+ <path d="m0 869.5h354.61c41.158 0 90.584-0.27918 140.42-3.3236 31.057-1.8971 62.206-5.4048 91.821-8.9447 42.154-5.0384 85.191-13.681 125.73-23.819 50.981-12.751 97.217-27.94 137.96-44.988 33.209-13.896 62.805-29.18 88.366-43.661 36.387-20.614 71.946-44.833 106.48-72.146 35.833-28.338 70.225-60.642 104.33-92.55 32.851-30.735 64.936-62.442 97.108-92.209 20.613-19.072 41.236-37.241 62.203-54.199 61.197-49.494 123.01-82.092 189.97-104.43v662.77h-1499z" fill="#fff"/>
+ <path d="m0 932h354.72c66.806 0 150.29-1.1655 233.3-6.2471 42.438-2.5978 84.681-6.3433 125.21-11.397 44.149-5.5043 84.145-12.683 120.76-19.759 40.134-7.7554 75.428-16.926 105.19-25.332 33.069-9.339 65.294-20.012 96.792-32.104 20.372-7.8205 46.217-18.979 60.813-25.262 13.96-6.0093 35.3-16.337 53.08-24.629 53.898-25.138 106.46-51.38 160.15-73.026 20.375-8.2145 40.723-15.745 61.326-22.188 15.076-4.7144 30.312-8.7056 45.678-12.656 26.703-6.8648 53.726-13.139 81.981-17.4v330h-1499z" fill="#0d8f35"/>
+ <g transform="translate(-17.527 -11.909)">
+  <g id="Southern_Cross" style="">
+   <g id="Gamma_Crucis" fill="#fff" style="">
+    
+    
+   </g>
+   <g transform="rotate(82,900,240)" style="">
+    <g id="Delta_Crucis" fill="#fff" style="">
+     
+     
+    </g>
+    <g id="Beta_Crucis" style="">
+     
+    </g>
+   </g>
+   <g id="Alpha_Crucis" fill="#fff" style="">
+    
+    
+   </g>
+  </g>
+ </g>
+</svg>

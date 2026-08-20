@@ -4,7 +4,19 @@
 <title>Geobica's /bl</title>
 <link>https://geobica.com/bl/</link>
 <description>Geobica's blog for projects.</description>
-<language>en</language><item>
+<language>en</language>
+<item>
+<title>Flags with Constellations</title>
+<link>https://geobica.com/bl/fwc/</link>
+<description>
+&lt;a href="https://geobica.com/bl/fwc/"&gt;&lt;img style="position: relative;  top: 0;  left: 0;  max-height: 256px;  overflow: hidden;" hspace="16" width = 256px; align="left" src="https://geobica.com/bl/fwc/fwc.png"&gt;
+&lt;a href="https://geobica.com/bl/fwc/" style="text-decoration: none;color : #bbb"&gt;&lt;div id="title"&gt;&lt;strong&gt;Flags with Constellations&lt;/strong&gt;&lt;/div&gt;&lt;/a&gt;
+&lt;div id="description"&gt;An overview of flags with constellations on them and a tool for editing them.&lt;/div&gt;
+</description>
+<pubDate>Wed, 13 Jul 2026 11:00:00 -0400</pubDate>
+<guid>https://geobica.com/bl/fwc/</guid>
+</item>
+<item>
 <title>Mapping Seasons Across Climates</title>
 <link>https://geobica.com/bl/msc/</link>
 <description>

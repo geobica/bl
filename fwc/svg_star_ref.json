@@ -1,0 +1,2092 @@
+{
+  "AU": {
+    "file": "Flag_of_Australia_(converted).svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1287,
+          1344
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1345,
+          1402
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1403,
+          1459
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1460,
+          1517
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          1518,
+          1575
+        ]
+      }
+    ],
+    "center": [
+      7560,
+      2520
+    ]
+  },
+  "NZ": {
+    "file": "Flag_of_New_Zealand.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          2206,
+          2410
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1968,
+          2198
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1491,
+          1695
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1734,
+          1965
+        ]
+      }
+    ],
+    "center": [
+      900,
+      300
+    ]
+  },
+  "REDENS": {
+    "file": "Civil_Ensign_of_Australia.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1298,
+          1355
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1356,
+          1413
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1414,
+          1470
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1471,
+          1528
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          1529,
+          1586
+        ]
+      }
+    ],
+    "center": [
+      7560,
+      2520
+    ]
+  },
+  "RAN": {
+    "file": "Naval_Ensign_of_Australia.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1152,
+          1191
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1192,
+          1231
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1232,
+          1270
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1271,
+          1310
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          1311,
+          1350
+        ]
+      }
+    ],
+    "center": [
+      7560,
+      2520
+    ]
+  },
+  "CC": {
+    "file": "Flag_of_the_Cocos_(Keeling)_Islands.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          4848,
+          4892
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          4897,
+          4941
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          4946,
+          4989
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          4994,
+          5038
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          5043,
+          5087
+        ]
+      }
+    ],
+    "center": [
+      7560,
+      2520
+    ]
+  },
+  "CIVAIR": {
+    "file": "Civil_Air_Ensign_of_Australia.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1497,
+          1556
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1557,
+          1623
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1624,
+          1684
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1685,
+          1752
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          1753,
+          1822
+        ]
+      }
+    ],
+    "center": [
+      756,
+      252
+    ]
+  },
+  "RAAF": {
+    "file": "Air_Force_Ensign_of_Australia.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          938,
+          1228
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          1233,
+          1456
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1461,
+          1553
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1558,
+          1649
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1654,
+          1739
+        ]
+      }
+    ],
+    "center": [
+      7.5,
+      0.0
+    ]
+  },
+  "BORDER": {
+    "file": "Australian_Border_Force_Flag.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          4349,
+          4729
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          5420,
+          5797
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          5049,
+          5417
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          5800,
+          6181
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          4732,
+          5046
+        ]
+      }
+    ],
+    "center": [
+      22680,
+      7560
+    ]
+  },
+  "VIC": {
+    "file": "Flag_of_Victoria_(Australia).svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          705,
+          966
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          971,
+          1303
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1308,
+          1367
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1372,
+          1604
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          1609,
+          1851
+        ]
+      }
+    ],
+    "center": [
+      9009,
+      3753.75
+    ]
+  },
+  "AK": {
+    "file": "Flag_of_Alaska.svg",
+    "stars": [
+      {
+        "name": "Polaris",
+        "svg_loc": [
+          154,
+          538
+        ]
+      },
+      {
+        "name": "Alkaid",
+        "svg_loc": [
+          539,
+          909
+        ]
+      },
+      {
+        "name": "Mizar",
+        "svg_loc": [
+          910,
+          961
+        ]
+      },
+      {
+        "name": "Alioth",
+        "svg_loc": [
+          962,
+          1014
+        ]
+      },
+      {
+        "name": "Megrez",
+        "svg_loc": [
+          1015,
+          1067
+        ]
+      },
+      {
+        "name": "Dubhe",
+        "svg_loc": [
+          1068,
+          1120
+        ]
+      },
+      {
+        "name": "Phecda",
+        "svg_loc": [
+          1121,
+          1173
+        ]
+      },
+      {
+        "name": "Merak",
+        "svg_loc": [
+          1174,
+          1226
+        ]
+      }
+    ],
+    "center": [
+      708,
+      500
+    ]
+  },
+  "BR": {
+    "file": "Flag_of_Brazil.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          3881,
+          3910
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          3911,
+          3947
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          3948,
+          3977
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          3978,
+          4015
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          4016,
+          4053
+        ]
+      },
+      {
+        "name": "Antares",
+        "svg_loc": [
+          3501,
+          3538
+        ]
+      },
+      {
+        "name": "Shaula",
+        "svg_loc": [
+          3615,
+          3652
+        ]
+      },
+      {
+        "name": "Sargas",
+        "svg_loc": [
+          4054,
+          4091
+        ]
+      },
+      {
+        "name": "Dschubba",
+        "svg_loc": [
+          3691,
+          3728
+        ]
+      },
+      {
+        "name": "Larawag",
+        "svg_loc": [
+          3767,
+          3804
+        ]
+      },
+      {
+        "name": 84,
+        "svg_loc": [
+          3653,
+          3690
+        ]
+      },
+      {
+        "name": "Acrab",
+        "svg_loc": [
+          3539,
+          3576
+        ]
+      },
+      {
+        "name": "Lesath",
+        "svg_loc": [
+          4092,
+          4129
+        ]
+      },
+      {
+        "name": "Sirius",
+        "svg_loc": [
+          3267,
+          3305
+        ]
+      },
+      {
+        "name": "Adhara",
+        "svg_loc": [
+          3384,
+          3422
+        ]
+      },
+      {
+        "name": "Wezen",
+        "svg_loc": [
+          3805,
+          3842
+        ]
+      },
+      {
+        "name": "Mirzam",
+        "svg_loc": [
+          3306,
+          3344
+        ]
+      },
+      {
+        "name": "Aludra",
+        "svg_loc": [
+          3423,
+          3461
+        ]
+      },
+      {
+        "name": "Atria",
+        "svg_loc": [
+          3577,
+          3614
+        ]
+      },
+      {
+        "name": 140,
+        "svg_loc": [
+          3843,
+          3880
+        ]
+      },
+      {
+        "name": 151,
+        "svg_loc": [
+          4130,
+          4167
+        ]
+      },
+      {
+        "name": "Alphard",
+        "svg_loc": [
+          3729,
+          3766
+        ]
+      },
+      {
+        "name": 171,
+        "svg_loc": [
+          3345,
+          3383
+        ]
+      },
+      {
+        "name": "Canopus",
+        "svg_loc": [
+          4168,
+          4206
+        ]
+      },
+      {
+        "name": "Procyon",
+        "svg_loc": [
+          3227,
+          3266
+        ]
+      },
+      {
+        "name": "Spica",
+        "svg_loc": [
+          3462,
+          3500
+        ]
+      },
+      {
+        "name": "Polaris Australis",
+        "svg_loc": [
+          4207,
+          4236
+        ]
+      }
+    ],
+    "center": [
+      0,
+      0
+    ]
+  },
+  "FED": {
+    "file": "Australian_Federation_Flag.svg",
+    "stars": [
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          1477,
+          1518
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1520,
+          1561
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1562,
+          1602
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1604,
+          1645
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1646,
+          1687
+        ]
+      }
+    ],
+    "center": [
+      300,
+      150
+    ]
+  },
+  "OLYMPIC": {
+    "file": "Flag_of_Australasian_team_for_Olympic_games.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          4604,
+          4963
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          4964,
+          5255
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          5256,
+          5604
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          5605,
+          5955
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          5956,
+          6307
+        ]
+      }
+    ],
+    "center": [
+      750,
+      290
+    ]
+  },
+  "NIUE": {
+    "file": "Flag_of_Niue.svg",
+    "stars": [
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          817,
+          945
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          953,
+          1017
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1019,
+          1082
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1084,
+          1145
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1147,
+          1208
+        ]
+      }
+    ],
+    "center": [
+      30,
+      15
+    ]
+  },
+  "TOK": {
+    "file": "Flag_of_Tokelau.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1343,
+          1421
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1116,
+          1191
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1271,
+          1341
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1193,
+          1269
+        ]
+      }
+    ],
+    "center": [
+      335,
+      340
+    ]
+  },
+  "NZMAT": {
+    "file": "NZ_flag_design_New_Zealand_Matariki_by_John_Kelleher.svg",
+    "stars": [
+      {
+        "name": "Maia",
+        "svg_loc": [
+          2431,
+          2550
+        ]
+      },
+      {
+        "name": "Electra",
+        "svg_loc": [
+          2557,
+          2676
+        ]
+      },
+      {
+        "name": "Atlas",
+        "svg_loc": [
+          2726,
+          2861
+        ]
+      },
+      {
+        "name": "Alcyone",
+        "svg_loc": [
+          2930,
+          3030
+        ]
+      },
+      {
+        "name": "Merope",
+        "svg_loc": [
+          3036,
+          3140
+        ]
+      },
+      {
+        "name": "Taygeta",
+        "svg_loc": [
+          2108,
+          2208
+        ]
+      },
+      {
+        "name": "Pleione",
+        "svg_loc": [
+          2214,
+          2322
+        ]
+      }
+    ],
+    "center": [
+      615.4,
+      387.2
+    ]
+  },
+  "ACT": {
+    "file": "Flag_of_the_Australian_Capital_Territory.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          6889,
+          7486
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          23256,
+          23752
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          26805,
+          27476
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          31555,
+          31803
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          37848,
+          38383
+        ]
+      }
+    ],
+    "center": [
+      66.0732,
+      99.2186
+    ],
+    "_note": "compound path id=path1 was rewritten in place to all-absolute commands (pixel-identical render verified, max diff 0) so each star subpath is independently deletable. pos/center are in the SVG's own local units (before the enclosing g's scale(4.9999665)); do not re-scale."
+  },
+  "NSW": {
+    "file": "Flag_of_New_South_Wales.svg",
+    "stars": [
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          8322,
+          8596
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          8597,
+          8864
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          8865,
+          9133
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          9134,
+          9406
+        ]
+      }
+    ],
+    "center": [
+      900.98,
+      300.97
+    ],
+    "_note": "NSW's badge is NOT the Southern Cross (post-1876 heraldic redesign: 4 generic gold 8-pointed stars in the cross quadrants), so names are generic star1-4 rather than real Crux star names. All 4 subpaths already used absolute M for 2nd/3rd/4th moveto (only the very first, implicitly-absolute-anyway 'm' was relative), so no rewriting was needed."
+  },
+  "CX": {
+    "file": "Flag_of_Christmas_Island.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          267,
+          437
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          438,
+          562
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          563,
+          733
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          734,
+          891
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          892,
+          1060
+        ]
+      }
+    ],
+    "center": [
+      185.8,
+      293.6
+    ],
+    "_note": "the whole <path fill=#fff> was 100% star content (nothing else in it), but was rewritten to all-absolute commands anyway for consistency/safety (pixel-identical render verified, max diff 0)."
+  },
+  "MERCOSURES": {
+    "file": "Flag_of_Mercosur.svg",
+    "stars": [
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          176,
+          264
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          265,
+          353
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          354,
+          442
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          443,
+          531
+        ]
+      }
+    ],
+    "center": [
+      621.7,
+      315.0
+    ],
+    "_note": "stars are interleaved with the MERCOSUR wordmark's glyph subpaths in one compound path, entirely via relative 'm' moveto chaining -- the whole path was rewritten to all-absolute commands first (pixel-identical render verified, max diff 0), which is what makes these 4 spans independently deletable without corrupting the wordmark glyphs around them. Real name unclear (generic star1-4); Southern-Cross identity of these 4 stars per the Commons file 'Southern Cross (Mercosur).svg'."
+  },
+  "MERCOSURPT": {
+    "file": "Flag_of_Mercosur_(Portuguese).svg",
+    "stars": [
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          176,
+          288
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          289,
+          401
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          402,
+          514
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          3701,
+          3845
+        ]
+      }
+    ],
+    "center": [
+      621.7,
+      315.02
+    ],
+    "_note": "same treatment as MERCOSURES. Note star4's subpath sits at the very end of the (post-absolutize) d string, after all wordmark glyphs -- confirmed correct via render test."
+  },
+  "EUREKA": {
+    "file": "Eureka_Flag.svg",
+    "stars": [
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          [
+            427,
+            598
+          ],
+          [
+            1235,
+            1406
+          ]
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          [
+            599,
+            753
+          ],
+          [
+            1407,
+            1577
+          ]
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          [
+            754,
+            909
+          ],
+          [
+            1578,
+            1749
+          ]
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          [
+            910,
+            1059
+          ],
+          [
+            1750,
+            1919
+          ]
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          [
+            1060,
+            1207
+          ],
+          [
+            1920,
+            2091
+          ]
+        ]
+      }
+    ],
+    "center": [
+      499.7,
+      324.9
+    ],
+    "_note": "SCHEMA EXTENSION for this flag only: each star is drawn TWICE as two full separate compound-path shapes (a bigger navy #213f77 'outline' path drawn first, a smaller white '#fff' 'fill' path drawn on top -- not a stroke-width border on one shape), so svg_loc here is a LIST OF TWO [start,end] pairs (outline range, then fill range) instead of a single pair. remove_character_ranges must flatten svg_loc entries where the first element is itself a list. 'classes'/'star_color' describe the visible (fill, white) star; 'outline_classes'/'outline_color' describe the navy layer beneath it. No rewriting needed -- each of the two compound paths is 100% star content (5 subpaths, nothing else), verified by direct removal+render test (clean cross, no remnants)."
+  },
+  "COLONIAL": {
+    "file": "Australian_Colonial_Flag.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1550,
+          2279
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          2280,
+          3009
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          3010,
+          3742
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          3743,
+          4475
+        ]
+      }
+    ],
+    "center": [
+      273.43,
+      150.0
+    ],
+    "_note": "4 identical curveto-based stars (uniform size, no 5th/offset star exists on this flag), all subpaths already absolute-M, no rewriting needed. Generic left/right/top/bottom names since this flag's own stars aren't individually documented as specific Crux stars."
+  },
+  "SANTACRUZ": {
+    "file": "Bandera_de_la_Provincia_de_Santa_Cruz.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          21186,
+          21713
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          21721,
+          22248
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          22256,
+          22784
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          22792,
+          23321
+        ]
+      }
+    ],
+    "center": [
+      435.28,
+      243.13
+    ]
+  },
+  "TDF": {
+    "file": "Bandera_de_la_Provincia_de_Tierra_del_Fuego.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          324,
+          709
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          710,
+          775
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          776,
+          840
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          841,
+          904
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          905,
+          1001
+        ]
+      }
+    ],
+    "center": [
+      719.0,
+      179.0
+    ]
+  },
+  "SONSOROL": {
+    "file": "Flag_of_Sonsorol.svg",
+    "stars": [
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1995,
+          2216
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          2218,
+          2441
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          2443,
+          2664
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          2666,
+          2887
+        ]
+      }
+    ],
+    "center": [
+      53.8,
+      42.2
+    ]
+  },
+  "ENB": {
+    "file": "Flag_of_East_New_Britain.svg",
+    "stars": [
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          997,
+          1295
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1300,
+          1597
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1602,
+          1899
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1904,
+          2201
+        ]
+      }
+    ],
+    "center": [
+      890.5,
+      112.9
+    ]
+  },
+  "NIRE": {
+    "file": "Flag_of_New_Ireland.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1031,
+          1667
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1671,
+          2307
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          2311,
+          2947
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          2951,
+          3587
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          3591,
+          4227
+        ]
+      }
+    ],
+    "center": [
+      66.6,
+      149.9
+    ]
+  },
+  "SIMBU": {
+    "file": "Flag_of_Chimbu.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          1001,
+          1625
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1629,
+          2254
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          2258,
+          2882
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          2886,
+          3511
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          3515,
+          4140
+        ]
+      }
+    ],
+    "center": [
+      90.2,
+      335.5
+    ]
+  },
+  "WNB": {
+    "file": "Flag_of_West_New_Britain.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          3758,
+          3955
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          3958,
+          4158
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          4161,
+          4359
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          4362,
+          4561
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          4564,
+          4766
+        ]
+      }
+    ],
+    "center": [
+      96.2,
+      174.1
+    ]
+  },
+  "WPNG": {
+    "file": "Flag_of_Western_Province.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          22579,
+          23185
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          23191,
+          23799
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          23805,
+          24412
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          24418,
+          25026
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          25032,
+          25649
+        ]
+      }
+    ],
+    "center": [
+      89.1,
+      292.7
+    ]
+  },
+  "SPLOUGHBLUE": {
+    "file": "StarryPlough.svg",
+    "stars": [
+      {
+        "name": "Alkaid",
+        "svg_loc": [
+          209,
+          273
+        ]
+      },
+      {
+        "name": "Mizar",
+        "svg_loc": [
+          274,
+          331
+        ]
+      },
+      {
+        "name": "Alioth",
+        "svg_loc": [
+          332,
+          386
+        ]
+      },
+      {
+        "name": "Megrez",
+        "svg_loc": [
+          387,
+          440
+        ]
+      },
+      {
+        "name": "Dubhe",
+        "svg_loc": [
+          441,
+          494
+        ]
+      },
+      {
+        "name": "Phecda",
+        "svg_loc": [
+          495,
+          551
+        ]
+      },
+      {
+        "name": "Merak",
+        "svg_loc": [
+          552,
+          606
+        ]
+      }
+    ],
+    "center": [
+      364.5,
+      191.0
+    ]
+  },
+  "SPLOUGHINLA": {
+    "file": "StarryPlough-darkblue.svg",
+    "stars": [
+      {
+        "name": "Alkaid",
+        "svg_loc": [
+          209,
+          273
+        ]
+      },
+      {
+        "name": "Mizar",
+        "svg_loc": [
+          274,
+          331
+        ]
+      },
+      {
+        "name": "Alioth",
+        "svg_loc": [
+          332,
+          386
+        ]
+      },
+      {
+        "name": "Megrez",
+        "svg_loc": [
+          387,
+          440
+        ]
+      },
+      {
+        "name": "Dubhe",
+        "svg_loc": [
+          441,
+          494
+        ]
+      },
+      {
+        "name": "Phecda",
+        "svg_loc": [
+          495,
+          551
+        ]
+      },
+      {
+        "name": "Merak",
+        "svg_loc": [
+          552,
+          606
+        ]
+      }
+    ],
+    "center": [
+      364.5,
+      191.0
+    ]
+  },
+  "SPLOUGHLABOUR": {
+    "file": "The_logo_of_Labour_Party_in_Ireland_2021.svg",
+    "stars": [
+      {
+        "name": "Alkaid",
+        "svg_loc": [
+          525,
+          779
+        ]
+      },
+      {
+        "name": "Mizar",
+        "svg_loc": [
+          783,
+          1029
+        ]
+      },
+      {
+        "name": "Alioth",
+        "svg_loc": [
+          1033,
+          1291
+        ]
+      },
+      {
+        "name": "Megrez",
+        "svg_loc": [
+          1295,
+          1559
+        ]
+      },
+      {
+        "name": "Phecda",
+        "svg_loc": [
+          1563,
+          1826
+        ]
+      },
+      {
+        "name": "Dubhe",
+        "svg_loc": [
+          1830,
+          2092
+        ]
+      },
+      {
+        "name": "Merak",
+        "svg_loc": [
+          2096,
+          2361
+        ]
+      }
+    ],
+    "center": [
+      328.6,
+      128.0
+    ]
+  },
+  "EKARELIAP1": {
+    "file": "East_Karelia_flag_proposal_1.svg",
+    "stars": [
+      {
+        "name": "Megrez",
+        "svg_loc": [
+          2106,
+          2450
+        ]
+      },
+      {
+        "name": "Dubhe",
+        "svg_loc": [
+          2460,
+          2804
+        ]
+      },
+      {
+        "name": "Merak",
+        "svg_loc": [
+          2814,
+          3146
+        ]
+      },
+      {
+        "name": "Phecda",
+        "svg_loc": [
+          3156,
+          3489
+        ]
+      },
+      {
+        "name": "Alkaid",
+        "svg_loc": [
+          3499,
+          3831
+        ]
+      },
+      {
+        "name": "Alioth",
+        "svg_loc": [
+          3841,
+          4184
+        ]
+      },
+      {
+        "name": "Mizar",
+        "svg_loc": [
+          4194,
+          4536
+        ]
+      }
+    ],
+    "center": [
+      300.0,
+      200.0
+    ]
+  },
+  "EKARELIAP2": {
+    "file": "East_Karelia_flag_proposal_2.svg",
+    "stars": [
+      {
+        "name": "Megrez",
+        "svg_loc": [
+          2273,
+          2616
+        ]
+      },
+      {
+        "name": "Dubhe",
+        "svg_loc": [
+          2626,
+          2969
+        ]
+      },
+      {
+        "name": "Merak",
+        "svg_loc": [
+          2979,
+          3310
+        ]
+      },
+      {
+        "name": "Phecda",
+        "svg_loc": [
+          3320,
+          3652
+        ]
+      },
+      {
+        "name": "Alkaid",
+        "svg_loc": [
+          3662,
+          3994
+        ]
+      },
+      {
+        "name": "Alioth",
+        "svg_loc": [
+          4004,
+          4347
+        ]
+      },
+      {
+        "name": "Mizar",
+        "svg_loc": [
+          4357,
+          4699
+        ]
+      }
+    ],
+    "center": [
+      300.0,
+      200.0
+    ]
+  },
+  "SPLOUGH1914": {
+    "file": "Starry_Plough_flag_(with_fringe).svg",
+    "stars": [
+      {
+        "name": "Alioth",
+        "svg_loc": [
+          177245,
+          178571
+        ]
+      },
+      {
+        "name": "Alkaid_a",
+        "svg_loc": [
+          178701,
+          179568
+        ]
+      },
+      {
+        "name": "Alkaid_b",
+        "svg_loc": [
+          181498,
+          181779
+        ]
+      },
+      {
+        "name": "Alkaid_c",
+        "svg_loc": [
+          184474,
+          184737
+        ]
+      },
+      {
+        "name": "Merak",
+        "svg_loc": [
+          185507,
+          186930
+        ]
+      },
+      {
+        "name": "Megrez",
+        "svg_loc": [
+          195296,
+          196561
+        ]
+      },
+      {
+        "name": "Dubhe",
+        "svg_loc": [
+          197580,
+          199044
+        ]
+      },
+      {
+        "name": "Phecda",
+        "svg_loc": [
+          207156,
+          208475
+        ]
+      },
+      {
+        "name": "Mizar",
+        "svg_loc": [
+          209965,
+          211402
+        ]
+      }
+    ],
+    "center": [
+      754.5,
+      694.0
+    ],
+    "_note": "This flag's stars are auto-traced/irregular hand geometry, not clean formula polygons -- the idealized parametric star model (pos/class/radii) can't reproduce them to exact-pixel precision. Each star also carries an 'exact_d' field (the verbatim original path 'd' data) which the reconstruction script uses instead when present, achieving a true exact pixel match by replaying the original geometry rather than approximating it."
+  },
+  "WS": {
+    "file": "Flag of Samoa.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          417,
+          474
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          477,
+          534
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          537,
+          593
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          596,
+          655
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          658,
+          715
+        ]
+      }
+    ],
+    "center": [
+      72,
+      36
+    ]
+  },
+  "NT": {
+    "file": "Flag_of_the_Northern_Territory.svg",
+    "stars": [
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          [
+            254,
+            416
+          ],
+          [
+            418,
+            492
+          ]
+        ]
+      },
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          807,
+          849
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          494,
+          805
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          [
+            851,
+            951
+          ],
+          [
+            953,
+            1017
+          ],
+          [
+            1019,
+            1084
+          ]
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          1086,
+          1310
+        ]
+      }
+    ],
+    "center": [
+      200,
+      300
+    ]
+  },
+  "MAG": {
+    "file": "Flag_of_Magallanes_y_la_Antártica_Chilena,_Chile.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          986,
+          1045
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          1049,
+          1107
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          1111,
+          1170
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          1174,
+          1233
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          1237,
+          1295
+        ]
+      }
+    ],
+    "center": [
+      280,
+      190
+    ]
+  },
+  "PNG": {
+    "file": "Flag of Papua New Guinea.svg",
+    "stars": [
+      {
+        "name": "Gacrux",
+        "svg_loc": [
+          3419,
+          3602
+        ]
+      },
+      {
+        "name": "Mimosa",
+        "svg_loc": [
+          3604,
+          3642
+        ]
+      },
+      {
+        "name": "Acrux",
+        "svg_loc": [
+          3644,
+          3673
+        ]
+      },
+      {
+        "name": "Imai",
+        "svg_loc": [
+          3675,
+          3712
+        ]
+      },
+      {
+        "name": "Ginan",
+        "svg_loc": [
+          3714,
+          3773
+        ]
+      }
+    ],
+    "center": [
+      256.0,
+      384.0
+    ]
+  },
+  "Blank": {
+    "file": "Blank.svg",
+    "stars": [],
+    "center": [
+      600,
+      400
+    ]
+  }
+}

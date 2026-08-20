@@ -1,0 +1,371 @@
+{
+    "AU": {
+        "center_RA": -3.013933427609655,
+        "center_dec": -1.0493146024688313,
+        "rotation": 0.09714416073239056,
+        "zoom": 32055.828939111958,
+        "offset_x": 7560,
+        "offset_y": 2520,
+        "reflect": false
+    },
+    "NZ": {
+        "center_RA": -3.0144073470852435,
+        "center_dec": -1.0501786319031723,
+        "rotation": 0.09176176343356165,
+        "zoom": 3465.2583629510573,
+        "offset_x": 900,
+        "offset_y": 300,
+        "reflect": false
+    },
+    "REDENS": {
+        "center_RA": -3.013933427609655,
+        "center_dec": -1.0493146024688313,
+        "rotation": 0.09714416073239056,
+        "zoom": 32055.828939111958,
+        "offset_x": 7560,
+        "offset_y": 2520,
+        "reflect": false
+    },
+    "RAN": {
+        "center_RA": -3.0139334394757955,
+        "center_dec": -1.0493145946452878,
+        "rotation": 0.09714454058615951,
+        "zoom": 32055.850051051733,
+        "offset_x": 7560,
+        "offset_y": 2520,
+        "reflect": false
+    },
+    "CC": {
+        "center_RA": -3.013933427609655,
+        "center_dec": -1.0493146024688313,
+        "rotation": 0.09714416073239056,
+        "zoom": 32055.828939111958,
+        "offset_x": 7560,
+        "offset_y": 2520,
+        "reflect": false
+    },
+    "CIVAIR": {
+        "center_RA": -3.0122365125537205,
+        "center_dec": -1.040179955673471,
+        "rotation": -0.6888208863387179,
+        "zoom": 3205.5905825845607,
+        "offset_x": 756,
+        "offset_y": 252,
+        "reflect": false
+    },
+    "RAAF": {
+        "center_RA": -3.03734255452118,
+        "center_dec": -1.0458606262618637,
+        "rotation": 0.34889244860082175,
+        "zoom": 98.37393840059804,
+        "offset_x": 7.5,
+        "offset_y": 0.0,
+        "reflect": false
+    },
+    "BORDER": {
+        "center_RA": -3.0138263509645293,
+        "center_dec": -1.0487463664495162,
+        "rotation": 0.09720890246451293,
+        "zoom": 96174.87963088139,
+        "offset_x": 22680,
+        "offset_y": 7560,
+        "reflect": false
+    },
+    "VIC": {
+        "center_RA": -3.0117162827994366,
+        "center_dec": -1.0431932745332921,
+        "rotation": 0.0913406776938137,
+        "zoom": 21647.315138953905,
+        "offset_x": 9009,
+        "offset_y": 3753.75,
+        "reflect": false
+    },
+    "AK": {
+        "center_RA": -3.026484696340782,
+        "center_dec": 1.1456219494943487,
+        "rotation": 4.0967022416796075,
+        "zoom": 1387.0054013492727,
+        "offset_x": 708,
+        "offset_y": 500,
+        "reflect": false
+    },
+    "BR": {
+        "center_RA": -3.079411083096278,
+        "center_dec": -0.0015377098541759018,
+        "rotation": -3.469903184815427,
+        "zoom": 735.0,
+        "offset_x": 0,
+        "offset_y": 0,
+        "reflect": true
+    },
+    "FED": {
+        "center_RA": -3.017465719606084,
+        "center_dec": -1.0443928768132789,
+        "rotation": -1.4363368082688912,
+        "zoom": 2814.315977044885,
+        "offset_x": 300,
+        "offset_y": 150,
+        "reflect": false
+    },
+    "OLYMPIC": {
+        "center_RA": -3.015039939837656,
+        "center_dec": -1.0550651646141387,
+        "rotation": 0.09760539811330833,
+        "zoom": 956.7525649670375,
+        "offset_x": 750,
+        "offset_y": 290,
+        "reflect": false
+    },
+    "NIUE": {
+        "center_RA": -3.018993422785532,
+        "center_dec": -1.0442898493867732,
+        "rotation": 4.847179983873522,
+        "zoom": 301.83087386770814,
+        "offset_x": 30,
+        "offset_y": 15,
+        "reflect": false
+    },
+    "TOK": {
+        "center_RA": -3.009836325371561,
+        "center_dec": -1.0421483052350324,
+        "rotation": 0.09049623418172054,
+        "zoom": 5198.172494528504,
+        "offset_x": 335,
+        "offset_y": 340,
+        "reflect": false
+    },
+    "NZMAT": {
+        "center_RA": 0.9898990688838787,
+        "center_dec": 0.42186145969547184,
+        "rotation": 0.03138835154132953,
+        "zoom": 58261.54563611733,
+        "offset_x": 615.4,
+        "offset_y": 387.2,
+        "reflect": false
+    },
+    "ACT": {
+        "center_RA": -3.012698974218504,
+        "center_dec": -1.0494109667642075,
+        "rotation": 0.10403939816924952,
+        "zoom": 1230.415276109432,
+        "offset_x": 66.0732,
+        "offset_y": 99.2186,
+        "reflect": false
+    },
+    "NSW": {
+        "center_RA": -3.010953729677393,
+        "center_dec": -1.0422284054276847,
+        "rotation": 0.14687122625887697,
+        "zoom": 2290.173318282095,
+        "offset_x": 900.98,
+        "offset_y": 300.97,
+        "reflect": false
+    },
+    "CX": {
+        "center_RA": -3.0191232256723013,
+        "center_dec": -1.0455544391056395,
+        "rotation": 0.08066575751276446,
+        "zoom": 2692.2730885531782,
+        "offset_x": 185.8,
+        "offset_y": 293.6,
+        "reflect": false
+    },
+    "MERCOSURES": {
+        "center_RA": -3.009807618117986,
+        "center_dec": -1.0418754173718454,
+        "rotation": -0.0006734658474404515,
+        "zoom": 3475.3698870049493,
+        "offset_x": 621.7,
+        "offset_y": 315.0,
+        "reflect": false
+    },
+    "MERCOSURPT": {
+        "center_RA": -3.0098076532909532,
+        "center_dec": -1.0418729254369554,
+        "rotation": -0.0006733082896174317,
+        "zoom": 3475.3970064497316,
+        "offset_x": 621.7,
+        "offset_y": 315.02,
+        "reflect": false
+    },
+    "EUREKA": {
+        "center_RA": -3.0175162492951797,
+        "center_dec": -1.0443825467175492,
+        "rotation": -1.7087167731558965,
+        "zoom": 6596.047547886253,
+        "offset_x": 499.7,
+        "offset_y": 324.9,
+        "reflect": true
+    },
+    "COLONIAL": {
+        "center_RA": -3.010001566773338,
+        "center_dec": -1.0428326044535787,
+        "rotation": -4.582793913604395,
+        "zoom": 2659.1946198087503,
+        "offset_x": 273.43,
+        "offset_y": 150.0,
+        "reflect": false
+    },
+    "SANTACRUZ": {
+        "center_RA": -3.0088695361578632,
+        "center_dec": -1.0436772485347587,
+        "rotation": -0.49981034904166355,
+        "zoom": 348.5319355459581,
+        "offset_x": 435.28,
+        "offset_y": 243.13,
+        "reflect": false
+    },
+    "TDF": {
+        "center_RA": -3.0172031786604485,
+        "center_dec": -1.0446816836939874,
+        "rotation": -0.3519911203677453,
+        "zoom": 3219.3797588125935,
+        "offset_x": 719.0,
+        "offset_y": 179.0,
+        "reflect": false
+    },
+    "SONSOROL": {
+        "center_RA": -3.0119462191580872,
+        "center_dec": -1.0427574863137654,
+        "rotation": 3.9719216059260813,
+        "zoom": 610.3578775854936,
+        "offset_x": 53.8,
+        "offset_y": 42.2,
+        "reflect": false
+    },
+    "ENB": {
+        "center_RA": -3.0147485771169267,
+        "center_dec": -1.0432872468843672,
+        "rotation": 1.7098387364001237,
+        "zoom": 1220.3004945884488,
+        "offset_x": 890.5,
+        "offset_y": 112.9,
+        "reflect": false
+    },
+    "NIRE": {
+        "center_RA": -3.016902786504818,
+        "center_dec": -1.043330382105364,
+        "rotation": 0.146909050125756,
+        "zoom": 1789.3235098526648,
+        "offset_x": 66.6,
+        "offset_y": 149.9,
+        "reflect": false
+    },
+    "SIMBU": {
+        "center_RA": -3.0148917768988324,
+        "center_dec": -1.0576451465056924,
+        "rotation": 0.12376662497386026,
+        "zoom": 1361.3120572930166,
+        "offset_x": 90.2,
+        "offset_y": 335.5,
+        "reflect": false
+    },
+    "WNB": {
+        "center_RA": -3.007468870212945,
+        "center_dec": -1.0417228047043021,
+        "rotation": 0.14657764690223501,
+        "zoom": 1289.50749679599,
+        "offset_x": 96.2,
+        "offset_y": 174.1,
+        "reflect": false
+    },
+    "WPNG": {
+        "center_RA": -3.019527436839002,
+        "center_dec": -1.0455388798369765,
+        "rotation": 0.13637626763268149,
+        "zoom": 1256.0022722157057,
+        "offset_x": 89.1,
+        "offset_y": 292.7,
+        "reflect": false
+    },
+    "SPLOUGHBLUE": {
+        "center_RA": -3.0078951513781433,
+        "center_dec": 0.9683786304518606,
+        "rotation": -2.460370298028203,
+        "zoom": 1253.2838840475404,
+        "offset_x": 364.5,
+        "offset_y": 191.0,
+        "reflect": false
+    },
+    "SPLOUGHINLA": {
+        "center_RA": -3.0078951513781433,
+        "center_dec": 0.9683786304518606,
+        "rotation": -2.460370298028203,
+        "zoom": 1253.2838840475404,
+        "offset_x": 364.5,
+        "offset_y": 191.0,
+        "reflect": false
+    },
+    "SPLOUGHLABOUR": {
+        "center_RA": -3.013764367851061,
+        "center_dec": 0.9671729398171995,
+        "rotation": -2.4340928602282017,
+        "zoom": 531.8785509448501,
+        "offset_x": 328.6,
+        "offset_y": 128.0,
+        "reflect": false
+    },
+    "EKARELIAP1": {
+        "center_RA": -3.026857483708778,
+        "center_dec": 0.9790569424977987,
+        "rotation": -2.842822259529034,
+        "zoom": 1145.8599844089974,
+        "offset_x": 300.0,
+        "offset_y": 200.0,
+        "reflect": false
+    },
+    "EKARELIAP2": {
+        "center_RA": -3.026857483708778,
+        "center_dec": 0.9790569424977987,
+        "rotation": -2.842822259529034,
+        "zoom": 1145.8599844089974,
+        "offset_x": 300.0,
+        "offset_y": 200.0,
+        "reflect": false
+    },
+    "WS": {
+        "center_RA": -3.009843563037622,
+        "center_dec": -1.0491470299890444,
+        "rotation": 0.12493661947489734,
+        "zoom": 523.3277163945652,
+        "offset_x": 72,
+        "offset_y": 36,
+        "reflect": false
+    },
+    "NT": {
+        "center_RA": -3.0138501087671825,
+        "center_dec": -1.048758113661437,
+        "rotation": 0.10086973192837113,
+        "zoom": 2891.7493802834915,
+        "offset_x": 200,
+        "offset_y": 300,
+        "reflect": false
+    },
+    "MAG": {
+        "center_RA": -3.010381599550791,
+        "center_dec": -1.0389695886025714,
+        "rotation": -1.8405810719943165,
+        "zoom": 3904.4509530641512,
+        "offset_x": 280,
+        "offset_y": 190,
+        "reflect": false
+    },
+    "PNG": {
+        "center_RA": -3.0684750465370048,
+        "center_dec": -1.0548860531510325,
+        "rotation": 0.1538376868653914,
+        "zoom": 2467.3471187518735,
+        "offset_x": 256.0,
+        "offset_y": 384.0,
+        "reflect": false
+    },
+    "Blank": {
+        "center_RA": 1.4657879635423892,
+        "center_dec": -0.018876755245593856,
+        "rotation": 0.0,
+        "zoom": 1800.0,
+        "offset_x": 600,
+        "offset_y": 400,
+        "reflect": false
+    }
+}
