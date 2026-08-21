@@ -104,21 +104,21 @@ a:visited{
     padding-right:30px;
 }
 .picframe{
-    position: relative;
-    top: 0;
-    left: 0;
+  position: relative;
+  float: left;
+  margin: 0 0px;
 }
-.pic{
-    position: relative;
-    top: 0;
-    left: 0;
+.pic, .border{
+  display: block;
+  height: auto;
+  width: 256px;
+  max-width: 30vw;
 }
 .border{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    user-select: none;
-    -webkit-user-drag: none;
+  position: absolute;
+  inset: 0;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 .title{
     font-size:1.5rem;
