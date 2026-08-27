@@ -1,8 +1,14 @@
-function result = layer_0(A,A_D,outfile)
+function result = layer_0(A,A_D,outfile,trace_file,workers)
 warning('off', 'Octave:possible-matlab-short-circuit-operator');
 warning('off', 'Octave:legacy-function');
+if nargin < 4
+  trace_file = '';
+end
+if nargin < 5
+  workers = 0;
+end
 p = polygon(A);
-f = crdiskmap(p);
+f = crdiskmap(p,scmapopt('TraceSolution','off','TraceFile',trace_file,'ParallelWorkers',workers));
 f = center(f,0);
 p = polygon(f);
 w = vertex(p);

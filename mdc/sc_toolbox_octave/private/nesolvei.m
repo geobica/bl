@@ -1,4 +1,4 @@
-function [xf,termcode,path] = nesolvei(fvec,x0,details,fparam,jac,scale)
+function [xf,termcode,path] = nesolvei(fvec,x0,details,fparam,jac,scale,trace_file)
 %FSOLVEI Solution to nonlinear equations with no initial Jacobian.
 %	
 %	Identical to FSOLVE, but the initial Jacobian is set to the identity
@@ -55,6 +55,15 @@ if details(14), path = x0.'; end
 if (details(1) == 2), btrack = []; end
 nofun = 0;              % Number of function evaluations.
 trustvars = zeros(4,1); % variables for trust region methods.
+
+if (nargin < 7)
+   trace_file = '';
+end
+mdc_trace_file = trace_file;
+mdc_do_trace = ~isempty(mdc_trace_file);
+if mdc_do_trace
+   mdc_t_start = time();
+end
 
 
 %
@@ -154,6 +163,11 @@ while (termcode == 0)
       %disp(sprintf('%3d %8d %16g',itncount,nofun,max(abs(FVc))))
       fracdone = log(max(abs(FVc))/normFV0)/log(details(8)/normFV0);
       waitbar(fracdone)
+   end
+   if mdc_do_trace
+      mdc_fid = fopen(mdc_trace_file,'a');
+      fprintf(mdc_fid,'%d\t%d\t%.6f\t%.6e\n',itncount,nofun,time()-mdc_t_start,max(abs(FVc)));
+      fclose(mdc_fid);
    end
    itncount = itncount + 1;
    if (details(4) | details(3) | (1-details(5)))

@@ -16,7 +16,9 @@ if ~isstruct(options)
   trace = options(1);
   tol = options(2);
   method = options(3);
-  varargout = { trace,tol,method };
+  tracefile = '';
+  workers = 0;
+  varargout = { trace,tol,method,tracefile,workers };
 else
   switch(options.TraceSolution)
    case 'full'
@@ -29,5 +31,15 @@ else
   tol = options.Tolerance;
   method = strmatch(options.SolverMethod,{'line','trust'});
   %%newwindow = strcmp(options.WindowPopup,'on');
-  varargout = { trace, tol, method };
+  if isfield(options,'TraceFile')
+    tracefile = options.TraceFile;
+  else
+    tracefile = '';
+  end
+  if isfield(options,'ParallelWorkers')
+    workers = options.ParallelWorkers;
+  else
+    workers = 0;
+  end
+  varargout = { trace, tol, method, tracefile, workers };
 end
