@@ -2,6 +2,8 @@ import numpy as np
 import csv
 import sys
 import shapely.wkt
+from scipy.spatial import cKDTree
+from scipy.sparse.csgraph import minimum_spanning_tree
 import matplotlib.pyplot as plt
 import math
 from math import pi,e,sin,cos,asin,acos,atan2
@@ -77,11 +79,24 @@ def haversine_arr(arr_0,arr_1):
 def haversine_2p(p_0,p_1):
 	return 2*np.arcsin(np.sqrt(np.sin((np.imag(p_1)-np.imag(p_0))/2)**2+np.cos(np.imag(p_0))*np.cos(np.imag(p_1))*np.sin((np.real(p_1)-np.real(p_0))/2)**2))
 
+def nearest_pair(arr_0,arr_1):
+	tree = cKDTree(np_equi_to_coord(arr_0))
+	chord,idx = tree.query(np_equi_to_coord(arr_1))
+	j = int(np.argmin(chord))
+	return arr_0[idx[j]],arr_1[j],2*np.arcsin(min(1,chord[j]/2))
+
+def ring_spanning_tree(rings):
+	n = len(rings)
+	distances = np.zeros((n,n))
+	for i in tqdm(range(n-1)):
+		for j in range(i+1,n):
+			_,_,gap = nearest_pair(rings[i],rings[j])
+			distances[i,j] = gap
+			distances[j,i] = gap
+	return minimum_spanning_tree(distances).tocoo()
+
 def dash_between(arr_0,arr_1,step,radius):
-	haver_arr = haversine_arr(arr_0,arr_1)
-	min_index = np.unravel_index(np.argmin(haver_arr,axis=None),haver_arr.shape)
-	point_0 = arr_0[min_index[1]]
-	point_1 = arr_1[min_index[0]]
+	point_0,point_1,gap = nearest_pair(arr_0,arr_1)
 	direction = direction_between(point_0,point_1)
 	dash_instances = 2*np.linspace(-radius,haversine(point_0,point_1)+radius,num=int((haversine(point_0,point_1)+2*radius)/step),endpoint=True)
 	dashes = []
@@ -204,27 +219,12 @@ with fiona.open(os.path.join(f'{input_path}',f'{name}.gpkg'), layer=fiona.listla
 step = 0.001
 radius = 0.005
 
-distances = np.zeros((len(stripped_equis),len(stripped_equis)))+pi
-print(len(stripped_equis),type(stripped_equis[0]))
-for i in tqdm(range(len(stripped_equis)-1)):
-	for j in range(i+1,len(stripped_equis)):
-		print(stripped_equis[i].shape,stripped_equis[j].shape)
-		haver_arr = np.array(haversine_arr(stripped_equis[i],stripped_equis[j]))
-		distances[i,j] = np.amin(haver_arr)
-		distances[j,i] = np.amin(haver_arr)
-
-included = np.zeros((len(stripped_equis))).astype(bool)
-included_lines = []
-included_lines.append(stripped_equis[0])
-included[0] = True
-
-for i in tqdm(range(len(stripped_equis)-1)):
-	distances_in_question = np.reshape(np.array(distances[np.logical_and(included[:,None],np.logical_not(included)[None,:])]),(np.sum(included),len(stripped_equis)-np.sum(included)))
-	link_pre = np.unravel_index(np.argmin(distances_in_question,axis=None),distances_in_question.shape)
-	link = [(np.arange(len(stripped_equis))[included])[link_pre[0]],(np.arange(len(stripped_equis))[np.logical_not(included)])[link_pre[1]]]
-	included_lines.append(stereo_to_equi(poly_to_comp(comp_to_poly(equi_to_stereo(dash_between(stripped_equis[link[0]],stripped_equis[link[1]],step,radius),np.conj(nemo_point)+pi)).buffer(0.01)),np.conj(nemo_point)+pi))
-	included_lines.append(stripped_equis[link[1]])
-	included[link[1]] = True
+print(f'{len(stripped_equis)} rings to join')
+included_lines = list(stripped_equis)
+if len(stripped_equis)>1:
+	mst = ring_spanning_tree(stripped_equis)
+	for i,j in tqdm(list(zip(mst.row,mst.col))):
+		included_lines.append(stereo_to_equi(poly_to_comp(comp_to_poly(equi_to_stereo(dash_between(stripped_equis[i],stripped_equis[j],step,radius),np.conj(nemo_point)+pi)).buffer(0.01)),np.conj(nemo_point)+pi))
 
 v_0 = []
 v_1 = []
@@ -234,12 +234,9 @@ for st in tqdm(included_lines):
 	v_1 = v_1+list(st_red[1:])
 v_0 = np.array(v_0)
 v_1 = np.array(v_1)
-print('v_0')
 double_buffed = buffer_3d(v_0,v_1,0.01*2,10)
-print('double_buffed')
 double_buffed = reduce_line(double_buffed)
 third_poly = buffer_3d_full_poly(double_buffed[:-1],double_buffed[1:],0.01,10)
-print('third_poly')
 
 final_stereo_poly = comp_to_poly(equi_to_stereo(double_buffed,np.conj(nemo_point)+pi)).buffer(0).difference(third_poly.buffer(0))
 poly = final_stereo_poly

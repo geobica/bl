@@ -6,7 +6,7 @@ from scipy import io
 import scipy.special
 import copy
 from shapely.geometry import Polygon, MultiPolygon, Point
-import scipy.integrate as integrate
+from shapely.prepared import prep
 import pickle
 from scipy.optimize import minimize
 import time
@@ -35,7 +35,7 @@ def f_W_ring(w,z,beta,power=8):
 			else:
 				lambd = np.nan_to_num((theta[wheres[0]]-eth_k[i])/total_len)
 				w_pos[wheres[0]] = w[i]*(1-lambd)+w[(i+1)%z.shape[0]]*lambd
-		elif wheres.shape[0]>1:	
+		elif wheres.shape[0]>1: 
 			test = np.prod((2-2*np.cos(eth_k[i]-eth_k[:i]))**(beta_raw[:i]/2))*np.prod((2-2*np.cos(eth_k[i]-eth_k[i+1:]))**(beta_raw[i+1:]/2))
 			test = np.nan_to_num(test)
 			test3 = np.prod((2-2*np.cos(eth_k[(i+1)%z.shape[0]]-eth_k[:(i+1)%z.shape[0]]))**(beta_raw[:(i+1)%z.shape[0]]/2))*np.prod((2-2*np.cos(eth_k[(i+1)%z.shape[0]]-eth_k[(i+1)%z.shape[0]+1:]))**(beta_raw[(i+1)%z.shape[0]+1:]/2))
@@ -86,30 +86,78 @@ def prepare_coefficients(w,z,beta,power=8):
 
 	return fft_get
 
+_gl_cache = {}
+
+def gauss_legendre_01(order):
+	if order not in _gl_cache:
+		nodes,weights = np.polynomial.legendre.leggauss(order)
+		_gl_cache[order] = ((nodes+1)/2,weights/2)
+	return _gl_cache[order]
+
+def f_prime_W_grid(zeta,z,beta,p):
+	out = np.empty(zeta.shape,dtype=complex)
+	block = max(1,int(2000000/max(1,z.shape[0])))
+	flat = zeta.reshape(-1)
+	res = out.reshape(-1)
+	for s in range(0,flat.shape[0],block):
+		chunk = flat[s:s+block]
+		res[s:s+block] = np.exp(np.sum(beta[:,None]*np.log(1-chunk[None,:]/z[:,None]),axis=0)
+			+ np.polynomial.polynomial.polyval(chunk,p))
+	return out
+
 def sc_map_continuous(zp,z,beta,p):
-	k = np.arange(p.shape[0])
-	f_prime_W = lambda zeta : np.prod((1-zeta/z)**(beta),axis=0)*np.exp(np.sum(p*zeta**k))
-	f_prime_W_inv = lambda zeta : np.prod((1-(1/zeta)/z)**(beta),axis=0)*np.exp(np.sum(p*np.conj(zeta)**(-k)))
-	f_prime_W_arr = lambda zeta : np.prod((1-zeta[None,:]/z[:,None])**(beta[:,None]),axis=0)*np.exp(np.sum(p[:,None]*zeta[None,:]**k[:,None],axis=0))
-	f_prime_W_arr_inv = lambda zeta : np.nan_to_num(np.prod((1-1/zeta[None,:]/z[:,None])**(beta[:,None]),axis=0)*np.exp(np.sum(p[:,None]*zeta[None,:]**k[:,None],axis=0)))/zeta
-
-
-	wp = np.zeros_like(zp).astype('complex')
-
-	ii = 0
-	for i in range(wp.shape[0]):
-		ii+=1
-		if ii%1000==0:
-			print(ii)
-		wreal = integrate.quad(lambda zeta : np.real(f_prime_W(zp[i]/np.absolute(zp[i])*zeta)*zp[i]/np.absolute(zp[i])), 0, np.absolute(zp[i]))[0]
-		wimag = integrate.quad(lambda zeta : np.imag(f_prime_W(zp[i]/np.absolute(zp[i])*zeta)*zp[i]/np.absolute(zp[i])), 0, np.absolute(zp[i]))[0]
-		wp[i] = (wreal+1j*wimag)
-	wp[zp==0] = 0
+	zp = np.asarray(zp)
+	flat = zp.reshape(-1)
+	wp = np.zeros(flat.shape,dtype=complex)
+	radius = np.absolute(flat)
+	orders = np.select([radius<0.5,radius<0.8,radius<0.95],[16,32,64],96)
+	for order in (16,32,64,96):
+		sel = np.where((radius>0) & (orders==order))[0]
+		if sel.shape[0]==0:
+			continue
+		nodes,weights = gauss_legendre_01(order)
+		here = flat[sel]
+		zeta = here[:,None]*nodes[None,:]
+		wp[sel] = here*np.sum(f_prime_W_grid(zeta,z,beta,p)*weights[None,:],axis=1)
+	wp = wp.reshape(zp.shape)
 	return wp
 
 def tlu_M_over_tlu_W(zp,z,beta,p):
 	k = np.arange(p.shape[0])
 	return np.absolute(np.exp(np.sum(p[:,None]*zp[None,:]**k[:,None],axis=0)))
+
+def unpack_center(new_centers,j,shared):
+	record = ['']
+	for i in range(1,10):
+		value = new_centers[j,i][:,0]
+		if i>=7:
+			ref = shared[i-7]
+			if value.shape==ref.shape and np.array_equal(value,ref):
+				record.append(ref)
+				continue
+		record.append(copy.copy(value))
+	record.append('')
+	for i in range(11,13):
+		record.append(copy.copy(new_centers[j,i][:,0]))
+	return record
+
+def slim_record(record):
+	slim = list(record)
+	slim[7] = ''
+	slim[8] = ''
+	slim[9] = ''
+	return slim
+
+def save_level(path,centers,current_level,index_within_last,r):
+	compact = [slim_record(centers[i]) for i in current_level]
+	scipy.io.savemat(path, mdict={'centers': compact,'r': r,
+		'current_level': list(range(len(current_level))),'index_within_last': index_within_last})
+
+def prune_stale_level_centers(preceeder,level_i):
+	for old_level in range(1,level_i-1):
+		stale = f'pickle/matlab_saves/{preceeder}level_{old_level}_centers.txt'
+		if os.path.isfile(stale):
+			os.remove(stale)
 
 def explore_polygon(poly_coords,preceeder,centers_pickled=0,inverted_buffer_metric=False):
 	poly_string = 'A = ['
@@ -140,8 +188,8 @@ def explore_polygon(poly_coords,preceeder,centers_pickled=0,inverted_buffer_metr
 	z_raw = loaded['z'][:,0]
 
 	centers = []
-	centers.append(['',0,loaded['A_W'][:,0],0,loaded['A_D'][:,0],loaded['R_D'][:,0],loaded['L_D'][:,0],w_raw,z_raw,beta_raw,'',loaded['R_W'][:,0],loaded['L_W'][:,0]])
-	scipy.io.savemat(f'pickle/matlab_saves/{preceeder}level_0.mat', mdict={'centers': centers,'r': r})
+	centers.append(['',np.array([0j]),loaded['A_W'][:,0],0,loaded['A_D'][:,0],loaded['R_D'][:,0],loaded['L_D'][:,0],w_raw,z_raw,beta_raw,'',loaded['R_W'][:,0],loaded['L_W'][:,0]])
+	save_level(f'pickle/matlab_saves/{preceeder}level_0.mat',centers,[0],[],r)
 	if not os.path.isfile(f'pickle/matlab_saves/{preceeder}level_0_computed.mat'):
 		oc.eval(f'infile_sc = \'pickle/matlab_saves/{preceeder}sc.mat\';')
 		oc.eval(f'infile_level = \'pickle/matlab_saves/{preceeder}level_0.mat\';')
@@ -150,23 +198,20 @@ def explore_polygon(poly_coords,preceeder,centers_pickled=0,inverted_buffer_metr
 
 	loaded = io.loadmat(f'pickle/matlab_saves/{preceeder}level_0_computed', verify_compressed_data_integrity=False)
 	new_centers = loaded['new_centers']
+	shared = (w_raw,z_raw,beta_raw)
 	current_level = []
 	index_within_last = []
 	for j in range(len(new_centers)):
-		new_center_to_add = ['']
-		for i in range(1,10):
-			new_center_to_add.append(copy.copy(new_centers[j,i][:,0]))
-		new_center_to_add.append('')
-		for i in range(11,13):
-			new_center_to_add.append(copy.copy(new_centers[j,i][:,0]))
-		w_ = new_center_to_add[7]
-		w_cen = new_center_to_add[1]
-		w_point = Point(np.real(w_cen),np.imag(w_cen))
 		current_level.append(len(centers))
-		centers.append(new_center_to_add)
+		centers.append(unpack_center(new_centers,j,shared))
 		index_within_last.append(j)
 
-	scipy.io.savemat(f'pickle/matlab_saves/{preceeder}level_1.mat', mdict={'centers': centers,'r': r,'current_level': current_level,'index_within_last': index_within_last})
+	save_level(f'pickle/matlab_saves/{preceeder}level_1.mat',centers,current_level,index_within_last,r)
+
+	w_polygon = Polygon(np.stack([np.real(w_raw),np.imag(w_raw)],axis=1))
+	w_prepared = prep(w_polygon)
+	w_edge = w_polygon.exterior
+	w_placed_arr = np.array([complex(np.ravel(center[1])[0]) for center in centers])
 
 	done_exploring = False
 	level_i = 0
@@ -185,39 +230,34 @@ def explore_polygon(poly_coords,preceeder,centers_pickled=0,inverted_buffer_metr
 			new_centers = loaded['new_centers']
 			current_level = []
 			index_within_last = []
-			#print(len(centers))
 			for j in range(len(new_centers)):
-				new_center_to_add = ['']
-				for i in range(1,10):
-					new_center_to_add.append(copy.copy(new_centers[j,i][:,0]))
-				new_center_to_add.append('')
-				for i in range(11,13):
-					new_center_to_add.append(copy.copy(new_centers[j,i][:,0]))
-				w_of_already_placed = np.array([center[1][0] if type(center[1]) is np.ndarray else center[1] for center in centers])
-				w_cen = new_center_to_add[1]
-				min_val = np.amin(np.hstack(np.absolute(w_of_already_placed-w_cen)))
+				new_center_to_add = unpack_center(new_centers,j,shared)
+				w_cen = complex(np.ravel(new_center_to_add[1])[0])
+				min_val = np.amin(np.absolute(w_placed_arr-w_cen))
+				w_point = Point(w_cen.real,w_cen.imag)
 				in_range = False
 				if inverted_buffer_metric:
 					if w_cen == 0:
 						in_range = True
 					else:
 						buffering = np.absolute(1/w_cen)/80
-						w_point = Point(np.real(1/w_cen),np.imag(1/w_cen))
-						w_polygon = Polygon(np.concatenate((np.real(1/w_raw).reshape([w_raw.shape[0],1]),np.imag(1/w_raw).reshape([w_raw.shape[0],1])),axis=1)).buffer(buffering)
-						in_range = w_polygon.contains(w_point)
+						inv_point = Point(np.real(1/w_cen),np.imag(1/w_cen))
+						inv_polygon = Polygon(np.stack([np.real(1/w_raw),np.imag(1/w_raw)],axis=1)).buffer(buffering)
+						in_range = inv_polygon.contains(inv_point)
 				else:
-					buffering = (np.absolute(w_cen/D)**2+1)*D/240
-					w_point = Point(np.real(w_cen),np.imag(w_cen))
-					w_polygon = Polygon(np.concatenate((np.real(w_raw).reshape([w_raw.shape[0],1]),np.imag(w_raw).reshape([w_raw.shape[0],1])),axis=1)).buffer(-buffering)[0]
-					in_range = w_polygon.contains(w_point)
-				if min_val>0.01*np.absolute(new_center_to_add[11]-new_center_to_add[1]) and in_range and np.absolute(new_center_to_add[2]-new_center_to_add[1])<3*np.absolute(new_center_to_add[11]-new_center_to_add[1]):
+					buffering = float((np.absolute(w_cen/D)**2+1)*D/240)
+					in_range = w_prepared.contains(w_point) and w_edge.distance(w_point)>buffering
+				reach = np.absolute(new_center_to_add[11]-new_center_to_add[1])
+				if min_val>0.01*reach and in_range and np.absolute(new_center_to_add[2]-new_center_to_add[1])<3*reach:
 					current_level.append(len(centers))
 					centers.append(new_center_to_add)
+					w_placed_arr = np.append(w_placed_arr,w_cen)
 					index_within_last.append(j)
 
 			print(len(centers))
 			with open(f'pickle/matlab_saves/{preceeder}level_{level_i}_centers.txt', 'wb') as fh:
 				pickle.dump(centers, fh)
+			prune_stale_level_centers(preceeder,level_i)
 			with open(f'pickle/matlab_saves/{preceeder}level_{level_i}_current_level.txt', 'wb') as fh:
 				pickle.dump(current_level, fh)
 			with open(f'pickle/matlab_saves/{preceeder}level_{level_i}_index_within_last.txt', 'wb') as fh:
@@ -229,12 +269,13 @@ def explore_polygon(poly_coords,preceeder,centers_pickled=0,inverted_buffer_metr
 			current_level = pickle.load(pickle_off)
 			pickle_off = open(f"pickle/matlab_saves/{preceeder}level_{level_i}_index_within_last.txt", "rb")
 			index_within_last = pickle.load(pickle_off)
+			w_placed_arr = np.array([complex(np.ravel(center[1])[0]) for center in centers])
 
 		if level_i>=centers_pickled-1:
 			if len(current_level)==0:
 				done_exploring = True
 			else:
-				scipy.io.savemat(f'pickle/matlab_saves/{preceeder}level_{level_i+1}.mat', mdict={'centers': centers,'r': r,'current_level': current_level,'index_within_last': index_within_last})
+				save_level(f'pickle/matlab_saves/{preceeder}level_{level_i+1}.mat',centers,current_level,index_within_last,r)
 
 	with open(f'pickle/matlab_saves/{preceeder}centers_file.txt', 'wb') as fh:
 		 pickle.dump(centers, fh)

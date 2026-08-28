@@ -181,8 +181,9 @@ def read_in_file(filename,transform):
 	with fiona.open(filename, layer=fiona.listlayers(filename)[0]) as layer:
 		for feature in layer:
 			multipolys.append([])
-			if shape(feature['geometry']).type=='MultiPolygon':
-				for poly in shape(feature['geometry']):
+			geom = shape(feature['geometry'])
+			if geom.geom_type == 'MultiPolygon':
+				for poly in geom.geoms:
 					ext_coords = poly.exterior.coords
 					poly_ext_out = np.zeros_like(np.array(poly.exterior.coords))
 					poly_int_out = [np.zeros_like(np.array(b.coords)) for b in list(poly.interiors)]
