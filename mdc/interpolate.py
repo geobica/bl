@@ -364,11 +364,11 @@ def _load_rotated_mesh(name):
     return (grid_sample_w,mapped_sample_points,loaded_pickle,opposing_point,
         cell_count,boundary_count,outline_point_location,rotation_phase)
 
-def run_interpolation_algorithm(projection_name,vector_file_to_project=None):
+def run_interpolation_algorithm(projection_name,vector_file_to_project=None,outline_out=None,projection_out=None,mesh_out=None,extra_outputs=True,graticule_out=None,graticule_step_deg=None,angle_outlier_deg=None):
     out_name = projection_name
-    outline_out = f'maps_projected/outline_{out_name}.shp'
-    projection_out = f'maps_projected/{out_name}.shp'
-    mesh_out = f'maps_projected/mesh_{out_name}.shp'
+    outline_out = outline_out or f'maps_projected/outline_{out_name}.shp'
+    projection_out = projection_out or f'maps_projected/{out_name}.shp'
+    mesh_out = mesh_out or f'maps_projected/mesh_{out_name}.shp'
 
     (grid_sample_w,mapped_sample_points,loaded_pickle,opposing_point,
         cell_count,boundary_count,outline_point_location,_rotation_phase) = _load_rotated_mesh(projection_name)
@@ -642,6 +642,10 @@ def run_interpolation_algorithm(projection_name,vector_file_to_project=None):
                         vertex_within = within_seg|within_seg[prev_i]
                         keep = valid_ang&vertex_within
                         angle_errors.extend(ang_err[keep].tolist())
+                        if angle_outlier_deg is not None:
+                            bad = keep&(ang_err>angle_outlier_deg)
+                            for _i in np.where(bad)[0]:
+                                angle_outliers.append((feature_i,float(np.real(equi[_i])),float(np.imag(equi[_i])),float(ang_err[_i])))
 
                         orig_vec,proj_vec = orig[1:]-orig[:-1],proj[1:]-proj[:-1]
                         orig_len = np.abs(orig_vec)
@@ -665,7 +669,8 @@ def run_interpolation_algorithm(projection_name,vector_file_to_project=None):
     poly_ext_out = np.stack([np.real(poly_ext),np.imag(poly_ext)],axis=1)
     multipolys = [[[poly_ext_out,[]]]]
     original_outline = Polygon(poly_ext_out)
-    multi_to_file(f'maps_projected/original_outline_{out_name}.shp',multipolys)
+    if extra_outputs:
+        multi_to_file(f'maps_projected/original_outline_{out_name}.shp',multipolys)
 
     clip_poly = make_valid(Polygon(poly_ext_out))
 
@@ -694,38 +699,43 @@ def run_interpolation_algorithm(projection_name,vector_file_to_project=None):
         lat_lines = (np.arange(-180,180.1,0.1)[:,None]+1j*np.arange(-85,90,step_deg)[None,:]).T
         return list(long_lines)+list(lat_lines)
 
-    line_list = []
-    for gridline in _graticule_lines(5):
-        line_comp = equi_to_stereo(gridline)
-        line_split = np.stack([np.real(line_comp),np.imag(line_comp)],axis=1)
-        line_list.append(line_split)
-    lines_to_file(f'maps_projected/original_gridline_{out_name}.shp',line_list)
+    if extra_outputs:
+        line_list = []
+        for gridline in _graticule_lines(5):
+            line_comp = equi_to_stereo(gridline)
+            line_split = np.stack([np.real(line_comp),np.imag(line_comp)],axis=1)
+            line_list.append(line_split)
+        lines_to_file(f'maps_projected/original_gridline_{out_name}.shp',line_list)
 
-    step_deg = 5 # a graticule line every 5 degrees
-    out_path = f'maps_projected/gridline_{out_name}.shp'
-    line_list = []
-    gridlines = _graticule_lines(step_deg)
-    _graticule_start = time.time()
-    for _gridline_i,gridline in enumerate(gridlines):
-        progress_bar('Projecting graticule',_gridline_i/max(len(gridlines),1),_graticule_start)
-        line_comp = equi_to_stereo(gridline)
-        line_split = np.stack([np.real(line_comp),np.imag(line_comp)],axis=1)
-        intersected = LineString(line_split).intersection(make_valid(original_outline))
-        pieces = intersected.geoms if intersected.geom_type=='MultiLineString' else [intersected]
-        for piece in pieces:
-            if piece.geom_type!='LineString' or len(piece.coords)==0:
-                continue
-            reprojed = reproj(np.array(piece.coords)[:,0]+1j*np.array(piece.coords)[:,1],False)
-            line_list.append(np.stack([np.real(reprojed),np.imag(reprojed)],axis=1))
-    progress_bar('Projecting graticule',1.0,_graticule_start,done=True)
-    lines_to_file(out_path,line_list)
-    graticule_result_path = out_path
+    if extra_outputs or graticule_step_deg is not None:
+        step_deg = graticule_step_deg if graticule_step_deg is not None else 5
+        out_path = graticule_out or f'maps_projected/gridline_{out_name}.shp'
+        line_list = []
+        gridlines = _graticule_lines(step_deg)
+        _graticule_start = time.time()
+        for _gridline_i,gridline in enumerate(gridlines):
+            progress_bar('Projecting graticule',_gridline_i/max(len(gridlines),1),_graticule_start)
+            line_comp = equi_to_stereo(gridline)
+            line_split = np.stack([np.real(line_comp),np.imag(line_comp)],axis=1)
+            intersected = LineString(line_split).intersection(make_valid(original_outline))
+            pieces = intersected.geoms if intersected.geom_type=='MultiLineString' else [intersected]
+            for piece in pieces:
+                if piece.geom_type!='LineString' or len(piece.coords)==0:
+                    continue
+                reprojed = reproj(np.array(piece.coords)[:,0]+1j*np.array(piece.coords)[:,1],False)
+                line_list.append(np.stack([np.real(reprojed),np.imag(reprojed)],axis=1))
+        progress_bar('Projecting graticule',1.0,_graticule_start,done=True)
+        lines_to_file(out_path,line_list)
+        graticule_result_path = out_path
+    else:
+        graticule_result_path = None
 
     if vector_file_to_project is None:
         return {'outline':outline_out,'mesh':mesh_out,'graticule':graticule_result_path}
 
-    multipolys = read_in_file(vector_file_to_project,equi_to_stereo,clip_poly=clip_poly,clip_forward=_clip_forward,clip_inverse=_clip_inverse,progress_label='Projecting to stereographic (original)')
-    multi_to_file(f'maps_projected/original_{out_name}.shp',multipolys)
+    if extra_outputs:
+        multipolys = read_in_file(vector_file_to_project,equi_to_stereo,clip_poly=clip_poly,clip_forward=_clip_forward,clip_inverse=_clip_inverse,progress_label='Projecting to stereographic (original)')
+        multi_to_file(f'maps_projected/original_{out_name}.shp',multipolys)
 
     multipolys = read_in_file(vector_file_to_project,reproj,clip_poly=clip_poly,clip_forward=_clip_forward,clip_inverse=_clip_inverse,progress_label='Projecting to final position')
     multi_to_file(projection_out,multipolys)
@@ -744,14 +754,14 @@ def run_interpolation_algorithm(projection_name,vector_file_to_project=None):
         'length_error_table':length_error_table,'length_error_count':int(length_errors.shape[0]),
         'angle_outliers':angle_outliers}
 
-def run_interpolation_algorithm_raster(name,raster_path,out_png=None,resolution=1200):
-    out_png = out_png or f'maps_projected/raster_{name}.png'
+def run_interpolation_algorithm_raster(projection_name,raster_path,out_png=None,resolution=1200):
+    out_png = out_png or f'maps_projected/raster_{projection_name}.png'
     import rasterio
     from PIL import Image
     import shapely.vectorized
 
     (grid_sample_w,mapped_sample_points,loaded_pickle,opposing_point,
-        cell_count,boundary_count,outline_point_location,rotation_phase) = _load_rotated_mesh(name)
+        cell_count,boundary_count,outline_point_location,rotation_phase) = _load_rotated_mesh(projection_name)
 
     node_xy_m = np.stack([mapped_sample_points.real,mapped_sample_points.imag],axis=1)
     tri_m = Delaunay(node_xy_m)
@@ -816,13 +826,13 @@ def _area_distortion_label(ratio):
             return f'{lo:g}-{hi:g}'
     return f'< {AREA_DISTORTION_BUCKETS[0]:g}'
 
-def run_interpolation_algorithm_distortion(name,out_shp=None):
-    out_shp = out_shp or f'maps_projected/distortion_{name}.shp'
-    grid_sample_w_full = np.load(f'pickle/interpolation_points/{name}_W.npy')/D
-    cell_count,boundary_count = (int(v) for v in np.load(f'pickle/interpolation_points/{name}_blocks.npy'))
+def run_interpolation_algorithm_distortion(projection_name,out_shp=None):
+    out_shp = out_shp or f'maps_projected/distortion_{projection_name}.shp'
+    grid_sample_w_full = np.load(f'pickle/interpolation_points/{projection_name}_W.npy')/D
+    cell_count,boundary_count = (int(v) for v in np.load(f'pickle/interpolation_points/{projection_name}_blocks.npy'))
 
     (grid_sample_w,mapped_sample_points,loaded_pickle,opposing_point,
-        cell_count,boundary_count,outline_point_location,rotation_phase) = _load_rotated_mesh(name)
+        cell_count,boundary_count,outline_point_location,rotation_phase) = _load_rotated_mesh(projection_name)
 
     boundary_W = grid_sample_w_full[outline_point_location[0]:outline_point_location[1]]
     boundary_M = mapped_sample_points[outline_point_location[0]:outline_point_location[1]]
@@ -878,16 +888,16 @@ def run_interpolation_algorithm_distortion(name,out_shp=None):
     })
     return {'distortion':out_shp,'triangle_count':T}
 
-def write_shifted_mesh(name,N,w_pos,delta_out,rotation_phase,out_suffix):
+def write_shifted_mesh(projection_name,N,w_pos,delta_out,rotation_phase,out_suffix):
     delta_raw = delta_out*D*np.exp(-1j*rotation_phase)
 
-    M = np.load(f'pickle/interpolation_points/{name}_M.npy').astype(complex)
-    W = np.load(f'pickle/interpolation_points/{name}_W.npy')
-    blocks_path = f'pickle/interpolation_points/{name}_blocks.npy'
+    M = np.load(f'pickle/interpolation_points/{projection_name}_M.npy').astype(complex)
+    W = np.load(f'pickle/interpolation_points/{projection_name}_W.npy')
+    blocks_path = f'pickle/interpolation_points/{projection_name}_blocks.npy'
     if os.path.isfile(blocks_path):
         cell_count,boundary_count = (int(v) for v in np.load(blocks_path))
         if cell_count!=N:
-            raise ValueError(f'{name}: blocks.npy cell_count ({cell_count}) != centers_file.txt length ({N})')
+            raise ValueError(f'{projection_name}: blocks.npy cell_count ({cell_count}) != centers_file.txt length ({N})')
     else:
         cell_count = N
         boundary_count = M.shape[0]-13*cell_count
@@ -903,11 +913,11 @@ def write_shifted_mesh(name,N,w_pos,delta_out,rotation_phase,out_suffix):
     extra_start = cell_count+boundary_count
     n_extra = M.shape[0]-extra_start
     if n_extra%cell_count!=0:
-        raise ValueError(f'{name}: {n_extra} leftover M.npy points not evenly divisible by {cell_count} cells')
+        raise ValueError(f'{projection_name}: {n_extra} leftover M.npy points not evenly divisible by {cell_count} cells')
     per_cell = n_extra//cell_count
     M[extra_start:] = (M[extra_start:].reshape(cell_count,per_cell)+delta_raw[:,None]).reshape(-1)
 
-    out_path = f'pickle/interpolation_points/{name}{out_suffix}_M.npy'
+    out_path = f'pickle/interpolation_points/{projection_name}{out_suffix}_M.npy'
     np.save(out_path,M)
     return {'relaxed_M':out_path,'cell_count':cell_count,'boundary_count':boundary_count,
         'detail_points_per_cell':per_cell}
