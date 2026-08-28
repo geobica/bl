@@ -1,5 +1,6 @@
 # Minimizing Scale Distortion in Conformal Projections
-This code implements an algorithm which generates a map projection optimized for a given region, such that it is conformal within that region and has a consistant scale along the region's boundary.
+## Geobica Projection 2.0, released 28 August 2026
+This code implements an algorithm which generates a map projection optimized for a given region, such that it is conformal within that region and has a consistent scale along the region's boundary.
 
 The math of the algorithm is explained on [my blog](https://www.geobica.com/bl/mdc/). To implement the Schwarz-Christoffel mapping needed for the computation, I used Toby Driscoll's [Schwarz–Christoffel Toolbox](https://tobydriscoll.net/project/sc-toolbox/), which was ported from MATLAB to GNU Octave by [Joseph Malkoun](https://github.com/joemalk/sc_toolbox_octave).
  
@@ -9,51 +10,39 @@ Three python files are used to implement the projection algorithm:
 2. `geobica_projection.py`
 	- Takes this boundary and numerically implements the projection algorithm to generate the corresponding positions of sample points in a stereographic projection and the optimized conformal projection (W and M respectively).
 3. `interpolate.py`
-	- Uses these sample points to project a given shapefile to the generated projection via Clough Tocher 2D interpolation.
+	- Uses these sample points to project a given shapefile to the generated projection via a piecewise linear interpolation on each
+     triangle in a Delaunay triangulation performed on the mesh points found through Schwarz-Christoffel mapping, with slight adjustments
+     made after to correct minor precision errors.
 
-## bubble_wrap.py
+## How to Use this Tool
 
-Given a geopackage in the folder `input_sample/`, such as the map of Greenland provided at `input_sample/greenland.gpkg`, this script can be used to compute a polygon W with enough buffer space to allow the projection algorithm to work. The map given, as well as any map that will later be given to be reprojected, should be in an equirectangular projection (EPSG:4326). Conversion to stereographic in preparation for reprojection to the optimized projection, will be done by my code.
-
-As an example, this script could be used by running:
+In the new August 2026 version of this tool, the only script you need to run to create and use a projection is:
 ```
-python bubble_wrap.py greenland -40 75
+python geobica_projection.py
 ```
-Where "greenland" is the name of the file in the `input_sample/` folder, and -40 and 75 are the longitude and latitude in degrees of a point contained in the region. These points should be approximately central to the region, but importantly, the point opposite to them on the globe (in this case 140°E 75°S) must be outside the region.
 
-The generated polygon W and the given centerpoint will be stored at `pickle/bubble_wrap/[NAME]_full_wrapping.txt`, where `[NAME]` is the name given to the aforementioned region, in this case `greenland`.
+This will open a TUI menu in which you can select a projection to use, or create a new projection, and then select a shapefile that you
+ want to project.
 
-The image below shows the stereographic projection of Greenland in blue, with the polygon W in orange: 
+In the First Menu, you can either select a precomputed projection, or pick a boundary to use as W in the calculation of a new optimized projection out of the shapefiles in `boundary_polygons/`, or select the `New Boundary` option to run the `bubble_wrap.py` script on a potentially more complicated set of shapes and get a usable boundary around it.
+
+If you pick to create a New Boundary for `greenland`, for instance, it will use the file at `input_sample/greenland.gpkg` and find a boundary that goes around it with somewhat of a buffer as can be seen in the image below, showing the stereographic projection of Greenland in blue, with the polygon W in orange:
+
 ![A stereographic projection of Greenland showing the generated polygon around it.](wrapped_greenland.png)
 
-## geobica_projection.py
+The boundary W found by the bubble_wrap algorithm will be added to `boundary_polygons/` and will from then on be selectable in the First Menu as a boundary to use without having to repeat the bubble_wrap step.
 
-This algorithm uses the polygon in `pickle/bubble_wrap/` to calculate a numerical implementation of the optimal conformal projection for that region.
+## Second Menu
 
-As an example, this script could be used by running:
-```
-python geobica_projection.py greenland
-```
-It can take several minutes to run for a small region, and approximately an hour for large complex regions, so save states are stored in `pickle/matlab_saves/`. These can be used when rerunning the code by adding the level number of the last matlab data save generated. For example, if `greenland_level_5.mat` has been generated, you could run `python geobica_projection.py greenland 5` to continue the algorithm from there. Each level corresponds to a layer of the heptagonal lattice away from the center given, as described in my blog post.
+After the projection has been computed, the user has the option to select a shapefile to project into the desired projection. To add your own shapefile to this list, put it in `maps_to_project/`.
 
-Once complete, the sample points locations will be stored at `pickle/interpolation_points/[NAME]_W.npy` and `pickle/interpolation_points/[NAME]_M.npy`, for the points in the stereographic projection and the new projection respectively.
+The chosen file should be in an equirectangular projection (EPSG:4326). Three new shapefiles will be created in the optimized projection:
++ `projection_[NAME]_[SHAPEFILE].shp` (projection of the shapefile `[SHAPEFILE]` selected in the second menu)
++ `boundary_[NAME].shp` (the polygon M)
++ `mesh_[NAME].shp` (the analytically calculated points used to define the triangulation)
 
-## interpolate.py
+Below on the left are the outputted shapefiles for Greenland in the stereographic projection, with the optimized projection on the right. The `greenland_detail` geopackage includes the boundaries of Greenland's 5 municipalities, so they are shown in the output here. This projection was computed using the old version of the tool, so the boundary visibly has more error than it should now:
 
-Given a geopackage that you want to reproject, such as `maps_to_project/greenland_detail.gpkg` given as an example, the computed sample points for `greenland` could be used by running:
-```
-python interpolate.py greenland maps_to_project/greenland_detail.gpkg
-```
-The input file should be in an equirectangular projection (EPSG:4326). Six new shapefiles will be created:
-+ Three in a stereographic projection centered on the originally given center:
-	- `original_[NAME].shp` (projection of the geopackage given to `interpolate.py`)
-	- `original_outline_[NAME].shp` (the polygon W)
-	- `original_gridline_[NAME].shp` (a grid of latitude and longitude lines)
-+ Three in the optimized projection:
-	- `[NAME].shp` (projection of the geopackage given to `interpolate.py`)
-	- `outline_[NAME].shp` (the polygon M)
-	- `gridline_[NAME].shp` (a grid of latitude and longitude lines)
-
-Below on the left are the outputted shapefiles for Greenland in the stereographic projection, with the optimized projection on the right. The `greenland_detail` geopackage includes the boundaries of Greenland's 5 municipalities, so they are shown in the output here.
 ![A side by side comparison of the six output shapefiles for Greenland.](output_greenland.png)
-At the edge of the shapes outlines in the optimized projection there is significant error, due to the way in which the interpolation works, but for the area inside Greenland this distortion does not occur. In the future, I hope to be able to refine the way this algorithm approximates projection of points on the boundary of W. When attempting to project points outside of W, the interpolation algorithm will resort to a nearest points interpolation algorithm, as it is generally not possible to continue these projections beyond the boundary polygon in a way that maintains their conformality.
+
+At the edge of the shapes outlines in the optimized projection there was significant error introduced in the original version of this tool, due to the way in which the interpolation works, but for the area inside Greenland this distortion does not occur. In the future, I hope to be able to refine the way this algorithm approximates projection of points on the boundary of W through a more robust analytic method, rather than through interpolation. When attempting to project points outside of W, the interpolation algorithm will fall back on the linear transformation of the nearest triangle in the triangulation to the point, as it is generally not possible to continue the pure Schwarz-Christoffel projections beyond the boundary polygon in a way that maintains their conformality.
