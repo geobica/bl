@@ -54,8 +54,8 @@ if ode
 
 %  [t,y] = ode23('dimapfun',[0,0.5,1],zeros(2*length(wp),1),...
 %      odeset('abstol',odetol),scale,z2,beta2,aff(1));
-  [t,y] = ode23(@(w,y) dimapfun(w,y,...
-       odeset('abstol',odetol),scale,z2,beta2,aff(1)),[0,0.5,1],zeros(2*length(wp),1));
+  [t,y] = ode23(@(w,y) dimapfun(w,y,[],scale,z2,beta2,aff(1)), ...
+       [0,0.5,1],zeros(2*length(wp),1),odeset('abstol',odetol));
   [m,leny] = size(y);
   zp(:) = y(m,1:lenwp) + i*y(m,lenwp+1:leny);
   abszp = abs(zp);

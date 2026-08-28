@@ -10,6 +10,10 @@ L_D_load = centers(1,7);
 true_W_center_load = centers(1,2);
 anchor_str_load = centers(1,1);
 D_running = {A_D_load{1},R_D_load{1},L_D_load{1}};
+A_W_load = centers(1,3);
+R_W_load = centers(1,12);
+L_W_load = centers(1,13);
+W_running = {A_W_load{1},R_W_load{1},L_W_load{1}};
 corresponding_A_W_running = {true_W_center_load{1},true_W_center_load{1},true_W_center_load{1}};
 anchor_str = {anchor_str_load{1},anchor_str_load{1},anchor_str_load{1}};
 append_str = {"A","R","L"};
@@ -17,15 +21,13 @@ direction_index = {0,1,2};
 
 f = S(1).f;
 
-count = size(D_running);
-count_2 = count(2);
+count_2 = numel(D_running);
 new_centers = {};
 r = centers_load(1).r;
 
 for c = 1:count_2;
-	new_W_ = eval(f,double(D_running{c}));
-	f_ = center(f,new_W_);
-	A_D_from_ = evalinv(f_,double(corresponding_A_W_running{c}));
+	new_W_ = double(W_running{c});
+	[f_,A_D_from_] = center_fast(f,new_W_,double(D_running{c}));
 	A_D_from_ = A_D_from_*r/abs(A_D_from_);
 	p = polygon(f_);
 	w = vertex(p);
@@ -45,7 +47,6 @@ for c = 1:count_2;
 	new_centers{c,12} = eval(f_,A_D_from_*exp(pi*2/3*1i));
 	new_centers{c,13} = eval(f_,A_D_from_*exp(-pi*2/3*1i));
 end;
-clearvars S centers_load;
-save("-v7", outfile_level_computed);
+save("-v7", outfile_level_computed, "new_centers");
 result = 0;
 end

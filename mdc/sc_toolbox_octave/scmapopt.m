@@ -68,6 +68,7 @@ Names = {
     'Tolerance'
     'SolverMethod'
     'InitialGuess'
+    'ParallelWorkers'
 %    'WindowPopup'
     };
 [m,n] = size(Names);
@@ -79,6 +80,7 @@ Defaults = {
     1e-8
     'trust'
     []
+    0
 %    'off'
     };
 

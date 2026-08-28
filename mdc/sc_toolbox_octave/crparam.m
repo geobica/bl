@@ -53,7 +53,7 @@ if err==1
 end
 
 % Parse options
-[trace,tol,method] = parseopt(options);
+[trace,tol,method,workers] = parseopt(options);
 if length(cr0)==1
   tol = cr0;
   cr0 = [];
@@ -81,7 +81,7 @@ qdat = scqdata(beta,nqpts);
 target = crossrat(w,Q);
     
 % Data needed by the nonlinear function
-fdat = {n,beta,target,Q,qdat};
+fdat = {n,beta,target,Q,qdat,workers};
   
 % Set up starting guess
 if isempty(cr0)
