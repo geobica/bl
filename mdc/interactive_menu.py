@@ -212,7 +212,7 @@ def _project_flow(name):
 
     if kind=='other' and selected_name=='graticule':
         graticule_out = f'maps_projected/graticule_{name}.shp'
-        result = interpolate.run_interpolation_algorithm(name,vector_file=None,outline_out=f'maps_projected/boundary_{name}.shp',
+        result = interpolate.run_interpolation_algorithm(name,vector_file_to_project=None,outline_out=f'maps_projected/boundary_{name}.shp',
             mesh_out=f'maps_projected/mesh_{name}.shp',extra_outputs=False,
             graticule_out=graticule_out,graticule_step_deg=1.0)
         _print_result_path(f'The projection of a 1° graticule within {name}',result['graticule'])

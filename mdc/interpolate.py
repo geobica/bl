@@ -350,19 +350,21 @@ def _load_rotated_mesh(name):
             cell_count = len(pickle.load(fh))
         boundary_count = grid_sample_w.shape[0]-13*cell_count
 
+    boundary_W = grid_sample_w[cell_count:cell_count + boundary_count]
+    boundary_M = mapped_sample_points[cell_count:cell_count + boundary_count]
+
     is_mesh = np.ones(grid_sample_w.shape[0],dtype=bool)
     is_mesh[cell_count:cell_count+boundary_count] = False
     grid_sample_w = grid_sample_w[is_mesh]
     mapped_sample_points = mapped_sample_points[is_mesh]
-    boundary_count = 0
 
     rotation_phase,opposing_point,loaded_pickle = _compute_rotation_phase(name)
     mapped_sample_points = mapped_sample_points*np.exp(1j*rotation_phase)
 
-    outline_point_location = [cell_count,cell_count+boundary_count]
+    boundary_M = boundary_M*np.exp(1j*rotation_phase)
 
     return (grid_sample_w,mapped_sample_points,loaded_pickle,opposing_point,
-        cell_count,boundary_count,outline_point_location,rotation_phase)
+        cell_count,boundary_count,boundary_W,boundary_M,rotation_phase)
 
 def run_interpolation_algorithm(projection_name,vector_file_to_project=None,outline_out=None,projection_out=None,mesh_out=None,extra_outputs=True,graticule_out=None,graticule_step_deg=None,angle_outlier_deg=None):
     out_name = projection_name
@@ -371,12 +373,10 @@ def run_interpolation_algorithm(projection_name,vector_file_to_project=None,outl
     mesh_out = mesh_out or f'maps_projected/mesh_{out_name}.shp'
 
     (grid_sample_w,mapped_sample_points,loaded_pickle,opposing_point,
-        cell_count,boundary_count,outline_point_location,_rotation_phase) = _load_rotated_mesh(projection_name)
+        cell_count,boundary_count,boundary_W,boundary_M,_rotation_phase) = _load_rotated_mesh(projection_name)
 
     points_to_file(mesh_out,mapped_sample_points)
 
-    boundary_W = grid_sample_w[outline_point_location[0]:outline_point_location[1]]
-    boundary_M = mapped_sample_points[outline_point_location[0]:outline_point_location[1]]
     boundary_tree = cKDTree(np.stack([np.real(boundary_W),np.imag(boundary_W)],axis=1)) if boundary_W.shape[0]>0 else None
     BOUNDARY_EXACT_TOL = 1e-6
 
@@ -761,7 +761,7 @@ def run_interpolation_algorithm_raster(projection_name,raster_path,out_png=None,
     import shapely.vectorized
 
     (grid_sample_w,mapped_sample_points,loaded_pickle,opposing_point,
-        cell_count,boundary_count,outline_point_location,rotation_phase) = _load_rotated_mesh(projection_name)
+        cell_count,boundary_count,boundary_W,boundary_M,rotation_phase) = _load_rotated_mesh(projection_name)
 
     node_xy_m = np.stack([mapped_sample_points.real,mapped_sample_points.imag],axis=1)
     tri_m = Delaunay(node_xy_m)
@@ -774,8 +774,6 @@ def run_interpolation_algorithm_raster(projection_name,raster_path,out_png=None,
     polyarr *= 180/pi
     boundary_ring_equi = polyarr[:,0]+1j*polyarr[:,1]
 
-    boundary_W = grid_sample_w[outline_point_location[0]:outline_point_location[1]]
-    boundary_M = mapped_sample_points[outline_point_location[0]:outline_point_location[1]]
     boundary_ring_m = reproj_boundary_ring_m(boundary_ring_equi,opposing_point,boundary_W,boundary_M)
     if boundary_ring_m is None:
         boundary_ring_m = stereo_w(boundary_ring_equi,opposing_point)*np.exp(1j*rotation_phase)
@@ -828,14 +826,10 @@ def _area_distortion_label(ratio):
 
 def run_interpolation_algorithm_distortion(projection_name,out_shp=None):
     out_shp = out_shp or f'maps_projected/distortion_{projection_name}.shp'
-    grid_sample_w_full = np.load(f'pickle/interpolation_points/{projection_name}_W.npy')/D
-    cell_count,boundary_count = (int(v) for v in np.load(f'pickle/interpolation_points/{projection_name}_blocks.npy'))
 
     (grid_sample_w,mapped_sample_points,loaded_pickle,opposing_point,
-        cell_count,boundary_count,outline_point_location,rotation_phase) = _load_rotated_mesh(projection_name)
+        cell_count,boundary_count,boundary_W,boundary_M,rotation_phase) = _load_rotated_mesh(projection_name)
 
-    boundary_W = grid_sample_w_full[outline_point_location[0]:outline_point_location[1]]
-    boundary_M = mapped_sample_points[outline_point_location[0]:outline_point_location[1]]
     bw_xy = np.stack([boundary_W.real,boundary_W.imag],axis=1)
     _,nearest = cKDTree(bw_xy).query(bw_xy,k=2)
     nearest = nearest[:,1]
