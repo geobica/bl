@@ -21,6 +21,12 @@ from tqdm import tqdm
 
 import auto_center
 
+WRAP_BUFFER = 0.005
+BRIDGE_BUFFER = 0.01
+SIMPLIFY = 2e-3
+PRE_SIMPLIFY = 1e-3
+UNION_CHUNK = 4000
+
 def polygons_of(geom):
 	if geom.geom_type=='Polygon':
 		return [geom]
@@ -210,11 +216,6 @@ def run_bubble_wrap(name,lon_in=None,lat_in=None,input_path='input_sample',pickl
 
 	nemo_point = lonlat_to_nemo(lon_in,lat_in)
 
-	WRAP_BUFFER = 0.005
-	BRIDGE_BUFFER = 0.01
-	SIMPLIFY = 2e-3
-	PRE_SIMPLIFY = 1e-3
-
 	stereo_poly_combine = None
 	stripped_equis = []
 
@@ -225,18 +226,15 @@ def run_bubble_wrap(name,lon_in=None,lat_in=None,input_path='input_sample',pickl
 		for feature_i,feature in enumerate(layer):
 			print(f"Reprojecting every polygon in feature {feature_i}/{len(layer)}:")
 			for poly in tqdm(polygons_of(shape(feature['geometry']))):
-				poly = poly.buffer(0.)
 				pre_verts_before += len(poly.exterior.coords)
 				if PRE_SIMPLIFY>0:
 					poly = poly.simplify(PRE_SIMPLIFY,preserve_topology=True)
 				for simple_poly in polygons_of(poly):
 					pre_verts_after += len(simple_poly.exterior.coords)
-					pieces.append(comp_to_poly(equi_to_stereo(poly_to_comp(simple_poly)*pi/180,np.conj(nemo_point)+pi)).buffer(0.))
+					pieces.append(comp_to_poly(equi_to_stereo(poly_to_comp(simple_poly)*pi/180,np.conj(nemo_point)+pi)).buffer(WRAP_BUFFER))
 		if PRE_SIMPLIFY>0:
 			print(f'pre-simplify {PRE_SIMPLIFY}deg: {pre_verts_before} -> {pre_verts_after} vertices ({len(pieces)} parts)')
-		stereo_poly_combine = shapely.ops.unary_union(pieces)
-
-	stereo_poly_combine = stereo_poly_combine.buffer(WRAP_BUFFER)
+		stereo_poly_combine = shapely.ops.unary_union([shapely.ops.unary_union(pieces[i:i+UNION_CHUNK]) for i in range(0,len(pieces),UNION_CHUNK)])
 	if SIMPLIFY>0:
 		before = sum(len(p.exterior.coords) for p in polygons_of(stereo_poly_combine))
 		stereo_poly_combine = stereo_poly_combine.simplify(SIMPLIFY,preserve_topology=True)
@@ -277,9 +275,12 @@ def run_bubble_wrap(name,lon_in=None,lat_in=None,input_path='input_sample',pickl
 
 	final_stereo_poly = comp_to_poly(equi_to_stereo(double_buffed,np.conj(nemo_point)+pi)).buffer(0).difference(third_poly.buffer(0))
 	parts = polygons_of(final_stereo_poly)
+	biggest_land = comp_to_poly(equi_to_stereo(max(stripped_equis,key=len),np.conj(nemo_point)+pi))
+	anchor = biggest_land.buffer(0).representative_point()
+	holding = [part for part in parts if part.contains(anchor)]
 	if len(parts)>1:
 		print(f'difference left {len(parts)} pieces; keeping the largest')
-	poly = max(parts,key=lambda part:part.area)
+	poly = holding[0] if holding else max(parts,key=lambda part:part.area)
 	for hole in poly.interiors:
 		print(f'enclosed ocean: ring of {len(hole.coords)} points, area {Polygon(hole).area:.5g}')
 	x,y = poly.exterior.coords.xy

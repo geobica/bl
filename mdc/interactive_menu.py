@@ -76,7 +76,7 @@ def _wrapping_to_lonlat_polygon(points_complex):
     lon = np.degrees(np.real(pts))
     lat = np.degrees(np.imag(pts))
     lon = (lon+180)%360-180
-    return Polygon(np.column_stack([lon,lat])).buffer(0)
+    return Polygon(np.column_stack([lon,lat]))
 
 def _boundary_lonlat_polygon(name):
     with open(f'pickle/bubble_wrap/{name}_full_wrapping.txt','rb') as fh:
@@ -132,10 +132,20 @@ def _new_boundary_flow():
     _save_boundary_polygon(name,poly)
     return name
 
+def _boundary_rings(path):
+    rings = []
+    with fiona.open(path, layer=fiona.listlayers(path)[0]) as layer:
+        for feature in layer:
+            geom = shape(feature['geometry'])
+            for poly in (geom.geoms if geom.geom_type == 'MultiPolygon' else [geom]):
+                if poly.geom_type == 'Polygon':
+                    rings.append(np.asarray(poly.exterior.coords, dtype=float))
+                    rings.extend(np.asarray(hole.coords, dtype=float) for hole in poly.interiors)
+    return rings
+
 def _ensure_auto_center_wrapping(name):
-    path = _find_vector_file('boundary_polygons',name)
-    poly = _load_polygon(path)
-    lon,lat,score = auto_center.find_center(poly)
+    rings = _boundary_rings(_find_vector_file('boundary_polygons', name))
+    lon, lat, score = auto_center.find_center(rings)
     print(f'Picked the center for {name} as: {abs(lat):.0f}°{"NS"[lat<0]}, {abs(lon):.0f}°{"EW"[lon<0]}')
     bubble_wrap.run_bubble_wrap(name,lon,lat,input_path='boundary_polygons',pickle_path='pickle/bubble_wrap')
 
