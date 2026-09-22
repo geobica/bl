@@ -1,4 +1,5 @@
 import time
+from tqdm import tqdm
 	
 def format_duration(seconds):
     seconds = max(0,int(seconds))

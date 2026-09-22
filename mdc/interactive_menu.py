@@ -91,9 +91,13 @@ def _save_boundary_polygon(name,poly):
             c.write({'geometry': mapping(Polygon(part.exterior))})
 
 def _precomputed_projection_items():
+    names = set()
+    for suffix in ('_tlu_M_list.txt','_level_0.mat'):
+        for path in glob.glob(f'pickle/matlab_saves/*{suffix}'):
+            names.add(os.path.basename(path)[:-len(suffix)])
+    names = {n for n in names if os.path.isfile(f'pickle/bubble_wrap/{n}_full_wrapping.txt')}
     items = []
-    for path in sorted(glob.glob('pickle/matlab_saves/*_level_0.mat')):
-        name = os.path.basename(path)[:-len('_level_0.mat')]
+    for name in sorted(names):
         done = os.path.isfile(f'pickle/matlab_saves/{name}_tlu_M_list.txt')
         items.append(menu_ui.MenuItem(name,('precomputed',name),
             color='light_gray' if done else 'dark_gray',
@@ -167,6 +171,27 @@ def _print_error_table(title,total_count,rows,unit=''):
     for label,(_,count,pct) in zip(labels,rows):
         print(f'  {label.ljust(width)}  {pct:6.2f}%  ({count})')
 
+RASTER_MARGIN_CHOICES = (0,100,250,500,1000)
+RASTER_RESOLUTION_CHOICES = (600,1200,2400,6000,12000)
+
+def _raster_options():
+    margin,_ = menu_ui.run_menu(
+        [menu_ui.MenuSection('Add buffer on each side',
+            [menu_ui.MenuItem(f'{m} px' if m else 'none',m) for m in RASTER_MARGIN_CHOICES]),
+         menu_ui.MenuSection('Cancel',items=None)],
+        'How many pixels of buffer should be on each side of the projected shapes?')
+    if margin is None:
+        return None,None
+    resolution,_ = menu_ui.run_menu(
+        [menu_ui.MenuSection('Pixels along the longer side',
+            [menu_ui.MenuItem(f'{r} px'+(' (default)' if r==1200 else ''),r)
+                for r in RASTER_RESOLUTION_CHOICES]),
+         menu_ui.MenuSection('Cancel',items=None)],
+        'What resolution should the raster be?')
+    if resolution is None:
+        return None,None
+    return margin,resolution
+
 def _project_flow(name):
     map_names = _basenames('maps_to_project')
     raster_names = _basenames('rasters_to_project',RASTER_EXTS)
@@ -214,10 +239,17 @@ def _project_flow(name):
 
     if kind=='raster':
         raster_file = _find_raster_file('rasters_to_project',selected_name)
-        raster_out = f'maps_projected/raster_{name}_{selected_name}.png'
-        result = interpolate.run_interpolation_algorithm_raster(name,raster_file,out_png=raster_out)
+        margin,resolution = _raster_options()
+        if margin is None:
+            return
+        raster_out = f'maps_projected/raster_{name}_{selected_name}.tif'
+        result = interpolate.run_interpolation_algorithm_raster(name,raster_file,out_tif=raster_out,
+            resolution=resolution,margin_px=margin)
         _print_result_path(f'The projection of {selected_name} within {name}',result['raster'])
-        print(f'({result["width"]}x{result["height"]}, {100*result["valid_fraction"]:.1f}% of pixels filled)')
+        print(f'({result["width"]}x{result["height"]}, {100*result["valid_fraction"]:.1f}% of pixels filled; '
+            f'{100*result["on_mesh_fraction"]:.1f}% sit on the mesh, the other '
+            f'{100*result["extrapolated_fraction"]:.1f}% are extrapolated from the nearest triangle)')
+        print(f'georeferenced to the same coordinates as boundary_{name}.shp and mesh_{name}.shp')
         return
 
     if kind=='other' and selected_name=='graticule':
@@ -239,13 +271,19 @@ def _project_flow(name):
     boundary_out = f'maps_projected/boundary_{name}.shp'
     projection_out = f'maps_projected/projection_{name}_{selected_name}.shp'
     mesh_out = f'maps_projected/mesh_{name}.shp'
-    result = interpolate.run_interpolation_algorithm(name,vector_file,outline_out=boundary_out,projection_out=projection_out,mesh_out=mesh_out,extra_outputs=False)
+    mesh_tree_out = f'maps_projected/mesh_tree_{name}.shp'
+    mesh_tree_links_out = f'maps_projected/mesh_tree_links_{name}.shp'
+    mesh_links_out = f'maps_projected/mesh_links_{name}.shp'
+    result = interpolate.run_interpolation_algorithm(name,vector_file,outline_out=boundary_out,projection_out=projection_out,mesh_out=mesh_out,mesh_tree_out=mesh_tree_out,mesh_tree_links_out=mesh_tree_links_out,mesh_links_out=mesh_links_out,extra_outputs=False)
 
     _print_error_table(f'Angle error at vertices within {name}',result['angle_error_count'],
         result['angle_error_table'],unit='deg')
     _print_error_table(f'Length distortion of segments within {name}',result['length_error_count'],
         result['length_error_table'],unit='')
     _print_result_path('The projected points used to compute the triangulation',mesh_out)
+    _print_result_path('Just the lattice tree those points were grown from',mesh_tree_out)
+    _print_result_path("That tree's edges, plus the neighbours find_RL recovers",mesh_tree_links_out)
+    _print_result_path('The same lattice drawn through the surrounding samples',mesh_links_out)
     _print_result_path(f'The projection of {selected_name} within {name}',projection_out)
     print('with the projected boundary at:')
     print(f' - {boundary_out}')
@@ -262,7 +300,7 @@ def run(run_pipeline_fn):
             return
         kind = 'boundary'
 
-    if kind=='boundary' and (overwrite or not os.path.isfile(f'pickle/matlab_saves/{name}_level_0.mat')):
+    if kind=='boundary' and (overwrite or not os.path.isfile(f'pickle/bubble_wrap/{name}_full_wrapping.txt')):
         _ensure_auto_center_wrapping(name)
 
     if overwrite or not os.path.isfile(f'pickle/matlab_saves/{name}_tlu_M_list.txt'):

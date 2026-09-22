@@ -1,5 +1,6 @@
 import numpy as np
 from math import e,pi,sqrt,sin,cos,tan,atan
+import glob
 import os
 import warnings
 warnings.filterwarnings('ignore', message='Unable to import Axes3D')
@@ -219,7 +220,32 @@ def run_layer_b(preceeder,level_i):
         list(pool.map(chunk,range(1,WORKERS+1)))
     _oc().feval('sc_toolbox_octave/layer_b_merge.m',prefix,float(WORKERS),outfile)
 
+def find_resume_level(preceeder):
+    best = None
+    for path in glob.glob(f'pickle/matlab_saves/{preceeder}level_*_centers.txt'):
+        tail = os.path.basename(path)[len(preceeder)+len('level_'):-len('_centers.txt')]
+        if not tail.isdigit():
+            continue
+        level_i = int(tail)
+        needed = [f'pickle/matlab_saves/{preceeder}level_{level_i}_current_level.txt',
+            f'pickle/matlab_saves/{preceeder}level_{level_i}_index_within_last.txt',
+            f'pickle/matlab_saves/{preceeder}level_{level_i}_computed.mat']
+        if all(os.path.isfile(p) for p in needed) and (best is None or level_i>best):
+            best = level_i
+    return best
+
+def load_resume_level(preceeder,level_i):
+    loaded = []
+    for part in ('centers','current_level','index_within_last'):
+        with open(f'pickle/matlab_saves/{preceeder}level_{level_i}_{part}.txt','rb') as fh:
+            loaded.append(pickle.load(fh))
+    return loaded
+
 def explore_polygon(poly_coords,preceeder,inverted_buffer_metric=False,crpfun_workers=0):
+    if not os.path.exists(f'pickle/matlab_saves'):
+        os.makedirs(f'pickle/matlab_saves')
+    if not os.path.exists(f'pickle/interpolation_points'):
+        os.makedirs(f'pickle/interpolation_points')
     poly_string = 'A = ['
     x = np.real(poly_coords)
     y = np.imag(poly_coords)
@@ -250,34 +276,51 @@ def explore_polygon(poly_coords,preceeder,inverted_buffer_metric=False,crpfun_wo
     beta_raw = loaded['beta'][:,0]
     z_raw = loaded['z'][:,0]
 
-    centers = []
-    centers.append(['',np.array([0j]),loaded['A_W'][:,0],0,loaded['A_D'][:,0],loaded['R_D'][:,0],loaded['L_D'][:,0],w_raw,z_raw,beta_raw,'',loaded['R_W'][:,0],loaded['L_W'][:,0]])
-    save_level(f'pickle/matlab_saves/{preceeder}level_0.mat',centers,[0],[],r)
-    if not os.path.isfile(f'pickle/matlab_saves/{preceeder}level_0_computed.mat'):
-        _oc().eval(f'infile_sc = \'pickle/matlab_saves/{preceeder}sc.mat\';')
-        _oc().eval(f'infile_level = \'pickle/matlab_saves/{preceeder}level_0.mat\';')
-        _oc().eval(f'outfile_level_computed = strcat(\'pickle/matlab_saves/{preceeder}level_0_computed.mat\');')
-        _oc().feval('sc_toolbox_octave/layer_a.m',_oc().pull('infile_sc'),_oc().pull('infile_level'),_oc().pull('outfile_level_computed'))
-
-    loaded = io.loadmat(f'pickle/matlab_saves/{preceeder}level_0_computed', verify_compressed_data_integrity=False)
-    new_centers = loaded['new_centers']
     shared = (w_raw,z_raw,beta_raw)
-    current_level = []
-    index_within_last = []
-    for j in range(len(new_centers)):
-        current_level.append(len(centers))
-        centers.append(unpack_center(new_centers,j,shared))
-        index_within_last.append(j)
 
-    save_level(f'pickle/matlab_saves/{preceeder}level_1.mat',centers,current_level,index_within_last,r)
+    centers_path = f'pickle/matlab_saves/{preceeder}centers_file.txt'
+    if os.path.isfile(centers_path):
+        with open(centers_path,'rb') as fh:
+            centers = pickle.load(fh)
+        print(f'reusing the completed exploration in {centers_path} ({len(centers)} cells)')
+        return w_raw,beta_raw,z_raw,centers
+
+    resume_level = find_resume_level(preceeder)
+    if resume_level is None:
+        centers = []
+        centers.append(['',np.array([0j]),loaded['A_W'][:,0],0,loaded['A_D'][:,0],loaded['R_D'][:,0],loaded['L_D'][:,0],w_raw,z_raw,beta_raw,'',loaded['R_W'][:,0],loaded['L_W'][:,0]])
+        save_level(f'pickle/matlab_saves/{preceeder}level_0.mat',centers,[0],[],r)
+        if not os.path.isfile(f'pickle/matlab_saves/{preceeder}level_0_computed.mat'):
+            _oc().eval(f'infile_sc = \'pickle/matlab_saves/{preceeder}sc.mat\';')
+            _oc().eval(f'infile_level = \'pickle/matlab_saves/{preceeder}level_0.mat\';')
+            _oc().eval(f'outfile_level_computed = strcat(\'pickle/matlab_saves/{preceeder}level_0_computed.mat\');')
+            _oc().feval('sc_toolbox_octave/layer_a.m',_oc().pull('infile_sc'),_oc().pull('infile_level'),_oc().pull('outfile_level_computed'))
+
+        loaded = io.loadmat(f'pickle/matlab_saves/{preceeder}level_0_computed', verify_compressed_data_integrity=False)
+        new_centers = loaded['new_centers']
+        current_level = []
+        index_within_last = []
+        for j in range(len(new_centers)):
+            current_level.append(len(centers))
+            centers.append(unpack_center(new_centers,j,shared))
+            index_within_last.append(j)
+
+        save_level(f'pickle/matlab_saves/{preceeder}level_1.mat',centers,current_level,index_within_last,r)
+        level_i = 0
+    else:
+        level_i = resume_level
+        centers,current_level,index_within_last = load_resume_level(preceeder,level_i)
+        print(f'resuming exploration from level {level_i} ({len(centers)} cells so far, '
+            f'{len(current_level)} on the last level)')
+        if current_level:
+            save_level(f'pickle/matlab_saves/{preceeder}level_{level_i+1}.mat',centers,current_level,index_within_last,r)
 
     w_polygon = Polygon(np.stack([np.real(poly_coords),np.imag(poly_coords)],axis=1))
     w_prepared = prep(w_polygon)
     w_edge = w_polygon.exterior
     w_placed_arr = np.array([complex(np.ravel(center[1])[0]) for center in centers])
 
-    done_exploring = False
-    level_i = 0
+    done_exploring = len(current_level)==0
     _explore_start = time.time()
     _level_start = _explore_start
     while not done_exploring:

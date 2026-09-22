@@ -257,6 +257,8 @@ def run_bubble_wrap(name,lon_in=None,lat_in=None,input_path='input_sample',pickl
 			bridge_log.append(f'{i}\t{j}\t{np.real(point_0)*180/pi:.5f},{np.imag(point_0)*180/pi:.5f}'
 				f'\t{np.real(point_1)*180/pi:.5f},{np.imag(point_1)*180/pi:.5f}\t{gap*180/pi:.5f}')
 			included_lines.append(stereo_to_equi(poly_to_comp(comp_to_poly(equi_to_stereo(dash_between(stripped_equis[i],stripped_equis[j],step,radius),np.conj(nemo_point)+pi)).buffer(BRIDGE_BUFFER)),np.conj(nemo_point)+pi))
+	if not os.path.exists(f'pickle/bubble_wrap'):
+		os.makedirs(f'pickle/bubble_wrap')
 	with open(os.path.join(f'{pickle_path}',f'{name}_bridges.txt'),'w') as fh:
 		fh.write('ring_a\tring_b\tfrom_lon,lat\tto_lon,lat\tdegrees\n')
 		fh.write('\n'.join(bridge_log))
