@@ -45,6 +45,7 @@
                     </div>
                     </br>
                     <div class="body_print">
+[Edit 23 October 2026: Changed some numbers to match a more precise algorithm used.]
 In 2020 I wrote <a class="link" href="https://geobica.com/bl/igp/"><u>an article</u></a> discussing how to minimize the distortion of shape in an equal-area rectangular projection. In other words, I started with a map projection that does not distort area and modified it to minimize how much it distorts shapes and angles, using a more precise mathematical definition. In that article, I contrasted these equal-area projections with the Mercator Projection, a conformal projection, which preserves shape while allowing area to be distorted. This year, I've come up with a way to do the reverse: Starting with a conformal projection and minimizing the distortion of area without losing the preservation of shapes.
 </br>
 </br>
@@ -97,10 +98,10 @@ Recently, however, I came up with a better method for finding conformal projecti
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
 <img class="side_image" src="../im/mdc/us_geoproj.png" width="80%" style="vertical-align: middle;"/>
-<div class="caption" style="width:55%"><i>A conformal projection with minimal distortion through the US and its territories, created with my method. The relative scale along the red line is 1.0, and the minimal scale anywhere in the US is above 0.99, so the difference in scale is less than 1%. A translucent raster was overlaid to show relative distortion, which has a blobby texture as a result of how sampling was done.</i></div>
+<div class="caption" style="width:55%"><i>A conformal projection with minimal distortion through the US and its territories, created with my method. The relative scale along the red line is 1.0, and the minimal scale anywhere in the US is 0.984, so the difference in scale is less than 2%. Shading was overlaid to show relative distortion.</i></div>
 </div>
 </br>
-While the GS50 has a difference in scale of about 4% throughout just the 50 states, I was able to get this below 1% by my method, with comparable results for arbitrarily large portions of the globe. 
+While the GS50 has a difference in scale of about 4% throughout just the 50 states, I was able to get this below 2% by my method, in a way that can be extended to find the minimum possible distortion of a conformal projection over arbitrarily large portions of the globe. 
 </br>
 </br>
 <div class="subtitle_print"><strong>Notation</strong></div>
@@ -113,7 +114,7 @@ In this article I intend to explain my method for finding a conformal map that t
 $\underrightarrow{\hspace{1em}?(z)\hspace{1em}}$
 <img class="side_image" src="../im/mdc/us_after_geoproj.png" width="40%" style="vertical-align: middle;"/>
 </div>
-<div class="caption" style="width:55%"><i>Stereographic projection mapped to GS50. Lines of equal scale are shown.</i></div>
+<div class="caption" style="width:55%"><i>Stereographic projection mapped from $M$ to $W$. Lines of equal scale are shown.</i></div>
 </br>
 </br>
 $f_W:\mathbb{D}\rightarrow W$ denotes the Schwarz-Christoffel Map (a special case of a Riemann Map to a polygon) that takes any point in the unit disk to a point in $W$. $f_M:\mathbb{D}\rightarrow M$ is the comparable mapping to $M$. By the Riemann Mapping Theorem, it is possible to construct both of these such that they are bijective holomorphic mappings, so the function $f_M\circ f_W^{-1}:W\rightarrow M$ defines a conformal map from the stereographic projection to $M$.
@@ -161,7 +162,7 @@ I've implemented an algorithm to derive $f_M$ numerically for a given input of $
 </br>
 <div style="width=90%;margin:auto;text-align: center;">
 <img class="side_image" src="../im/mdc/projection_world.png" width="80%" style="vertical-align: middle;"/>
-<div class="caption" style="width:55%"><i>The maximum difference in relative scale between two points here is 5.442%, betweem the edge and western Mongolia. In terms of area, that region is about 10% smaller than it would be at the scale of the coast.</i></div>
+<div class="caption" style="width:55%"><i>The maximum difference in relative scale between two points here is 12.1%, between the edge and western Kazakhstan. In terms of area, that region is about 23% smaller than it would be at the scale of the boundary just off the coast.</i></div>
 </div>
 </br>
 This method can generate the interpolation points in a matter of minutes on my laptop. To run it yourself, the code can be found at <a class="link" href="https://github.com/geobica/bl/tree/main/mdc">https://github.com/geobica/bl/tree/main/mdc</a>.
